@@ -1,0 +1,52 @@
+@import "../../../theme/theme";
+
+.mixed-person {
+
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 12px;
+  align-items: center;
+  height: 55px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  &.active {
+    background: rgba(map_get($colors, light), 0.13);
+  }
+
+  > span {
+    display: block;
+
+    &.mixed-person-avatar {
+      padding-right: 5px;
+    }
+  }
+
+  h5,
+  span {
+    font-size: 11px;
+    color: map_get($colors, lightSmoke);
+    margin: 0;
+  }
+
+  h5 {
+    font-weight: 600;
+  }
+
+  img {
+    border-radius: 3px;
+  }
+
+  .mixed-person-presentation {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    background: map_get($colors, danger);
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: map_get($colors, light);
+    font-size: 14px;
+    font-weight: bold;
+  }
+}

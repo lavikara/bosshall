@@ -1,0 +1,100 @@
+app-inc-spread-flash-component {
+  .spread-container {
+    .spread-outter-heading {
+      @include font(13px, 600);
+      color: map_get($colors, primary);
+      padding: 15px 0 9px 15px;
+    }
+
+    .inner-spread-holder {
+      padding-right: 20px;
+
+      .col {
+        &.spread-avatar {
+          max-width: 150px;
+          margin-right: 10px;
+        }
+
+        &.spread-msg {
+          max-width: calc(100% - 160px);
+          padding-left: 0;
+        }
+      }
+
+      .spread-avatar {
+        padding-right: 0px;
+
+        img {
+          width: 100%;
+          @include border-radius(3px);
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .spread-creator {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .creator-heading {
+          line-height: 18px;
+
+          span {
+            @include font(13px, 600);
+            color: map_get($colors, primary);
+          }
+        }
+
+        .created-time {
+          color: map_get($colors, primary);
+          display: flex;
+          flex-direction: row;
+
+          span {
+            @include font(12px, 600);
+            display: block;
+            line-height: 18px;
+          }
+
+          .material-icons {
+            margin-right: 6px;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .spread-title {
+        margin-top: 12px;
+
+        .title-heading {
+          margin-bottom: 5px;
+          line-height: 14px;
+
+          span {
+            @include font(13px, 600);
+            color: map_get($colors, dark);
+          }
+        }
+
+        .title-body {
+          @include font(12px, 300);
+          color: map_get($colors, dark);
+          line-height: 13px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .progress-bar-holder {
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .progress-bar {
+        height: 3px;
+        background: map_get($colors, secondary) !important;
+      }
+    }
+  }
+
+}

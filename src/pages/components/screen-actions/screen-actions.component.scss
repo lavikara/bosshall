@@ -1,0 +1,60 @@
+@import "../../../theme/theme";
+
+.screen-action-container {
+  position: absolute;
+  height: 100%;
+  right: 10px;
+  z-index: 20;
+
+
+  .talking-action {
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+    background: map_get($colors, white);
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px map_get($colors, linkColor);
+
+    .material-icons,
+    span {
+      color: map_get($colors, primary);
+    }
+
+    .material-icons {
+      font-size: 18px;
+    }
+    span {
+      font-size: 14px;
+      margin-right: 8px;
+      margin-left: 8px;
+      font-weight: 600;
+    }
+  }
+
+  .screen-action-container-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    .sidebar-button {
+      border-radius: 50px;
+      background: map_get($colors, white);
+      width: 50px;
+      height: 50px;
+      margin-bottom: 25px;
+      text-align: right;
+
+
+      .material-icons {
+        color: map_get($colors, primary);
+        font-size: 18px;
+      }
+    }
+  }
+
+}

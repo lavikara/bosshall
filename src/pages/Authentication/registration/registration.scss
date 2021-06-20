@@ -1,0 +1,208 @@
+app-register-component, app-login-component {
+  .register-page-header {
+    z-index: 100;
+    position: relative;
+  }
+
+  #app-register-component {
+    background: url('/assets/img/background3.jpeg') no-repeat !important;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    min-height: calc(100vh - 143px);
+    height: 100%;
+
+    &:before {
+      //background: rgba(map_get($colors, primary), 0.5);
+      content: '';
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 20;
+      background: rgba(map_get($colors, light), 0.96);
+
+    }
+
+    .row {
+      margin: 0;
+
+      [class*=col-] {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        justify-content: center;
+
+        &.center-box {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .box {
+          padding: 0px;
+          width: 100%;
+          @include border-radius(5px);
+          // background:map_get($colors,white);
+          //border:1px solid map_get($colors,lightSmoke);
+          //@include box-shadow(2px 2px 2px rgba(map_get($colors,dark),0.25));
+          position: relative;
+          z-index: 50;
+          justify-content: flex-end;
+          @include onlySm {
+            justify-content: center;
+          }
+
+          .card {
+          }
+
+          .card-title {
+            @include font(13px, 600);
+            color: map_get($colors, primary);
+          }
+
+          .logo {
+            background: url('/assets/img/logo.png') no-repeat;
+            background-size: 40px 40px;
+            height: 40px;
+            width: 40px;
+            margin: 0 auto;
+          }
+
+          .forms {
+            padding: 5%;
+
+            label {
+              width: 100%;
+              padding: 6px 0 0 0;
+              position: static;
+              margin: 0;
+              @include font(12px, 600);
+              color: map_get($colors, primary);
+            }
+
+            input, select {
+              height: 40px;
+              color: map_get($colors, darkSmoke);
+              @include font(11px, 600);
+              @include placeholder(dark, 11px, 300);
+
+            }
+
+            .form-check {
+              label {
+                color: map_get($colors, dark);
+                @include font(12px, 400);
+
+                .check-text {
+                  margin-left: 35px;
+                }
+              }
+            }
+
+            button {
+              @include border-radius(5px);
+              width: 60%;
+              display: block;
+              margin: 20px auto 20px;
+              background-color: map_get($colors, danger);
+              @include font(13px, 600);
+
+              &:focus, &:hover {
+                @include box-shadow(1px 0px 2px rgba(map_get($colors, dark), 0.25));
+              }
+            }
+
+            .forgotLink {
+              width: 100%;
+              text-align: right;
+              @include font(12px, 400);
+              color: map_get($colors, primary);
+            }
+          }
+
+          p {
+            color: map_get($colors, darkSmoke);
+            @include font(13px, 400);
+
+            a {
+              color: map_get($colors, secondary);
+
+              &:focus, &:hover, &.visited {
+                text-decoration: none;
+              }
+            }
+          }
+
+          .footerWriteup {
+            text-align: center;
+            width: 70%;
+            margin: 40px auto 0;
+
+            a {
+              color: map_get($colors, secondary);
+
+              &:focus, &:hover, &.visited {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+
+
+        .written-content-section {
+          position: relative;
+          min-height: 60%;
+          z-index: 100;
+          padding-top: 30px;
+          max-width: 550px;
+          padding-left: 30px;
+          border-left: 2px solid rgba(map_get($colors, platformColor), 0.4);
+
+          h1 {
+            font-size: 60px;
+            font-weight: bold;
+
+          }
+
+          h3 {
+            font-size: 30px;
+          }
+
+          p {
+            font-size: 20px;
+            margin-bottom: 10px;
+          }
+        }
+
+        .form-body {
+          width: 100%;
+          min-height: 66vh;
+          max-height: 500px;
+          max-width: 440px;
+          background: map_get($colors, white);
+          padding: 20px 40px;
+          @include border-radius(3px);
+
+          h2 {
+            font-size: 26px;
+            text-align: center;
+            padding-bottom: 10px;
+          }
+
+          .btn {
+            margin: 25px 0;
+            width: 100%;
+            text-transform: uppercase;
+          }
+
+        }
+      }
+    }
+  }
+
+}

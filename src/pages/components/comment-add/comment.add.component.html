@@ -1,0 +1,32 @@
+<div class="comment-input-container">
+    <div class="row inner-comment-holder">
+        <div class="col short">
+            <div class="user-avatar">
+                <img [src]="user.picture"/>
+            </div>
+        </div>
+        <div class="col long-col">
+            <div class="fake-input">
+                <mat-progress-bar *ngIf="uploading" [mode]="'indeterminate'" class="comment-loading"></mat-progress-bar>
+                <div #editor class="editable-portion" contenteditable="true">
+                    {{content}}
+                </div>
+                <div class="fake-buttons">
+                    <div class="fake-input-button pull-right">
+                        <div class="emoji js-emoji-container">
+                            <i class="material-icons danger">favorite</i>
+                            <emoji-mart (emojiSelect)="addEmoji($event)" [backgroundImageFn]="emojiBackgroundFn.backgroundImageFn" class="js-emoji-hover"
+                                        [sheetSize]="20" [emojiSize]="16"
+                                        set="apple"></emoji-mart>
+                        </div>
+                        <div (click)="openFile('image')" class="emoji"><i class="material-icons">camera_alt</i></div>
+                        <div (click)="openFile('audio')" class="emoji"><i class="material-icons">mic</i></div>
+                        <div (click)="sendComment()" class="emoji"><i class="material-icons">send</i></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <input #fileUpload type="file"/>
+</div>

@@ -1,0 +1,194 @@
+app-user-profile-component {
+
+  .main-content {
+    margin: 15px auto;
+
+    input[type=file] {
+      display: none;
+    }
+
+    .row {
+      margin: 0;
+
+      &.cover-card {
+        &:last-child {
+          margin-top: 15px;
+        }
+
+        padding-top: 15px;
+        padding-bottom: 15px;
+        overflow: hidden;
+        max-width: 1200px;
+        background-color: map_get($colors, white);
+        border: 1px solid map_get($colors, lightSmoke);
+        @include border-radius(3px);
+      }
+    }
+
+
+    .cover-holder {
+      position: relative;
+
+      .cover-image {
+        height: 350px;
+        position: relative;
+        z-index: 2;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        width: 100%;
+
+        &:before {
+          content: '';
+          left: 0;
+          right: 0;
+          width: 100%;
+          z-index: 5;
+          height: 100%;
+          top: 0;
+          bottom: 0;
+          position: absolute;
+          background: rgba(map_get($colors, dark), 0.4);
+        }
+      }
+
+      .profile-image {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        z-index: 10;
+        height: 180px;
+        width: 150px;
+        border: 3px solid map_get($colors, lightSmoke);
+        @include border-radius(3px);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .profile-image-inner {
+          position: relative;
+          height: 100%;
+        }
+
+        .change-picture {
+          cursor: pointer;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          padding-left: 10px;
+          z-index: 30;
+          height: 34px;
+          background: rgba(map_get($colors, dark), 0.6);
+          display: flex;
+          flex-direction: row;
+
+          .change-picture-icon-holder {
+            margin-right: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .material-icons {
+              color: map_get($colors, white);
+              font-size: 18px;
+            }
+          }
+
+          .change-picture-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            @include font(11px, 600);
+            color: map_get($colors, white);
+          }
+        }
+      }
+
+    }
+
+    .input-group {
+      margin: 8px 0;
+    }
+
+
+    .no-space {
+      padding: 0;
+
+      &[class*=col-] {
+        &.right {
+          padding-right: 6px;
+        }
+      }
+    }
+
+    p {
+      &.writeup {
+        margin-top: 50px;
+        padding-right: 15px;
+
+        .writeup-important {
+          @include font(13px, 300);
+          color: map_get($colors, danger);
+        }
+      }
+    }
+
+    .btn {
+      &.btn-save {
+        @include border-radius(3px);
+        height: 42px;
+        padding: 0;
+        width: 140px;
+        float: right;
+
+        span {
+          margin-right: 6px;
+          line-height: 18px;
+          @include font(12px, 600);
+
+        }
+
+        .material-icons {
+        }
+
+      }
+    }
+
+    .form-control {
+      background-image: none;
+    }
+  }
+
+  .button {
+    &.change-cover {
+      height: 50px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      min-width: 150px;
+      z-index: 15;
+      background: transparent;
+      border: 2px solid map_get($colors, light) !important;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      color: map_get($colors, light);
+
+      .material-icons {
+        font-size: 18px;
+        margin-right: 8px;
+      }
+
+      span {
+        @include font(11px, 600);
+        color: map_get($colors, white);
+      }
+    }
+  }
+
+}

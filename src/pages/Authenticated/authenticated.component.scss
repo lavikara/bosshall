@@ -1,0 +1,10 @@
+@import "Modules/brand/brand-component";
+@import "Modules/profile/profile.component";
+@import "Modules/spread/invitations/invitations.component";
+
+app-authenticated-component {
+
+  .hidden {
+    display: none;
+  }
+}

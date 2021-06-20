@@ -1,0 +1,9 @@
+<app-header-inc-component [clearSearch]="true" [isBrandPage]="false"></app-header-inc-component>
+<div class="body page-constraint has-pagination">
+    <div class="inner-body-bg">
+        <app-player-list-include-component (onMediaChange)="mediaChanged($event)" [canFilter]="true" [colSize]="'col-md-3 col-lg-2 col-12 col-sm-6'"
+                                           [title]="'My Spread'"></app-player-list-include-component>
+    </div>
+
+</div>
+<app-include-footer-component></app-include-footer-component>

@@ -1,0 +1,12 @@
+<a href="javascript:void(0)" class="mixed-person" [class.active]="selectedUserChannel" (click)="selectUserChannel()">
+    <span class="mixed-person-avatar">
+        <app-avatar-component-include [profileUrl]="picture" *ngIf="!content" [radius]="'3px'" [width]="'39px'" [right]="true" [paddingTop]="'0px'" [id]="id"></app-avatar-component-include>
+        <div class="mixed-person-presentation" *ngIf="content">
+            <span>{{content}}</span>
+        </div>
+    </span>
+    <span>
+        <h5>{{name}}</h5>
+        <span>{{description}}</span>
+    </span>
+</a>

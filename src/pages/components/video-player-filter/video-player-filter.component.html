@@ -1,0 +1,72 @@
+<form [formGroup]="searchForm">
+    <div class="filter-main">
+        <div class="filter-parent">
+            <div (click)="selected=i" *ngFor="let item of heading; let i=index" [ngClass]="i===selected?'active':''"
+                 class="filter-children">
+                <span>{{item}}</span>
+            </div>
+
+        </div>
+        <div *ngIf="canFilter" aria-expanded="false" aria-haspopup="true" class="icon-holder" data-toggle="dropdown"
+             id="contentFilter">
+            <i class="material-icons">filter_list</i>
+        </div>
+        <div aria-labelledby="contentFilter" class="dropdown-menu dropdown-menu-right notification small">
+            <div class="">
+                <div class="notification-holder">
+                    <div class="filter-title">
+                        Filter {{heading[selected]}}
+                    </div>
+
+                    <div class="filter-input">
+                        <div class="input-group no-margin">
+                            <div class="complex">
+                                <i class="material-icons">search</i>
+                                <input [class.error]="!validatorHelper.isValid(searchForm,'search')" formControlName="search" placeholder="Keyword"
+                                       type="text">
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="or">or</div>
+
+
+                    <div class="filter-input">
+                        <div class="input-group calendar-form">
+                            <label>Duration</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <label></label>
+                                        <input formControlName="start" placeholder="start time" type="datetime-local">
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <label></label>
+                                        <input formControlName="end" placeholder="End time" type="datetime-local">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <button class="btn btn-save pull-right">
+                        <span class="icon"><i class="material-icons">search</i> </span>
+                        <span class="text">Filter</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+

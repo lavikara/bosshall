@@ -1,0 +1,260 @@
+<app-header-inc-component [editStory]="true" [showStory]="true"
+                              [title]="'Edit brand page'"></app-header-inc-component>
+<div class="brand-form">
+    <input #uploadLogo (change)="uploadImage($event, 'logo')" type="file">
+    <form (ngSubmit)="showConfirmation()" (submit)="$event.preventDefault()" [formGroup]="brandEditForm" name="brand-form">
+        <div class="main-content page-constraint">
+            <div class="row row-parent">
+                <div class="col-md-7">
+                    <div class="row row-child">
+                        <div class="col-md-5">
+
+                            <div class="main-input-container">
+                                <div class="input-group">
+                                    <label></label>
+                                    <div class="complex">
+                                        <i class="material-icons">language</i>
+                                        <select formControlName="country" name="country">
+                                            <option disabled value="0" selected>Select a Country</option>
+                                            <option *ngFor="let item of countries; let i = index"
+                                                    [value]="item.id">{{item.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label></label>
+                                    <div class="complex">
+                                        <i class="material-icons">room</i>
+                                        <input [class.error]="validatorHelper.isValid(brandEditForm, 'address')" formControlName="address" placeholder="Address"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label></label>
+                                    <div class="complex">
+                                        <i class="material-icons">store</i>
+                                        <select formControlName="workingDays" name="workingDays">
+                                            <option value="0" disabled selected>Working Days</option>
+                                            <option value="1-5">Monday - Friday</option>
+                                            <option value="1-6">Monday - Saturday</option>
+                                            <option value="1-0">Monday - Sunday</option>
+                                            <option value="0-5">Sunday - Friday</option>
+                                            <option class="0-6">Sunday - Saturday</option>
+                                            <option value="6-0">Saturday - Sunday</option>
+                                            <option value="6-6">Saturdays</option>
+                                            <option value="0-0">Sundays</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label></label>
+                                    <div class="complex">
+                                        <i class="material-icons">update</i>
+                                        <select formControlName="workStart">
+                                            <option value="" selected disabled>Opening Time</option>
+                                            <option *ngFor="let time of [1,2,3,4,5,6,7,8,9,10, 11, 12]"
+                                                    [value]="time+' am'">{{time + ' am'}}</option>
+                                            <option *ngFor="let time of [1,2,3,4,5,6,7,8,9,10, 11, 12]"
+                                                    [value]="time+' pm'">{{time + ' pm'}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label></label>
+                                    <div class="complex">
+                                        <i class="material-icons">update</i>
+                                        <select formControlName="workEnd">
+                                            <option value="" selected disabled>Closing Time</option>
+                                            <option *ngFor="let time of [1,2,3,4,5,6,7,8,9,10, 11, 12]"
+                                                    [value]="time+' am'">{{time + ' am'}}</option>
+                                            <option *ngFor="let time of [1,2,3,4,5,6,7,8,9,10, 11, 12]"
+                                                    [value]="time+' pm'">{{time + ' pm'}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label></label>
+                                    <div class="complex">
+                                        <i class="material-icons">today</i>
+                                        <input formControlName="motto" placeholder="Tagline" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="logo-holder">
+                                <div class="logo has-roundline primary-border">
+                                    <img [src]="brandLogo.url | sanitize"  alt="Brand logo" class="round"/>
+                                    <button (click)="this.uploadLogo.click()" class="btn btn-edit btn-just-icon primary-border grey-bg"
+                                            type="button">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div class="input-group padding-right-10">
+                                <label></label>
+                                <div class="complex">
+                                    <i class="material-icons">business</i>
+                                    <input formControlName="name" placeholder="Brand Name" type="text">
+                                </div>
+                            </div>
+                            <div class="input-group padding-right-10">
+                                <label></label>
+                                <div class="complex">
+                                    <i class="material-icons">language</i>
+                                    <select formControlName="timezone">
+                                        <option value="0" selected disabled>Time Zone</option>
+                                        <option *ngFor="let item of timezones; let i = index"
+                                                [value]="item.id">{{item.name}} {{item.abbr}} {{item.offset}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="padding-right-10">
+                                <label></label>
+                                <div class="complex">
+                                    <button (click)="ngxSmartModalService.getModal('brandStory').open()"
+                                             class="button bordered primary-border transparent-bg"
+                                             type="button">
+                                        <i class="material-icons primary">
+                                            add
+                                        </i>
+                                        <span class="primary">ADD STORY</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-child">
+                        <div class="col-md-12">
+                            <div class="child-title">
+                                <h5>BRAND EXECUTIVE</h5>
+                            </div>
+                        </div>
+                        <div *ngFor="let item of executives; let i = index" class="col-md-4">
+
+                            <div class="logo-holder top-space">
+                                <button type="button"
+                                        class="btn btn-edit btn-just-icon btn-del-exec"
+                                        (click)="deleteExecutive(item)">
+                                    <i class="material-icons">cancel</i>
+                                </button>
+                                <div class="logo" *ngIf="item.picture">
+                                    <img [src]="item.picture" class="round"/>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label></label>
+                                <div class="complex">
+                                    <i class="material-icons">list</i>
+                                    <input [value]="item.position || ''"
+                                           (blur)="storeExecutive(i,'position', $event.target.value)"
+                                           matInput
+                                           type="text" placeholder="Position"/>
+
+                                </div>
+                            </div>
+                            <div class="input-group no-margin" *ngIf="item.name">
+                                <label></label>
+                                <div class="complex">
+                                    <i class="material-icons">person</i>
+                                    <input [value]="item.name || ''" (blur)="storeExecutive(i, 'name', $event.target.value)" disabled matInput
+                                           type="text" placeholder="Name">
+                                </div>
+
+                            </div>
+
+                            <div class="input-group no-margin" *ngIf="item.email && !item.User">
+                                <label></label>
+                                <div class="complex">
+                                    <i class="material-icons">email</i>
+                                    <input [value]="item.email || ''" (blur)="storeExecutive(i, 'email', $event.target.value)" disabled matInput
+                                           type="text" placeholder="E-mail">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="add-next">
+
+                                <button  *ngIf="executives && executives.length < 3" (click)="searchUser()"
+                                         class="button bordered primary-border transparent-bg"
+                                         type="button">
+                                    <i class="material-icons primary">
+                                        add
+                                    </i>
+                                    <span class="primary">ADD EXECUTIVES</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row row-child no-space">
+                        <div class="col-md-12 video-player-filter no-space">
+                            <app-video-player-filter-component [heading]="['SPREAD']"></app-video-player-filter-component>
+                        </div>
+                        <div class="col-md-12">
+                            <app-player-list-include-component [type]="'profile'" [brandId]="shadowedBrandDetails.id" (onMediaChange)="mediaChanged($event)" [colSize]="'col-md-3 _4_3'"
+                                                               [heading]="false"></app-player-list-include-component>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5 parent-row-right">
+                    <div class="row row-child">
+                        <div class="col-6 no-space right">
+                            <app-interest-container-selector
+                                    [selected]="shadowedBrandDetails.InterestTag"
+                                    (onChange)="receivedInterest($event)"></app-interest-container-selector>
+
+                        </div>
+                        <div class="col-6 no-space">
+                            <app-external-website-selector
+                                    (inputChanged)="receivedWebsites($event)" [injectWebsites]="websites || []" ></app-external-website-selector>
+                        </div>
+                    </div>
+
+
+                    <div class="row row-child no-space">
+                        <div class="col-md-12 video-player-filter no-space">
+                            <app-video-player-filter-component
+                                    [heading]="['ABOUT BRAND']"></app-video-player-filter-component>
+                        </div>
+                        <div class="col-md-12">
+                        <textarea class="textarea" formControlName="about"
+                                  placeholder="Tell us about your brand"></textarea>
+                        </div>
+                    </div>
+
+
+                    <br/>
+                    <br/>
+                    <div class="row no-space">
+                        <div class="col-12 save-container" fxLayout="row" fxLayoutAlign="flex-end">
+                            <button  class="button bordered" fxLayout="row" fxLayoutAlign="center center" type="submit">
+                                <i class="material-icons">arrow_right</i>
+                                <span class="primary">{{canAddMore ? 'ADD NEXT' : 'SAVE'}}</span>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button (click)="canAddMore=false" *ngIf="canAddMore" class="button bordered primary-border primary" fxLayout="row" fxLayoutAlign="center center"
+                                    type="submit">
+                                <span class="primary">FINISH</span>
+                                <i class="material-icons">check</i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+
+    <app-include-footer-component></app-include-footer-component>
+
+</div>

@@ -1,0 +1,111 @@
+<div class="comment-container">
+
+
+    <div class="comment-container-inner min-comment" *ngIf="isSmall() && message.type !== 'call'">
+        <div class="comment-container-small-header">
+            <div class="comment-header">
+                <div class="comment-avatar">
+                    <app-avatar-component-include [right]="true" [paddingTop]="'0px'" [profileUrl]="message.screenPicture ? message.screenPicture : '-'" [id]="message.from"></app-avatar-component-include>
+                </div>
+                <h4 class="comment-username">{{message.screenName}}</h4>
+                <time class="comment-time">{{toDate(message.date) | amCalendar}}</time>
+<!--                <span class="comment-edited">Edited</span>-->
+            </div>
+
+            <div class="comment-body" [innerHTML]="(message.text | URLStrReplacer) | sanitizeHTML"></div>
+
+        </div>
+
+        <div class="replies-container comment-container-inner" *ngFor="let reply of message.replies">
+
+            <div class="comment-content">
+                <div class="comment-header">
+                    <div class="comment-avatar">
+                        <app-avatar-component-include [width]="imageSize" [radius]="'3px'" [profileUrl]="reply.screenPicture ? reply.screenPicture : '-'" [right]="true" [paddingTop]="'0px'" [id]="reply.from"></app-avatar-component-include>
+                    </div>
+                    <h4 class="comment-username">{{reply.screenName}}</h4>
+                    <time class="comment-time">{{toDate(reply.date) | amCalendar}}</time>
+<!--                    <span class="comment-edited">Edited</span>-->
+                </div>
+
+                <div class="comment-body" [innerHTML]="(reply.text | URLStrReplacer) | sanitizeHTML"></div>
+            </div>
+        </div>
+        <div class="comment-action">
+            <a href="javascript:void(0)" class="comment-action-link" (click)="enableReply()">
+                <i class="material-icons">reply</i>
+                <span>Reply</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="comment-container-inner" *ngIf="isBig() && message.type !== 'call'">
+        <div class="comment-avatar">
+            <app-avatar-component-include [right]="true" [paddingTop]="'0px'" [profileUrl]="message.screenPicture ? message.screenPicture : '-'" [id]="message.from"></app-avatar-component-include>
+        </div>
+        <div class="comment-content">
+            <div class="comment-header">
+                <h4 class="comment-username">{{message.screenName}}</h4>
+                <time class="comment-time">{{toDate(message.date) | amCalendar}}</time>
+<!--                <span class="comment-edited">Edited</span>-->
+            </div>
+
+            <div class="comment-body"  [innerHTML]="(message.text | URLStrReplacer) | sanitizeHTML"></div>
+
+            <div class="replies-container comment-container-inner" *ngFor="let reply of message.replies">
+
+                <div class="comment-avatar">
+                    <app-avatar-component-include [width]="imageSize" [radius]="'3px'" [right]="true" [profileUrl]="reply.screenPicture ? reply.screenPicture : '-'" [paddingTop]="'0px'" [id]="reply.from"></app-avatar-component-include>
+                </div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <h4 class="comment-username">{{reply.screenName}}</h4>
+                        <time class="comment-time">{{toDate(reply.date) | amCalendar}}</time>
+<!--                        <span class="comment-edited">Edited</span>-->
+                    </div>
+
+                    <div class="comment-body" [innerHTML]="(reply.text | URLStrReplacer) | sanitizeHTML">
+                    </div>
+                </div>
+            </div>
+            <div class="comment-action">
+                <a href="javascript:void(0)" class="comment-action-link" (click)="enableReply()">
+                    <i class="material-icons">reply</i>
+                    <span>Reply</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="request-container" *ngIf="message.type === 'call' && !this.isChiefHost">
+        <div class="comment-avatar">
+            <app-avatar-component-include [right]="true" [paddingTop]="'0px'" [profileUrl]="message.screenPicture ? message.screenPicture : '-'" [id]="message.from"></app-avatar-component-include>
+        </div>
+
+        <div class="comment-content">
+            <div class="comment-header">
+                <h4 class="comment-username">{{message.screenName}}</h4>
+                <time class="comment-time">{{toDate(message.date) | amCalendar}}</time>
+                <!--                        <span class="comment-edited">Edited</span>-->
+            </div>
+
+            <div class="comment-body">This request has been accepted!</div>
+    </div>
+
+        <div class="comment-action-container" *ngIf="message.accepted && me && message.type === 'call'">
+            <button class="btn btn-primary" (click)="initCall()" [disabled]="!mainFeed">Call</button>
+
+        </div>
+
+        <div class="comment-action-container" *ngIf="!canAcceptRequests && !message.accepted">
+            <button class="btn btn-primary" disabled>Accept</button>
+            <button class="btn btn-danger" disabled>Decline</button>
+        </div>
+        <div class="comment-action-container" *ngIf="canAcceptRequests && !message.accepted">
+            <button class="btn btn-primary" (click)="message.accept()">Accept</button>
+            <button class="btn btn-danger" (click)="message.decline()">Decline</button>
+        </div>
+
+</div>
+</div>

@@ -1,0 +1,12 @@
+.full-panel {
+  width: 100vw;
+  height: 100%;
+}
+
+.transparent-panel {
+  .mat-dialog-container {
+    background-color: transparent;
+    @include box-shadow(none);
+  }
+
+}

@@ -1,0 +1,107 @@
+<app-header-inc-component [clearSearch]="true" [isBrandPage]="false"></app-header-inc-component>
+<input #shareFileEl class="no-display" type="file"/>
+<a href="" target="_blank" [hidden]="true" download="" #downloadEl></a>
+<div class="body page-constraint has-pagination">
+    <div class="inner-body-bg">
+
+
+                <div class="table-holder mat-elevation-z2" [class.light-bg]="true">
+                    <div class="table-holder-filter">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Invitations</mat-label>
+                            <mat-icon matPrefix>search</mat-icon>
+                            <input matInput [placeholder]="'Filter Users'" [formControl]="filterInvitation" >
+                        </mat-form-field>
+                    </div>
+                    <div class="table-holder-header">
+                        <div class="table-header-text" fxLayout="row" fxLayoutAlign="flex-start center">
+                            <mat-icon [class.secondary]="true">people</mat-icon>
+                            <span [class.secondary]="true">Invitations</span>
+                        </div>
+                        <div class="table-header-action">
+                            <button class="mat-elevation-z2" mat-button [class.primary-bg]="true" [class.light]="true" (click)="addUser()"><mat-icon>add</mat-icon></button>
+                        </div>
+                    </div>
+
+
+                    <div class="table-body">
+
+                        <table mat-table [dataSource]="dataSource" matSort>
+
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ref </th>
+                                <td mat-cell *matCellDef="let element" [class.danger]="element.isBan"> {{element.id}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="picture">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Picture</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <img *ngIf="element.User" [src]="element.User.picture">
+                                </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="firstname">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                <td mat-cell *matCellDef="let element" [class.danger]="element.isBan">
+                                    <span *ngIf="element.User">{{element.User.firstname}} {{element.User.lastname}} </span>
+                                    <span *ngIf="!element.User && element.email">{{element.email}}</span>
+                                    <span *ngIf="(!element.User && !element.email) && element.phone">{{element.phone}}</span>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="audience">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Permission </th>
+                                <td mat-cell *matCellDef="let element"> {{permission(element.audienceType)}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="time">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Created </th>
+                                <td mat-cell *matCellDef="let element" [class.danger]="element.isBan"> {{element.createdAt | amTimeAgo}} </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="accepted">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Accepted </th>
+                                <td mat-cell *matCellDef="let element" [class.danger]="element.isBan"> {{element.accepted?'Accepted':'Not accepted'}} </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="banned">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Banned </th>
+                                <td mat-cell *matCellDef="let element" [class.danger]="element.isBan"> {{element.isBan?'Banned':'Has Access'}} </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <button class="transparent-border transparent-bg button-icon" (click)="ban(element.isBan, element.User.id,element.spread)"><i class="material-icons danger">{{element.isBan?'lock_open':'lock'}}</i></button>
+                                    <button class="transparent-border transparent-bg button-icon" (click)="delete(element.id)"><i class="material-icons primary">delete</i></button>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+                        <p  *ngIf="dataSource.data.length === 0" class="text-align-center padding-top-15 padding-bottom-15">No record
+                            available.</p>
+
+                    </div>
+
+
+                    <div class="table-pagination">
+
+                    </div>
+
+                </div>
+
+
+    </div>
+</div>
+<app-include-footer-component></app-include-footer-component>

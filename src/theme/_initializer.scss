@@ -1,0 +1,112 @@
+
+.transparent-bg {
+  background: transparent !important;
+}
+
+.transparent-border {
+  border: none;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-display {
+  display: none;
+}
+
+@each $name, $value in $font-weight {
+  .font-weight-#{$value} {
+    font-weight: $value;
+  }
+}
+
+@each $name, $value in $sizes {
+  .font-size-#{$name} {
+    font-size: $value !important;
+  }
+  .padding-left-#{$name} {
+    padding-left: $value;
+  }
+  .padding-right-#{$name} {
+    padding-right: $value;
+  }
+  .padding-#{$name} {
+    padding: $value;
+  }
+  .padding-bottom-#{$name} {
+    padding-bottom: $value;
+  }
+  .padding-top-#{$name} {
+    padding-top: $value;
+  }
+
+
+  .margin-left-#{$name} {
+    margin-left: $value;
+  }
+  .margin-right-#{$name} {
+    margin-right: $value;
+  }
+  .margin-#{$name} {
+    margin: $value;
+  }
+  .margin-bottom-#{$name} {
+    margin-bottom: $value;
+  }
+  .margin-top-#{$name} {
+    margin-top: $value;
+  }
+}
+
+@each $name, $value in $colors {
+
+  @if ($name != platformGradient) {
+    .#{$name} {
+      color: $value !important;
+    }
+    .#{$name}-bg {
+      background: $value !important;
+    }
+    .#{$name}-bg-light {
+      background: rgba($value, 0.1) !important;
+    }
+
+    .#{$name}-border-top {
+      border-top: 1px solid rgba($value, 0.8) !important;
+    }
+    .#{$name}-border {
+      border: 1px solid rgba($value, 0.8) !important;
+    }
+    .#{$name}-border-light {
+      border: 1px solid rgba($value, 0.2) !important;
+    }
+
+    .#{$name}-border-right {
+      border-right: 1px solid rgba($value, 0.8) !important;
+    }
+    .#{$name}-border-left {
+      border-left: 1px solid rgba($value, 0.8) !important;
+    }
+    .#{$name}-border-bottom {
+      border-bottom: 1px solid rgba($value, 0.8) !important;
+    }
+    .#{$name}-border-top-light {
+      border-top: 1px solid rgba($value, 0.2) !important;
+    }
+    .#{$name}-border-right-light {
+      border-right: 1px solid rgba($value, 0.2) !important;
+    }
+    .#{$name}-border-left-light {
+      border-left: 1px solid rgba($value, 0.2) !important;
+    }
+    .#{$name}-border-bottom-light {
+      border-bottom: 1px solid rgba($value, 0.2) !important;
+    }
+  }
+
+}

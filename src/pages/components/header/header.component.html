@@ -1,0 +1,375 @@
+<app-loading-in-component></app-loading-in-component>
+<app-top-notification></app-top-notification>
+<div class="header-container" *ngIf="loggedIn">
+    <nav [class.page-constraint]="constraintPage" class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top"
+        >
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <div [routerLink]="'/bl/brand'" class="logo-holder">
+                    <img [src]="'/assets/img/logo-transparent.png'" width="100"/>
+                </div>
+
+                <form *ngIf="!clearSearch" class="navbar-form search-form hidden-xs-down">
+                    <div class="input-group no-border">
+                        <div class="complex">
+                            <i class="material-icons light">search</i>
+                            <input [class.error]="!searchUser.valid" [formControl]="searchUser" [matAutocomplete]="queryUser"
+                                   class="light" placeholder="Which brand do you want to connect with?" type="text">
+                        </div>
+                        <mat-autocomplete #queryUser="matAutocomplete">
+                            <mat-option (click)="selectUser(option)" *ngFor="let option of options| async"
+                                        [value]="option">
+                                <div class="search-container" fxLayout="row" fxLayoutAlign="flex-start"
+                                     fxLayoutAlign="flex-start center">
+                                    <img [src]="option.logo">
+                                    <div class="action-containers">
+                                        <div class="option-title">{{option.name}}</div>
+                                        <div class="option-description">{{option.about | slice: 20}}</div>
+                                    </div>
+                                </div>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </div>
+                </form>
+            </div>
+            <button aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                    data-target="#navigation-example" data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end hidden-xs-down">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a [matMenuTriggerFor]="spreadMenu" class="nav-link">
+                            <i class="material-icons light">workspaces</i>
+                            <p class="d-lg-none d-md-block">
+                                Stats
+                            </p>
+                        </a>
+
+                        <mat-menu #spreadMenu="matMenu" aria-labelledby="accountdropdown"
+                                  class="dropdown-menu-right notification small">
+                            <div class="dropdown-title">Manage Spread</div>
+                            <div class="">
+                                <div class="notification-holder">
+                                    <div (click)="openModal()" class="inner-notification dropdown-item">
+                                        <div class="notification-icon">
+                                            <i class="material-icons">create</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Create Spread</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="inner-notification dropdown-item" [routerLink]="'/bl/profile/spread'">
+                                        <div class="notification-icon">
+                                            <i class="material-icons">workspaces</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">My Spreads</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </mat-menu>
+                    </li>
+<!--                    <li class="nav-item dropdown">-->
+<!--                        <a [matMenuTriggerFor]="notificationMenu" class="nav-link" (onMenuOpen)="clearNotification()" (onMenuClose)="sendClearCommand()">-->
+<!--                            <i class="material-icons light">notifications</i>-->
+<!--                            <span class="notification">{{badgeCount}}</span>-->
+<!--                            <p class="d-lg-none d-md-block">-->
+<!--                                Some Actions-->
+<!--                            </p>-->
+<!--                        </a>-->
+<!--                        <mat-menu #notificationMenu="matMenu" aria-labelledby="navbarDropdownMenuLink"-->
+<!--                                  class="dropdown-menu-right notification">-->
+<!--                            <div class="dropdown-title">Notifications</div>-->
+<!--                            <div class="">-->
+<!--                                <div class="notification-holder">-->
+<!--                                    <div *ngFor="let item of notifications; let i = index"-->
+<!--                                         class="inner-notification dropdown-item">-->
+<!--                                        <div class="notification-icon">-->
+<!--                                            <i class="material-icons">mic</i>-->
+<!--                                        </div>-->
+<!--                                        <div class="notification-body main-notification">-->
+<!--                                            <div class="name">{{item.title}}</div>-->
+<!--                                            <div class="msg">-->
+<!--                                                {{item.description}}-->
+<!--                                            </div>-->
+<!--                                            <div class="time"> {{item.updatedAt | amTimeAgo}}</div>-->
+<!--                                        </div>-->
+<!--                                        <div class="clearfix"></div>-->
+<!--                                    </div>-->
+
+<!--                                    <div *ngIf="!notifications || !notifications.length" class="inner-notification">-->
+<!--                                        <p class="text-align-center dark">No notification yet.</p>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div *ngIf="notifications && notifications.length" class="notification-footer">-->
+<!--                                       &lt;!&ndash; <p (click)="showMore()">Show More</p>&ndash;&gt;-->
+<!--                                    </div>-->
+
+<!--                                </div>-->
+
+
+<!--                            </div>-->
+<!--                        </mat-menu>-->
+<!--                    </li>-->
+                    <li class="nav-item">
+                        <a [matMenuTriggerFor]="helpMenu" aria-expanded="false" aria-haspopup="true" class="nav-link">
+                            <i class="fa fa-question light"></i>
+                            <p class="d-lg-none d-md-block">
+                                Account
+                            </p>
+                        </a>
+                        <mat-menu #helpMenu="matMenu" aria-labelledby="accountdropdown"
+                                  class="dropdown-menu-right notification small">
+                            <div class="dropdown-title">What would you like?</div>
+                            <div class="">
+                                <div class="notification-holder">
+                                    <div class="inner-notification dropdown-item" [routerLink]="'/article/faq'">
+                                        <div class="notification-icon">
+                                            <i class="material-icons">build</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">FAQ</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="inner-notification dropdown-item">
+                                        <div class="notification-icon">
+                                            <i class="material-icons">mail</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Mail Support</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="inner-notification dropdown-item">
+                                        <div class="notification-icon">
+                                            <i class="material-icons">chat</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Live Chat</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </mat-menu>
+                    </li>
+                    <li class="nav-item user_avatar">
+                        <a [matMenuTriggerFor]="account" aria-expanded="false" aria-haspopup="true" class="nav-link"
+                           fxLayout="column" fxLayoutAlign="space-around">
+                            <img [src]="profile.url"/>
+                            <div class="avatar-text"><span>Me </span><i class="material-icons">arrow_drop_down</i></div>
+
+                        </a>
+                        <mat-menu #account="matMenu" class="notification small dropdown-menu-right">
+
+                            <div class="dropdown-title">Hi <span>{{user.firstname}} {{user.lastname}}</span></div>
+                            <div class="">
+                                <div class="notification-holder">
+                                    <div [matMenuTriggerFor]="brandOp" class="inner-notification" fxLayout="row"
+                                         fxLayoutAlign="space-between center" mat-menu-item>
+                                        <div class="notification-icon">
+                                            <i class="material-icons">settings</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Switch Account</div>
+                                        </div>
+                                        <mat-menu #brandOp="matMenu" class="notification small dropdown-menu-right">
+                                            <div class="dropdown-title">Choose Account</div>
+                                            <div class="">
+                                                <div class="notification-holder">
+                                                    <div (click)="selectBrand(brand)"
+                                                         *ngFor="let brand of myBrands; let i = index"
+                                                         class="inner-notification" fxLayout="row"
+                                                         fxLayoutAlign="space-between center">
+                                                        <div class="notification-icon">
+                                                            <i *ngIf="user.brandSelected === brand.id"
+                                                               class="material-icons success">check</i>
+                                                            <i *ngIf="user.brandSelected !== brand.id"
+                                                               class="material-icons">business</i>
+                                                        </div>
+                                                        <div class="notification-body">
+                                                            <div class="name">{{brand.name}}</div>
+                                                        </div>
+
+                                                        <div [routerLink]="'/bl/brand/profile'"
+                                                             class="notification-icon danger-bg mat-elevation-z2">
+                                                            <i class="material-icons light">edit</i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inner-notification" *ngIf="!myBrands || myBrands.length < 1">
+                                                        <div class="notification-body">
+                                                            No Brand found
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </mat-menu>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+
+                                    <div [swal]="confirmSwal" class="inner-notification dropdown-item" fxLayout="row"
+                                         fxLayoutAlign="space-between center" mat-menu-item>
+                                        <div class="notification-icon">
+                                            <i class="material-icons">add</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Create Brand</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div [routerLink]="'/bl/profile'" class="inner-notification dropdown-item"
+                                         fxLayout="row" fxLayoutAlign="space-between center" mat-menu-item>
+                                        <div class="notification-icon">
+                                            <i class="material-icons">create</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Update profile</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+
+                                    <div (click)="deleteAccount()" class="inner-notification dropdown-item"
+                                         fxLayout="row" fxLayoutAlign="space-between center" mat-menu-item>
+                                        <div class="notification-icon">
+                                            <i class="material-icons">delete</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Delete my account</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+
+                                    <div (click)="signOut()" class="inner-notification dropdown-item" fxLayout="row"
+                                         fxLayoutAlign="space-between center" mat-menu-item>
+                                        <div class="notification-icon">
+                                            <i class="material-icons">power_settings_new</i>
+                                        </div>
+                                        <div class="notification-body">
+                                            <div class="name">Sign Out</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </mat-menu>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <div class="navbar-collapse hidden-mobile" id="navigation-example">
+                <h4 class="navigation-title" fxLayout="column" fxLayoutAlign="center">Menu</h4>
+                <ul class="navigation-list">
+                    <li><a (click)="navigation[0] = !navigation[0]">Switch Account <i class="material-icons">{{navigation[0]?'keyboard_arrow_down':'keyboard_arrow_right'}}</i></a>
+                        <ul class="rowed-account" *ngIf="navigation[0]">
+                            <li *ngFor="let brand of myBrands;" fxLayout="row" fxLayoutAlign="space-between center">
+                                <a fxLayout="row" fxLayoutAlign="flex-start center">
+                                    <i class="material-icons">{{user.brandSelected === brand.id?'check':'business'}}</i>
+                                    <a class="margin-left-5" [routerLink]="'/bl/brand/profile'">{{brand.name}}</a>
+                                </a>
+                                <a class="material-icons" (click)="selectBrand(brand)">edit</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a [matMenuTriggerFor]="spreadMenu">Create Spread</a></li>
+                    <li><a [routerLink]="'/bl/profile/spread'">My Spread</a></li>
+                    <li><a [routerLink]="'/bl/profile'">Create Profile</a></li>
+                    <li><a [routerLink]="'/article/faq'">FAQ</a></li>
+                    <li><a [routerLink]="'/'">Privacy Policy</a></li>
+                    <li><a (click)="deleteAccount()">Delete Account</a></li>
+                    <li><a (click)="signOut()">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+
+
+<div class="header-container" *ngIf="!loggedIn">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top page-constraint"
+    >
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <a [routerLink]="'/bl/brand'" class="logo-holder">
+                    <img [src]="'/assets/img/logo.jpg'"/>
+                </a>
+            </div>
+            <button aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                    data-target="#navigation-example" data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+                <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" *ngIf="!routeService.isUrl(['/article', '/', '/article/help', '/article/terms', '/article/faq', '/article/contact'])">
+                <button [class]="routeService.isUrl(['/login','/'])?'button-header danger-bg light':'button-header transparent-bg light'"
+                        [routerLink]="'/login'">Login
+                </button>
+                <button [class]="routeService.isUrl(['/register'])?'button-header danger-bg light':'button-header transparent-bg light'"
+                        [routerLink]="'/register'">Sign Up
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" *ngIf="routeService.isUrl(['/article', '/article/privacy', '/article/help', '/article/terms', '/article/faq', '/article/contact'])">
+                <button [class]="routeService.isUrl(['/article', '/article/privacy', '/article/help', '/article/terms', '/article/faq', '/article/contact'])?'button-header danger-bg light':'button-header transparent-bg light'"
+                        [routerLink]="'/'">Articles
+                </button>
+            </div>
+
+            <div class="navbar-collapse hidden-mobile" id="navigation-example">
+                <h4 class="navigation-title" fxLayout="column" fxLayoutAlign="center">Menu</h4>
+                <a  [routerLink]="'/login'">Login</a>
+                <a  [routerLink]="'/register'">Registration</a>
+                <a  [routerLink]="'/article/faq'">FAQ</a>
+                <a  [routerLink]="'/'">Privacy Policy</a>
+                <a  [routerLink]="'/'">Terms Of Service</a>
+                <a  [routerLink]="'/article/help'">Help</a>
+            </div>
+
+        </div>
+    </nav>
+
+</div>
+
+<swal
+    #confirmSwal
+    (cancel)="createBrand(false)"
+    (confirm)="createBrand(true)"
+    [focusCancel]="true"
+    [options]="{ confirmButtonText: 'Multi Brand' ,cancelButtonText:'Single Brand'}"
+    [showCancelButton]="true"
+    text="Do you want to create a single or multiple brands?"
+    title="Multi Brand"
+    type="question">
+</swal>
+
+
+<ngx-smart-modal #myModal class="nsm-centered medium-modal" identifier="brandStory">
+    <app-brand-story-component [edit]="editStory"></app-brand-story-component>
+</ngx-smart-modal>

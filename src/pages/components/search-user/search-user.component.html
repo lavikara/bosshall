@@ -1,0 +1,32 @@
+<mat-card class="mat-elevation-z0">
+    <mat-card-title class="primary">Search user</mat-card-title>
+    <br/>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Search User</mat-label>
+            <input [formControl]="searchUser" [matAutocomplete]="auto" matInput placeholder="Search User" type="text"/>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option (click)="selectItem(option)" *ngFor="let option of options| async" [value]="option">
+                    <div class="search-container" fxLayout="row" fxLayout="row" fxLayoutAlign="flex-start center">
+                        <img [src]="option.picture">
+                        <div>
+                            <div class="option-title">{{option.firstname}} {{ option.lastname}}</div>
+                            <div class="option-description">{{option.headline}}</div>
+                        </div>
+                    </div>
+
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+
+    </div>
+
+    <mat-card-footer>
+        <div class="button-container" fxLayout="row" fxLayoutAlign="flex-end" *ngIf="!((options| async)?.length) && searched">
+            <button class="btn-custom primary-bg light" (click)="add()">
+                Send Invitation
+            </button>
+        </div>
+    </mat-card-footer>
+</mat-card>

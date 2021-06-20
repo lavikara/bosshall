@@ -1,0 +1,8 @@
+<div class="participant-main-container">
+    <div class="participants-lists" [class.toggle-mobile]="isMobileSlide">
+        <app-participant-lists-component></app-participant-lists-component>
+    </div>
+    <div class="participant-messages" [class.toggle-mobile]="!isMobileSlide">
+        <app-participants-message-include></app-participants-message-include>
+    </div>
+</div>

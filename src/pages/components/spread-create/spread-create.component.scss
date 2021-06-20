@@ -1,0 +1,241 @@
+app-include-spread-create-component {
+  .card {
+    &.max-800 {
+      max-width: 800px;
+    }
+
+    .card-header {
+      margin: 0;
+      background: map_get($colors, lightSmoke);
+      height: 50px;
+
+      .card-title {
+        color: map_get($colors, primary) !important;
+        @include font(13px, 600);
+        padding-left: 2rem;
+      }
+    }
+
+    .card-body {
+      padding: 0;
+
+      .wizard-body {
+        padding: 15px 25px;
+
+        .row {
+          margin-top: 10px;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+
+      .form-group {
+        label {
+          padding: 0;
+          margin: 0;
+          color: map_get($colors, primary);
+          @include font(12px, 600);
+        }
+
+        input, select {
+          padding: 0;
+          position: static;
+          height: 35px;
+          @include font(11px, 600);
+          @include placeholder(dark, 11px, 300);
+
+        }
+      }
+
+
+      aw-wizard {
+        aw-wizard-navigation-bar {
+          ul {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            padding: 30px 0 0 0;
+
+            li {
+              position: relative;
+              width: 50%;
+              top: 15px;
+
+              &:before {
+                @include border-radius(30px);
+
+                content: '';
+                width: calc(100% - 30px) !important;
+                top: -5px !important;
+                height: 10px !important;
+                left: 30px !important;
+                position: absolute;
+                text-align: center;
+                background-color: map_get($colors, lightSmoke) !important;
+              }
+
+              &:after {
+                @include border-radius(30px);
+                position: absolute;
+                content: '';
+                line-height: 30px !important;
+                @include font(12px, 600);
+                text-align: center;
+                height: 30px !important;
+                width: 30px !important;
+                left: 25px !important;
+                top: -15px !important;
+                background: map_get($colors, lightSmoke) !important;
+                color: map_get($colors, primary) !important;
+
+              }
+
+              div {
+                text-align: left;
+                padding-left: 25px;
+                display: block !important;
+                margin-top: 15px !important;
+
+                a {
+                  @include font(12px, 600);
+                  text-transform: none !important;
+                  color: map_get($colors, primary) !important;
+                }
+              }
+
+              &.current, &.editing {
+                &:after {
+                  background: map_get($colors, primary) !important;
+                  color: map_get($colors, white) !important;
+                }
+
+                &:before {
+                  background-color: map_get($colors, primary) !important;
+                }
+              }
+
+              &.done {
+                &:after {
+                  font-family: FontAwesome !important;
+                  content: '\f00c' !important;
+                  background: map_get($colors, success) !important;
+                  color: map_get($colors, white) !important;
+                }
+
+                &:before {
+                  background-color: map_get($colors, success) !important;
+                }
+              }
+
+              &:last-child {
+                &:after {
+                  right: 25px !important;
+                  left: auto !important;
+                }
+
+                &:before {
+                  width: calc(100% - 30px) !important;
+                  top: -5px !important;
+                  right: 30px !important;
+                  height: 10px;
+                  position: absolute;
+                  left: auto !important;
+                  content: '';
+                }
+
+                div {
+                  text-align: right;
+                  padding-right: 25px;
+                  display: block !important;
+
+                  a {
+                    @include font(12px, 600);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      }
+
+      .wizard-footer {
+        padding-right: 15px;
+        padding-left: 15px;
+        background: map_get($colors, lightSmoke);
+        height: 50px;
+
+        button {
+          height: 40px;
+
+          .material-icons {
+            font-size: 16px;
+            margin-left: 8px;
+          }
+        }
+
+
+      }
+
+
+      .finish-body {
+        margin-top: 25px;
+        padding-left: 25px;
+        padding-right: 25px;
+
+        .finish-body-heading {
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 15px;
+
+          .finish-title {
+            line-height: 18px;
+            margin-right: 6px;
+            color: map_get($colors, primary);
+            @include font(12px, 600);
+          }
+
+          .finish-time {
+            display: flex;
+            flex-direction: row;
+
+            .material-icons {
+              color: map_get($colors, danger);
+              font-size: 18px;
+            }
+
+            span {
+              display: block;
+              margin-left: 3px;
+              line-height: 18px;
+              @include font(12px, 600);
+            }
+          }
+        }
+
+        .finish-body-images {
+          display: flex;
+          flex-direction: row;
+
+          img {
+            margin-right: 15px;
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+          }
+        }
+
+        p {
+          &.writeup {
+            line-height: 12px;
+            margin: 25px auto;
+            @include font(13px, 300);
+            color: map_get($colors, dark);
+          }
+        }
+      }
+    }
+  }
+}

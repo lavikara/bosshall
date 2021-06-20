@@ -1,0 +1,115 @@
+<ng-template #userShot let-user="user">
+    <div (mouseenter)="showHeadShot(true)" (mouseleave)="showHeadShot(false)">
+        <div *ngIf="hovered" class="head-shot-container mat-elevation-z1 lightSmoke-border-light white-bg">
+            <div *ngIf="!user.id">
+                <mat-spinner></mat-spinner>
+
+            </div>
+            <div *ngIf="user.id" class="head-shot-inner" fxLayout="row">
+                <div class="image-cover">
+                    <img [src]="user.picture"/>
+                </div>
+                <div class="head-shot-info">
+                    <h4 class="font-size-12 primary">{{user.firstname}} {{user.lastname}}</h4>
+                    <p class="font-size-12">{{user.headline}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<div [class.secondary-bg-light]="connected" class="broadcast-attendance-connected smoke-border-bottom-light ">
+    <div class="row">
+        <div class="col-12 col-md-3 col-sm-4 col-xs-12">
+            <div class="broadcast-body">
+                <div class="row">
+                    <div class="col no-flex-grow">
+                        <img [src]="user.picture" alt="" class="broadcast-avatar">
+                    </div>
+                    <div class="col-7" fxLayout="row" fxLayoutAlign="flex-start"
+                    >
+
+                        <div fxLayout="column" fxLayoutAlign="center flex-start">
+                            <h6 style="position:relative;">
+                                <ng-container
+
+                                    *ngTemplateOutlet="userShot;context:{user:user}"
+                            >
+                            </ng-container>
+                                <a *ngIf="!anonymous" (mouseenter)="showHeadShot(true)" (mouseleave)="showHeadShot(false)"
+                                   href="#">{{user.firstname}} {{user.lastname}}</a></h6>
+                            <h6><a *ngIf="anonymous">Incognito User</a></h6>
+                            <p>{{user.headline}}</p>
+                        </div>
+
+                        <div *ngIf="isTalking" fxLayout="column" fxLayoutAlign="center">
+                            <i class="custom-icon speak"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-4 col-12 col-xs-12" fxLayout="column" fxLayoutAlign="center flex-start">
+            <div><i *ngIf="user.Country && user.Country.name" class="material-icons primary">place</i></div>
+            <p>{{user.Country.name}}</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-sm-7 col-12 col-xs-12" fxLayout="column" fxLayoutAlign="center flex-start">
+            <form (ngSubmit)="addComment()" (submit)="$event.preventDefault()">
+                <mat-form-field *ngIf="isMe" appearance="outline">
+                    <mat-label>Comment</mat-label>
+                    <input [formControl]="commentInput" matInput placeholder="Comment" maxlength="100">
+                    <mat-icon class="primary font-size-18" matSuffix>comment</mat-icon>
+                </mat-form-field>
+            </form>
+
+
+        </div>
+
+        <div class="col-md-3 col-lg-3 col-sm-3 col-12 col-xs-12" fxLayout="column" fxLayoutAlign="center">
+            <div *ngIf="isMe" fxLayout="row" fxLayoutAlign="flex-start center">
+                <button class="transparent-border transparent-bg button" (click)="request('AUDIENCE', false)">
+                    <mat-icon class="font-size-18 transparent-bg primary">contact_support</mat-icon>
+                </button>
+                <button class="transparent-border transparent-bg button js-emoji-container">
+                    <mat-icon class="font-size-18 transparent-bg danger">favorite</mat-icon>
+                    <emoji-mart (emojiSelect)="addEmoji(user.id, $event)" class="js-emoji-hover"
+                                [backgroundImageFn]="emojiBackgroundFn.backgroundImageFn"
+                                [sheetSize]="20" [emojiSize]="16"
+                                set="apple"></emoji-mart>
+                </button>
+
+                <button (click)="request('FILE', false)" class="transparent-border transparent-bg button">
+                    <mat-icon class="font-size-18 transparent-bg primary">share</mat-icon>
+                </button>
+                <input #clientShareEl class="no-display" type="file"/>
+            </div>
+        </div>
+
+        <div class="col-md-1 col-lg-1 col-sm-2 col-4 col-xs-4" fxLayout="row" fxLayoutAlign="center center">
+            <button *ngIf="connected && !(anonymous && isMe)" [matMenuTriggerFor]="userMenu" class="button transparent-bg transparent-border"
+                    matBadge="C" matBadgeColor="accent" matBadgePosition="after">
+                <mat-icon class="primary font-size-24">more_vert</mat-icon>
+            </button>
+
+            <button *ngIf="!connected &&  isMe" [matMenuTriggerFor]="userMenu" class="button transparent-bg transparent-border">
+                <mat-icon class="primary font-size-24">more_vert</mat-icon>
+            </button>
+
+            <button *ngIf="!connected &&  !isMe" [matMenuTriggerFor]="userMenu" class="button transparent-bg transparent-border">
+                <mat-icon class="primary font-size-24">more_vert</mat-icon>
+            </button>
+
+
+            <mat-menu #userMenu="matMenu">
+                <button  *ngIf="!isMe && !connected && !isAdmin && !anonymous" class="primary font-size-12" mat-menu-item (click)="request('AUDIENCE', true)">New Audio
+                    Session?
+                </button>
+                <button *ngIf="!isMe && connected && !anonymous" class="primary font-size-12" mat-menu-item (click)="disconnectOne()">End Audio Session?</button>
+                <button *ngIf="!isMe && isAdmin" class="primary font-size-12" mat-menu-item (click)="request('BAN', true)">Ban</button>
+                <button *ngIf="isMe" class="primary font-size-12" mat-menu-item (click)="toggleAnonymous()">Toggle Incognito</button>
+                <button *ngIf="!isMe" class="primary font-size-12" mat-menu-item (click)="request('FILE', true)">Share Content</button>
+            </mat-menu>
+        </div>
+    </div>
+</div>

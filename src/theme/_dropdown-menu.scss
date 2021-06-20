@@ -1,0 +1,119 @@
+
+.notification.dropdown-menu-right {
+  background: white;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  width: 276px;
+
+  &.small {
+    width: 150px;
+
+  }
+
+  .dropdown-title {
+    background: map_get($colors, lightSmoke);
+    @include font(12px, 600);
+    color: map_get($colors, dark);
+    text-align: left;
+    padding-left: 6px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    span {
+      color: map_get($colors, primary);
+    }
+  }
+
+  div {
+    padding: 0;
+    margin: 0;
+
+    .notification-holder {
+      width: 100%;
+
+      .inner-notification {
+        padding-left: 6px;
+
+        &:hover {
+          background: map_get($colors, lightSmoke);
+
+        }
+
+        border-bottom: 1px solid map_get($colors, lightSmoke);
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .notification-icon {
+          padding: 5px 6px;
+          .material-icons {
+            color: map_get($colors, danger);
+            font-size: 18px;
+            margin-right: 6px;
+          }
+        }
+
+        .notification-body {
+          width: calc(100% - 26px);
+          padding-right: 6px;
+          &:not(.main-notification) {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+          }
+
+          .name {
+            @include font(11px, 600);
+            color: map_get($colors, primary);
+            text-align: left;
+            line-height: 18px;
+          }
+
+          .msg {
+            width: 100%;
+            @include font(11px, 400);
+            color: map_get($colors, dark);
+            word-break: break-all;
+            white-space: -moz-pre-wrap; /* Mozilla */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            white-space: pre-wrap; /* CSS 2.1 */
+            white-space: pre-line; /* CSS 3 */
+            word-wrap: break-word; /* IE */
+            padding: 0;
+            margin: 0;
+            text-align: left;
+          }
+
+          .time {
+            @include font(11px, 600);
+            color: map_get($colors, primary);
+            text-align: right;
+          }
+        }
+      }
+
+      .notification-footer {
+        background: map_get($colors, lightSmoke);
+        @include border-radius(5px);
+
+        p {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          line-height: 11px;
+          margin: 0;
+          @include font(11px, 600);
+          color: map_get($colors, primary);
+          text-align: left;
+          padding-left: 6px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<div class="little-box">
+    <div class="inner-little-box right">
+        <div class="little-box-header row">
+            <div class="col-md-6">
+                <div class="brand-title">
+                    <h4>{{ title ? title : 'Interests' }}</h4>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="filter pull-right">
+                    <div class="icon-holder">
+                        <i class="material-icons">search</i>
+                    </div>
+                    <div class="input-holder">
+                        <input [formControl]="filter" placeholder="Filter" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <div class="parent-little-box-row nano" id="activity">
+            <div class="nano-content">
+                <div *ngFor="let item of (interests| doubleSearchFilter:filter.value); let i=index"
+                     [ngClass]="item.selected?'active':''"
+                     class="little-box-row">
+                    <div class="row">
+
+                        <div class="col body">
+                            <div class="title-heading row">
+                                <div class="col-md-9">
+                                    <h5 *ngIf="!item.selected" class="darkSmoke">{{item.name}}</h5>
+                                    <h5 (onMenuOpen)="searchBrands(item.id)" *ngIf="item.selected"
+                                        [matMenuTriggerFor]="interests">{{item.name}}</h5>
+                                    <mat-menu #interests="matMenu" class="interests-menu-trigger">
+
+                                        <div *ngFor="let brand of interestBrands; let i = index" class="follow-container"
+                                             fxLayout="row" fxLayoutAlign="space-between center"
+                                             mat-menu-item><span
+                                                [routerLink]="'/bl/brand'">{{brand.name}}</span>
+                                            <button (click)="followBrand(brand.id, item.id, brand.selected)" class="btn-custom danger-bg light mat-elevation-z2"
+                                                    type="button">{{brand.selected?'Unfollow':'Follow'}}
+                                            </button>
+                                        </div>
+                                    </mat-menu>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="toggle-holder pull-right">
+                                        <i (click)="pushInterest(item)" [class.off]="!item.selected"
+                                           [class.on]="item.selected"
+                                           class="material-icons">{{item.selected ? 'toggle_on' : 'toggle_off'}}</i>
+                                    </div>
+
+                                    <div class="pull-right"></div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <p *ngIf="!interests.length" class="text-align-center">No interest available yet.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

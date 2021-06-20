@@ -1,0 +1,25 @@
+<app-article-header-component [subTitle]="sideBarLinks.title"></app-article-header-component>
+
+<div class="article-body">
+    <div class="container">
+        <div class="row">
+            <div class="hidden-xs-down col-lg-2 col-md-3 col-sm-4">
+                <aside #asideElement [class.active]="sideBarLinks.active">
+                    <h4>{{ sideBarLinks.title}}</h4>
+                    <ul>
+                        <li *ngFor="let item of sideBarLinks.children" [class.active]="item.active"><a [href]="item.link">{{item.title}}</a> </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="col-12 col-lg-10 col-md-9 col-sm-8">
+                <section>
+                    <router-outlet></router-outlet>
+                </section>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-include-footer-component></app-include-footer-component>

@@ -1,0 +1,9 @@
+<div class="main-screen-container">
+    <div class="main-screen-container-inner">
+        <app-cloud-sub-screen1-component (screenAction)="receivedAction($event)"></app-cloud-sub-screen1-component>
+
+    </div>
+    <div class="main-screen-container-comment" *ngIf="slideOpen" [class.active]="true">
+        <app-participants-message-include [size]="commentSize" [paddingSize]="'medium'" [bg]="'#fff'"></app-participants-message-include>
+    </div>
+</div>

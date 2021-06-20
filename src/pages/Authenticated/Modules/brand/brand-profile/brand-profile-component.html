@@ -1,0 +1,205 @@
+<app-header-inc-component [isBrandPage]="false" [showStory]="true" [title]="'Brand Profile'"></app-header-inc-component>
+
+
+<div class="main-content body page-constraint">
+    <div class="inner-body-bg">
+
+        <div class="row row-parent">
+            <div class="col-md-7">
+                <div class="row row-child">
+                    <div class="col-md-4">
+                        <button (click)="editBrand()" *ngIf="brandDetails.created === user.id"
+                                class="btn btn-eraser-btn">
+            <span class="icon-holder">
+              <i class="material-icons">edit</i>
+            </span>
+                            <span class="text">
+              <span>Edit profile</span>
+            </span>
+                        </button>
+                        <p *ngIf="brandDetails.Country" class="writeup">
+                            <i class="material-icons">place</i> {{brandDetails.address}} {{brandDetails.Country.name}}
+                        </p>
+                        <p class="writeup">
+            <span class="writeup-heading">
+              Open
+            </span>
+                            <span>{{operationString}} (</span>
+                            <span *ngIf="brandDetails && brandDetails.TimeZone" class="writeup-important">
+              {{brandDetails.workStart}} - {{brandDetails.workEnd}} {{brandDetails.TimeZone.name}} +1
+            </span>
+                            <span>)</span>
+                        </p>
+                        <p class="writeup">
+            <span class="writeup-heading">
+              Status
+            </span>
+                            -
+                            <span class="writeup-important">{{operationStatus}}</span>
+                        </p>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="logo-holder">
+                            <div class="logo has-roundline center">
+                                <img [src]="brandDetails.logo"
+                                     [alt]="brandDetails.name" class="round"/>
+
+                            </div>
+
+                        </div>
+
+                        <p class="writeup text-center">
+            <span class="writeup-heading">
+              {{brandDetails.name}}
+            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-eraser-btn mat-elevation-z2" >
+                            <span class="text">Followers</span>
+                            <span class="icon-holder">{{brandDetails.followers| kNumber}}</span>
+                        </button>
+
+                        <p class="writeup">
+            <span class="writeup-heading">
+              Member since
+            </span>
+                            -
+                            <span>
+             {{brandDetails.createdAt | amCalendar}}
+            </span>
+
+                        </p>
+                        <p class="writeup">
+            <span class="writeup-heading">
+              Tagline
+            </span>
+                            -
+                            <span>{{brandDetails.motto}}</span>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="row row-child"
+                     *ngIf="brandDetails.ExecutiveInvitations && brandDetails.ExecutiveInvitations.length">
+                    <div class="col-12">
+                        <div class="child-title">
+                            <h5>BRAND EXECUTIVES</h5>
+                        </div>
+                    </div>
+
+                    <div *ngFor="let executive of brandDetails.ExecutiveInvitations" class="col-md-4">
+                        <div class="logo-holder">
+                            <div class="logo center">
+                                <img *ngIf="executive.User" [src]="executive.User.picture" class="round"/>
+                            </div>
+
+                        </div>
+                        <p class="writeup text-center">
+            <span class="writeup-heading">
+              {{executive.position}}
+            </span>
+                        </p>
+
+                        <p class="writeup text-center" *ngIf="executive.User">
+                            {{executive.User.firstname}} {{executive.User.lastname}}
+                        </p>
+
+                        <p class="writeup text-center" *ngIf="!executive.User || !executive.User.firstname">
+                            {{executive.email}}
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+                <div class="row row-child no-space">
+                    <div class="col-md-12 video-player-filter no-space">
+                        <app-video-player-filter-component [canFilter]="false"
+                                                           [heading]="['SPREAD']"></app-video-player-filter-component>
+                    </div>
+                    <div class="col-md-12">
+                        <app-player-list-include-component [type]="'profile'" [brandId]="brandDetails.id"
+                                                           (onMediaChange)="mediaChanged($event)"
+                                                           [colSize]="'col-md-3 _4_3'"></app-player-list-include-component>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 parent-row-right">
+                <div class="row row-child">
+                    <div class="col-12">
+                        <div class="child-title">
+                            <h5>INDUSTRY</h5>
+                        </div>
+
+                        <div class="child-interest-view">
+                            <div *ngFor="let item of brandDetails.InterestTag" class="interests">
+                                <div class="inner-interest">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row row-child no-space">
+                    <div class="col-md-12 video-player-filter no-space">
+                        <app-video-player-filter-component
+                                [heading]="['ABOUT BRAND']"></app-video-player-filter-component>
+                    </div>
+                    <div class="col-md-12">
+                        <br/>
+                        <p [innerHTML]="brandDetails.about" class="writeup about"></p>
+                    </div>
+                </div>
+
+
+                <div class="row row-child website">
+                    <div class="col-12 no-space">
+                        <div class="title-holder">
+                            <div class="title-holder-title">
+                                BRAND WEBSITE
+                            </div>
+                            <div class="icon-holder">
+<!--                                <i class="material-icons">settings</i>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 no-space">
+                        <div *ngFor="let website of brandDetails.BrandWebsites" class="website-body">
+                            <i class="material-icons">language</i>
+                            <span><a [href]="website.url" target="_blank">{{website.url}}</a></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row row-child no-space">
+                    <div class="col-md-12 video-player-filter no-space">
+                        <app-video-player-filter-component
+                                [heading]="['BRAND STORY']"></app-video-player-filter-component>
+                    </div>
+                    <div class="col-md-12">
+                        <br/>
+                        <p [innerHTML]="brandDetails.story" class="writeup about">
+                        </p>
+                    </div>
+                </div>
+
+                <br/>
+                <br/>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-include-footer-component></app-include-footer-component>

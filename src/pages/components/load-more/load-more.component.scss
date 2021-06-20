@@ -1,0 +1,37 @@
+app-inc-load-more-component {
+  .load-more {
+    .row {
+      [class*=col-6] {
+        padding: 0 !important;
+        margin: 0 !important;
+
+        h5 {
+          @include font(11px, 600);
+          text-transform: uppercase;
+          cursor: pointer;
+          color: map_get($colors, primary);
+        }
+
+        .loading-spinner {
+          color: map_get($colors, primary);
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          i {
+            font-size: 18px;
+            color: map_get($colors, primary);
+            margin-right: 6px;
+          }
+
+          .loading-text {
+            @include font(14px, 400);
+            line-height: 18px;
+
+          }
+        }
+      }
+
+    }
+  }
+}

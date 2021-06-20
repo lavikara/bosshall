@@ -1,0 +1,82 @@
+<div class="player-lists">
+    <div *ngIf="heading" class="player-title">
+        <div class="row">
+            <div class="col-md-8">
+                <span>{{title}}</span>
+            </div>
+            <div class="col-md-4">
+                <i *ngIf="canFilter" aria-expanded="false" aria-haspopup="true" class="material-icons pull-right"
+                   data-toggle="dropdown" id="playerfilter">filter_list</i>
+
+                <app-filter-include-component [popupId]="'playerfilter'" (onSelected)="filterPlayer($event)" [popupList]="
+                        [
+                        {name:'Sort by date posted'},
+                        {name:'Sort by name'},
+                        {name:'Popularity'},
+                        {name:'Downloads'},
+                        {name: 'Happening Today' }
+                        ]" [title]="'Filter broadcast'"></app-filter-include-component>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="playerLists() && playerLists().length">
+        <div (click)="playerClicked(i,item)" *ngFor="let item of playerLists();let i =index" [ngClass]="colSize"
+             class="no-pad-sm-down">
+            <div [ngStyle]="{'background-image':'url('+item.cover+')'}" class="little-player">
+                <div class="little-player-inner" [class.clear]="!isActive(item.status)">
+                    <button class="button button-icon" *ngIf="isMe(item.SpreadCreator.id)" id="videoOption"  aria-expanded="false" aria-haspopup="true"
+                            data-toggle="dropdown"><i class="material-icons light">menu</i></button>
+                    <app-filter-include-component *ngIf="isMe(item.SpreadCreator.id)" [popupId]="'videoOption'" (onSelected)="pageChanged($event, item)" [popupList]="[{name:'Settings'},{name:'Delete'}, {name: 'Subscribers'}]" [title]="'Player Settings'"></app-filter-include-component>
+                    <div class="header-top">
+                        <span>{{item.displayAction}}</span>
+                    </div>
+                    <div class="play-icon">
+                        <i class="material-icons light" *ngIf="isActive(item.status)">workspaces</i>
+
+                    </div>
+
+                    <div class="turned-in">
+                        <i class="material-icons">people</i>
+                        <span>{{item.participantCount}}</span>
+                    </div>
+
+                    <div class="channel">
+                        <span>{{item.Brand.name | slice:0:8}}{{item.Brand.name.length > 8 ? '..' : ''}}</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="little-player-information">
+                <div class="player-title-info">
+                    <span>{{item.name}}</span>
+                </div>
+                <div class="player-location">
+                    <i class="material-icons">location_on</i>
+                    <span>{{item.Brand.address}} {{item.Brand.Country?.name}}</span>
+                </div>
+                <div class="stat">
+                    <div class="downloads">
+                        <i class="material-icons">get_app</i>
+                        <span>{{item.download || 0}}</span>
+                    </div>
+                    <div class="bull">
+                        &bull;
+                    </div>
+                    <div class="likes">
+                        <span>{{item.likeMeta | likeCount}} likes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p *ngIf="!playerLists() || !playerLists().length" class="text-align-center padding-top-20">You have no {{title?.toLowerCase()}} at this point.</p>
+
+
+    <div class="load-more-embed">
+        <app-inc-load-more-component (onPageChange)="pageChanged($event, {})" [complexRequest]="spreadHandler" ></app-inc-load-more-component>
+    </div>
+
+</div>

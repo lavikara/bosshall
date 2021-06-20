@@ -1,0 +1,215 @@
+app-header-inc-component {
+  .header-container {
+
+    background: map_get($colors, primary);
+    height: 104px;
+    @include box-shadow(2px 0px 2px rgba(map_get($colors, dark), 0.50));
+
+    nav:not(.page-constraint) {
+      padding: 0px 18px;
+    }
+    nav.navbar.navbar-absolute {
+      padding-top: 0;
+
+      .logo-holder {
+        height: 104px;
+        width: 104px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        img {
+          width: 64px;
+          margin: 0 auto;
+          height: 64px;
+          border-radius: 5px;
+        }
+      }
+
+      .brand-view-wrapper {
+        position: relative;
+
+        .brand-page {
+          background: map_get($colors, danger) !important;
+          display: flex;
+          height: 32px;
+          border: none;
+          min-width: 100px !important;
+          margin: 0 30px;
+          outline: 0;
+          padding: 0;
+          flex-direction: row;
+          justify-content: space-around;
+          @include border-radius(3px);
+
+          .boxes {
+            border: 1px solid map_get($colors, light);
+            height: 12px;
+            width: 12px;
+            display: block;
+          }
+        }
+
+        .brand-page:hover + .brand-lists {
+          display: block;
+        }
+
+
+      }
+
+      .btn-back-to-brand {
+        padding: 5px 10px;
+        margin: 0 30px;
+        background: map_get($colors, danger);
+        @include border-radius(3px);
+        display: flex;
+        flex-direction: row;
+        border: none;
+        outline: 0;
+
+        span {
+          &.text {
+            display: block;
+            font-size: 11px;
+            color: map_get($colors, light);
+            text-transform: none;
+            font-weight: 600;
+          }
+        }
+
+        .material-icons {
+          margin-right: 3px;
+          font-size: 16px;
+          display: block;
+          color: map_get($colors, light);
+
+        }
+      }
+
+
+      .search-form {
+        width: 300px;
+        margin-left: 20px;
+
+        .input-group {
+          border-bottom: 1px solid rgba(map_get($colors, light), 0.2);
+
+          .search-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            i {
+              margin-right: 2px;
+            }
+          }
+
+          input {
+            background: transparent !important;
+            outline: 0;
+            border: none;
+          }
+
+        }
+      }
+
+      .navbar-nav {
+        li {
+          &.user_avatar {
+            margin-left: 30px;
+
+            a {
+              padding: 0;
+
+              img {
+                height: 35px;
+                object-fit: cover;
+                width: 35px;
+                @include border-radius(5px);
+              }
+
+              .avatar-text {
+                font-weight: 600;
+                color: map_get($colors, light);
+
+                span {
+                  text-transform: capitalize;
+                  font-size: 12px;
+                  font-weight: 300;
+                  line-height: 14px;
+                }
+
+                .material-icons {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-toggler .navbar-toggler-icon {
+    background: map_get($colors, light) !important;
+  }
+
+  .rowed-account {
+    padding-left: 0;
+    margin-left: 0;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      color: map_get($colors, primary);
+      padding-right: 8px;
+
+      .material-icons {
+        color: map_get($colors, primary);
+      }
+      > a {
+        display: flex;
+
+      }
+
+    }
+
+
+  }
+
+  .navigation-list {
+    padding-left: 0;
+    margin-left: 0;
+    list-style-type: none;
+
+    p {
+      color: map_get($colors, dark)
+    }
+    a {
+      margin-left: 10px;
+      color: map_get($colors, primary) !important;
+    }
+
+  }
+
+
+}
+
+
+.button-header {
+  border: none;
+  min-width: 120px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  @include border-radius(3px);
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+
+.navbar-toggler .navbar-toggler-icon {
+  background: map_get($colors, light) !important;
+}
+

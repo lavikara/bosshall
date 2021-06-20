@@ -1,0 +1,88 @@
+<div class="participant-main-container">
+    <div class="participants-lists" [class.toggle-mobile]="isMobileSlide">
+        <app-list-sub-presentation-component></app-list-sub-presentation-component>
+    </div>
+    <div class="participant-messages" [class.toggle-mobile]="!isMobileSlide">
+        <div class="message-container" [style.padding]="paddingSize" [style.background]="bg">
+
+            <div class="message-container-header"  [class.hidden]="!(selectedContainer && selectedContainer.name)">
+                <div class="message-container-header-inner">
+                    <div [routerLink]="'/bl/brand'" class="logo-holder">
+                        <img [src]="'/assets/img/logo.jpg'"/>
+                    </div>
+
+                    <h2>Bosshall > {{ spreadDetails.name }}</h2>
+                </div>
+                <div class="message-line-breaker">
+                    <span class="message-title">Present</span>
+                    <div class="message-timeline">{{ spreadDetails.startTime | amCalendar}}</div>
+                </div>
+            </div>
+
+            <div class="message-container-body" [class.hidden]="!(selectedContainer && selectedContainer.name)">
+                <div class="presentation-top">
+                    <div class="inner-presentation">
+                        <label>
+                            <i class="material-icons">book</i>
+                            <input type="text" placeholder="Presentation Name" [formControl]="presentationService.presentationName">
+                        </label>
+                    </div>
+                    <div class="inner-action-button">
+                        <button class="action-button delete" (click)="deletePresentationParent()">
+                            <i class="material-icons">delete</i>
+                        </button>
+                        <button class="action-button play">
+                            <i class="material-icons" (click)="playPresentation()">play_arrow</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="presentation-body">
+                    <div class="dragzone-parent">
+                        <div class="presentation-body-inner" *ngIf="!presentations || !presentations.length">
+                            <div class="presentation-body-icon">
+                                <i class="material-icons">perm_media</i>
+                            </div>
+                            <div class="presentation-body-text">
+                                <h2>Drag, Drop and Re-arrange presentation files</h2>
+                                <p><i class="material-icons">info</i> <span>Only videos and images are allowed</span></p>
+                            </div>
+                        </div>
+                        <div class="dragzone" #fileEl></div>
+
+                            <div class="presentation-media-container" *ngFor="let presentation of presentationService.presentations; let i = index;">
+                                <div class="inputs">
+                                    <label>
+                                        <input type="text" name="name" placeholder="Name" [(ngModel)]="presentation.name" required>
+                                    </label>
+                                </div>
+                                <div class="inputs">
+                                    <label>
+                                        <input type="number" name="duration" placeholder="Duration (in sec)" [(ngModel)]="presentation.duration" required>
+                                    </label>
+                                </div>
+                                <video controls *ngIf="whichType(presentation.tag) === 'VIDEO'" [src]="presentation.media | sanitize" width="150px" height="150px" class="media-iframe"></video>
+                                <img *ngIf="whichType(presentation.tag) === 'IMAGE'" [src]="presentation.media | sanitize" width="150px" height="150px" class="media-iframe" [alt]="presentation.name"/>
+                                <audio controls *ngIf="whichType(presentation.tag) === 'AUDIO'" [src]="presentation.media | sanitize"  class="media-iframe"></audio>
+                                <iframe *ngIf="whichType(presentation.tag) === 'OTHER'" frameborder="0" [src]="presentation.media | sanitize" width="150px" height="150px" class="media-iframe"></iframe>
+                                <button class="btn delete-btn" (click)="deleteChildPresentation(presentation.id)"><i class="material-icons">cancel</i></button>
+                            </div>
+                    </div>
+
+
+<!--                    <div class="presentation-body-inner presentation-body-graphic" *ngIf="presentations && presentations.length">-->
+<!--                        <app-multiple-participants [blueButton]="true"></app-multiple-participants>-->
+<!--                    </div>-->
+
+                    <div class="presentation-body-action">
+                        <button class="footer-action-btn" (click)="createPresentation()">
+                            <i class="material-icons">save</i>
+                            <span>Save Presentation</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+@each $name, $value in $icons {
+  .custom-icon {
+    $url: '/assets/img/icon/'+$value;
+
+    &.#{$name} {
+      background-image: url($url);
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 18px;
+      display: inline-block;
+      width: 18px;
+    }
+  }
+}

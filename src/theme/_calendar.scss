@@ -1,0 +1,58 @@
+
+.winkel-calendar {
+  .wc-banner {
+    background: map_get($colors, primary);
+  }
+
+  .wc-details {
+    background: map_get($colors, danger);
+  }
+
+  .year-title {
+    background: map_get($colors, secondary);
+  }
+
+  .wc-date-container {
+    border: none !important;
+    border-bottom: 1px solid map_get($colors, gray) !important;
+
+    span {
+      @include font(11px, 600);
+      color: map_get($colors, darkSmoke);
+
+    }
+  }
+
+  .calendar-days {
+    tbody {
+      td {
+
+        span {
+          color: map_get($colors, primary);
+
+          &:hover {
+            background: map_get($colors, secondary);
+            color: map_get($colors, white);
+          }
+        }
+
+        &.selected-day {
+          span {
+            color: map_get($colors, light);
+            background: map_get($colors, danger);
+            @include border-radius(50px);
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  .cal-util {
+    .ok {
+      background: map_get($colors, primary);
+      color: map_get($colors, light);
+    }
+  }
+}
+

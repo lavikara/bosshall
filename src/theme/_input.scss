@@ -1,0 +1,42 @@
+
+.input-group {
+  border-bottom: 1px solid map_get($colors, lightSmoke);
+
+  input, select, textarea {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.5rem;
+    outline: 0;
+    float: left;
+    color: map_get($colors, darkSmoke);
+    font-size: 0.8rem;
+    width: calc(100% - 26px);
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .complex {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    .material-icons {
+      float: left;
+      font-size: 18px;
+      position: relative;
+      bottom: -0.5rem;
+      margin-right: 5px;
+      color: map_get($colors, danger);
+    }
+
+    input, select, textarea {
+      float: left;
+      border: none;
+    }
+  }
+
+  ::placeholder {
+    color: map_get($colors, light);
+  }
+}

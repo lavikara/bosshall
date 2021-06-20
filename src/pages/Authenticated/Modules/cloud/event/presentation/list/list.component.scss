@@ -1,0 +1,136 @@
+@import "../../../../../../../theme/theme";
+
+.attendance-list-container {
+  background: map-get($colors, primary);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  label,
+  .attendance-header {
+    margin-left: 12px;
+    margin-top: 23px;
+    margin-right: 25px;
+    margin-bottom: 23px;
+  }
+  label {
+    position: relative;
+
+
+    input {
+      height: 43px;
+      border: none;
+      outline: 0;
+      border-radius: 3px;
+      background: rgba(map_get($colors, light), 0.46);
+      padding-left: 13px;
+
+      &::placeholder {
+        color: map_get($colors, primary);
+        font-size: 14px;
+      }
+    }
+
+    .placeholder-button {
+      position: absolute;
+      border: none;
+      outline: 0;
+      right: 11px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background: transparent;
+
+      .material-icons {
+        color: map_get($colors, primary);
+        font-size: 18px;
+        height: 20px;
+      }
+    }
+  }
+
+
+
+  .attendance-participants-lists {
+
+    .attendance-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+
+      h3 {
+        font-size: 12px;
+        font-weight: 600;
+        color: map_get($colors, lightSmoke);
+        margin: 0;
+      }
+
+      .btn-dropdown {
+        color: map_get($colors, lightSmoke);
+        font-size: 18px;
+        padding: 0;
+        background: transparent;
+        border: none;
+        outline: 0;
+        margin: 0;
+        box-shadow: none;
+        height: 18px;
+
+        .material-icons {
+          vertical-align: baseline;
+          margin: 0;
+          top: 0;
+        }
+      }
+    }
+
+    .attendance-content {
+      overflow-y: scroll;
+      max-height: calc(100vh - 352px);
+    }
+  }
+
+  .attendance-list-sub-container {
+    height: calc(100% - 86px);
+
+    label {
+      width: 60%;
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .attendance-list-action {
+    background: map_get($colors, linkColor);
+    height: 86px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .more-participants {
+
+    text-align: center;
+
+    span,
+    .material-icons {
+      color: map_get($colors, light);
+      line-height: 18px;
+    }
+
+    span {
+      font-size: 13px;
+    }
+    .material-icons {
+      margin-right: 5px;
+      font-size: 18px;
+    }
+  }
+}

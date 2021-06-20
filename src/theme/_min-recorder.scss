@@ -1,0 +1,115 @@
+.little-music-player,
+.little-recording {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: #fff;
+  padding: 10px;
+  min-width: 302px;
+  min-height: 100px;
+  z-index: 2000;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+
+  &:empty {
+    display: none;
+  }
+
+  &.small-ui {
+    min-width: 50px;
+    min-height: 40px;
+     .js-record-container > *:not(.close-recording-button) {
+      display: none;
+    }
+  }
+
+  .recording-title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .recorder-text {
+    min-height: 50px;
+    line-height: 50px;
+  }
+
+  .project-name {
+    font-size: 13px;
+    text-align: right;
+  }
+
+
+  .main-button-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    button {
+      background: transparent;
+      outline: 0;
+      border: 2px solid #0d47a1;
+      height: 33px;
+      padding: 0;
+      text-align: center;
+      margin-right: 10px;
+      width: 33px;
+      border-radius: 3px;
+
+      .material-icons {
+        color: #0d47a1;
+        font-size: 18px;
+        line-height: 31px;
+      }
+    }
+  }
+
+  .recorder-text {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .close-recording-button {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    outline: 0;
+
+    .material-icons {
+      font-size: 18px;
+      color: map_get($colors, danger);
+    }
+
+  }
+}
+
+.little-music-player {
+  bottom: 180px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 50px;
+
+  button {
+    background: map_get($colors, secondary);
+    color: map_get($colors, light);
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 5px;
+    border: none;
+    outline: 0;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  audio {
+    display: block;
+  }
+}

@@ -1,0 +1,36 @@
+.mat-menu-panel {
+  min-width: 250px;
+  white-space: pre-wrap;
+
+}
+
+.mat-menu-panel .mat-container {
+  .avatar-container img {
+    width: 50px;
+    height: auto;
+    @include border-radius(5px);
+  }
+
+  .avatar-text {
+    padding-right: 5px;
+    padding-left: 5px;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 14px;
+      margin: 0;
+      color: map_get($colors, primary);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+  }
+
+}

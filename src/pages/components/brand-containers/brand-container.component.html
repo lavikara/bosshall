@@ -1,0 +1,94 @@
+<ng-template #brandShot let-brand="brand">
+    <div (mouseenter)="showHeadShot(brand.id,true)" (mouseleave)="showHeadShot(brand.id,false)">
+        <div *ngIf="hovered[brand.id]" class="head-shot-container mat-elevation-z1 lightSmoke-border-light white-bg">
+            <div *ngIf="!brand.id">
+                <mat-spinner></mat-spinner>
+
+            </div>
+            <div *ngIf="brand.id" class="head-shot-inner" fxLayout="row">
+                <div class="image-cover">
+                    <img [src]="brand.logo"/>
+                </div>
+                <div class="head-shot-info">
+                    <h4 class="font-size-12 primary">{{brand.name}}</h4>
+                    <p class="font-size-12" ><p [innerHTML]="brand.about | slice: 200"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<div class="little-box">
+    <div class="inner-little-box right">
+        <h6 class="little-box-header row">
+            <div class="col-md-6">
+                <div class="brand-title">
+                    <h4>Brands</h4>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="filter pull-right">
+                    <div class="icon-holder">
+                        <i class="material-icons">search</i>
+                    </div>
+                    <div class="input-holder">
+                        <input [formControl]="searchControl" placeholder="Filter" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </h6>
+
+
+        <div class="parent-little-box-row nano" id="activity">
+            <div class="nano-content">
+                <div *ngFor="let item of (brands|doubleSearchFilter:searchControl.value); let i=index"
+                     [ngClass]="i===1?'active':''"
+                     class="little-box-row">
+
+                    <div class="row">
+                        <div class="col avatar">
+                            <img (click)="openBrand(item)" [src]="item.logo"/>
+                        </div>
+
+                        <div class="col body">
+                            <div class="title-heading row" fxLayout="row" fxLayoutAlign="flex-start center">
+                                <div class="col-md-9">
+                                    <ng-container
+
+                                            *ngTemplateOutlet="brandShot;context:{brand:item}"
+                                    >
+                                    </ng-container>
+                                    <h5><a (mouseenter)="showHeadShot(item.id,true)" (mouseleave)="showHeadShot(item.id,false)">{{item.name}}</a></h5>
+                                    <!--
+                                                      <p>{{item.about | slice: 0: 400}}</p>
+                                    -->
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="toggle-holder pull-right">
+                                        <mat-slide-toggle (ngModelChange)="requestSelect(item)"
+                                                          [(ngModel)]="item.selected"
+                                                          [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+                                    </div>
+
+                                    <div class="pull-right"></div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p *ngIf="!(brands|doubleSearchFilter:searchControl.value).length" class="text-align-center">No brand
+                    available.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

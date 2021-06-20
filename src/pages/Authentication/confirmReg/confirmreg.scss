@@ -1,0 +1,89 @@
+#app-confirmreg-component, app-confirmreset-component {
+  .main-container {
+
+    background: url('/assets/img/background3.jpeg') no-repeat !important;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+
+    &:before {
+      //background: rgba(map_get($colors, primary), 0.5);
+      content: '';
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 20;
+      background: rgba(map_get($colors, light), 0.96);
+
+    }
+
+    > * {
+      z-index: 30;
+      position: relative;
+      max-width: 480px;
+      width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  h1.headerText {
+    @include font(25px, 600);
+    text-align: center;
+    color: map_get($colors, primary);
+
+  }
+
+  .envelopeHolder {
+    margin-top: 10vh;
+
+    .envelope {
+      @include image(map_get($Image, envelope), 200px, 150px, 0 auto)
+    }
+  }
+
+  .footerLink {
+    position: fixed;
+    right: 9px;
+    bottom: 5px;
+    line-height: 12px;
+    color: map_get($colors, dark);
+    @include font(12px, 400);
+
+    a {
+      @include font(12px, 600);
+      color: map_get($colors, primary);
+
+    }
+  }
+
+  .footerTextHolder {
+    margin: 10vh auto;
+    @include border-radius(8px);
+    @include box-shadow(#{1px 1px 4px rgba(map_get($colors,smoke),0.4)});
+    background: map_get($colors, light);
+    color: map_get($colors, danger);
+
+    width: 450px;
+
+    p {
+      padding: 20px 20px 20px;
+      text-align: center;
+      line-height: 14px;
+      margin-bottom: 0;
+      @include font(14px, 600);
+
+    }
+
+    border: 1px solid rgba(map_get($colors, danger), 0.4);
+  }
+}

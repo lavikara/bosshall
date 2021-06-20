@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: map_get($colors, light) !important;
+
+
+  .page-constraint {
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: block;
+    @media only screen and (max-width: 1440px) {
+      /*padding: 0 50px;*/
+    }
+
+    @media only screen and (max-width: 458px) {
+      padding: 0;
+    }
+  }
+
+  .page-constraint-small {
+    max-width: 850px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+
+}
+
+
+html, body, *, .mat-menu-panel {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.box {
+
+  @media only screen and (max-width: 458px) {
+    padding: 0 !important;
+  }
+}
+
+
+.no-pad {
+  margin: 0;
+
+  [class*=col-] {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+}
+
+
+.medium-modal {
+  .nsm-dialog {
+    max-width: 700px !important;
+
+    .nsm-content {
+      background: none;
+      @include box-shadow(none);
+    }
+  }
+}
+
+.hidden-sm {
+  @include onlySm {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+
+.body {
+  min-height: calc(100vh - #{$header-size + $footer-size});
+  &.has-pagination {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

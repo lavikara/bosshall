@@ -1,0 +1,164 @@
+<mat-card>
+    <mat-card-title class="primary">Spread Settings - ({{data.name}})</mat-card-title>
+    <input type="file" #fileEl accept="image/*">
+    <input type="file" #soundEl accept="audio/*">
+    <form [formGroup]="playerEdit" (ngSubmit)="playerSubmit()" (submit)="$event.preventDefault()">
+        <mat-card-content>
+
+            <button class="button-close" fxLayout="row"
+                    fxLayoutAlign="space-between center" type="button" (click)="close()"
+            > <i class="material-icons danger">close</i></button>
+            <div class="row">
+
+                <div class="col-md-6 col-lg-6 col-sm-6 col-12 margin-bottom-10">
+                    <div class="input-group">
+                        <label>Start time</label>
+                        <div class="complex">
+                            <i class="material-icons">update</i>
+                            <input class="form-control picker-time" formControlName="startTime" id="startTime"
+                                   name="startTime" placeholder="Start time" type="text" [altInput]="true"
+                                   [enableTime]="true"
+                                   dateFormat="Y-m-dTH:i"
+                                   altFormat="F j, Y H:i"
+                                   [convertModelValue]="true"   mwlFlatpickr>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-sm-6 col-12  margin-bottom-10">
+                    <div class="input-group">
+                        <label>End time</label>
+                        <div class="complex">
+                            <i class="material-icons">update</i>
+                            <input class="form-control picker-time" formControlName="endTime" id="endTime"
+                                   [enableTime]="true"
+                                   dateFormat="Y-m-dTH:i"
+                                   altFormat="F j, Y H:i"
+                                   name="startTime" placeholder="End time" type="text"  [altInput]="true"
+                                   [convertModelValue]="true"  mwlFlatpickr>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-6 col-sm-6 col-12">
+                    <div class="input-group">
+                        <label>Invitation Type</label>
+                        <div class="complex">
+                            <i class="material-icons">menu</i>
+                        <select class="form-control" formControlName="invitationType" name="category">
+                            <option *ngFor="let item of invitationType; let i = index" [selected]="!i"
+                                    [value]="item">{{item}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-sm-6 col-12">
+                    <div class="input-group">
+                        <label>Program format</label>
+                        <div class="complex">
+                            <i class="material-icons">lists</i>
+                            <input formControlName="displayAction" class="form-control" placeholder="Display text" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-12">
+                    <div class="input-group">
+                        <label>Airtime (mins)</label>
+                        <div class="complex">
+                            <i class="material-icons">update</i>
+                            <input formControlName="audienceDuration" class="form-control" placeholder="Grant Audience Duration" type="number">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+
+
+                    <mat-accordion>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-12 margin-bottom-6">
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Change Cover
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+
+                                    <div class="expansion-container">
+                                        <div class="row">
+                                            <div class="col-md-8 col-lg-8 col-sm-12 col-12">
+                                                <img *ngIf="playerEdit.value.cover" [src]="cover.url | sanitize">
+                                            </div>
+                                            <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                                <button class="btn btn-just-icon mat-elevation-z2" type="button" (click)="fileEl.click()">
+                                                    <i class="material-icons">refresh</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-12 margin-bottom-6">
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Waiting Sound
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+
+
+                                    <div class="expansion-container">
+                                        <div class="image-container"></div>
+                                        <div class="expansion-container-action">
+                                            <div class="row">
+                                                <div class="col-md-8 col-lg-8 col-sm-12 col-12">
+                                                    <audio *ngIf="playerEdit.value.backgroundSound" [src]="sound.url | sanitize" controls></audio>
+                                                </div>
+                                                <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                                    <button class="btn btn-just-icon mat-elevation-z2" type="button" (click)="soundEl.click()">
+                                                        <i class="material-icons">refresh</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                            </div>
+
+
+                        </div>
+
+
+                    </mat-accordion>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                     <textarea #editorEl class="myEditor" formControlName="description"
+                               name="editor"></textarea>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+
+        <mat-card-footer>
+
+            <div class="wizard-footer" fxLayout="row" fxLayoutAlign="flex-end center">
+
+
+
+
+                <button class="btn-custom primary-bg light mat-elevation-z2" fxLayout="row"
+                        fxLayoutAlign="space-between center" type="submit"
+                ><span>Spread</span> <i class="material-icons">workspaces</i></button>
+
+            </div>
+
+        </mat-card-footer>
+    </form>
+
+</mat-card>

@@ -1,0 +1,258 @@
+app-player-list-include-component {
+  width: 100%;
+
+  .player-lists {
+    position: relative;
+    padding: 15px 15px 40px 15px;
+
+    .player-title {
+      border-bottom: 1px solid map_get($colors, lightSmoke);
+
+      span {
+        @include font(13px, 600);
+        color: map-get($colors, primary);
+      }
+
+      .material-icons {
+        color: map_get($colors, primary);
+        cursor: pointer;
+        font-size: 18px;
+      }
+    }
+
+    .row {
+      max-height: 600px;
+      overflow-y: auto;
+      [class*=col-] {
+        &:not(:nth-child(3n+2)) {
+          padding: 15px 0;
+
+        }
+
+        &:nth-child(3n+2) {
+          padding: 15px 8px;
+        }
+
+        &._4_3 {
+          &:not(:nth-child(4n+2)) {
+            padding: 15px 0;
+
+          }
+
+          &:not(:nth-child(4n+3)) {
+            padding: 15px 0;
+
+          }
+
+          &:nth-child(4n+2) {
+            padding: 15px 8px;
+          }
+
+          &:nth-child(4n+3) {
+            padding: 15px 8px 15px 0;
+          }
+
+        }
+
+      }
+
+      .little-player {
+        cursor: pointer;
+        position: relative;
+        height: 100px;
+        width: 100%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        @include border-radius(5px);
+        &.ng-lazyloaded {
+          background-size: cover;
+        }
+        .button-icon {
+          position: absolute;
+          top: 5px;
+          z-index: 200;
+          left: 5px;
+          border: transparent;
+          background: transparent;
+
+          .material-icons {
+            font-size: 18px;
+          }
+        }
+
+        .little-player-inner {
+          &:before {
+            @include border-radius(5px);
+
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            top: 0;
+            bottom: 0;
+            background: rgba(map_get($colors, dark), 0.67);
+          }
+
+          &.clear {
+            &:before {
+              background: none;
+            }
+          }
+
+          height: 100%;
+          position: relative;
+
+          .header-top {
+            position: absolute;
+            z-index: 2;
+            top: 4px;
+            right: 4px;
+
+            span {
+              color: map_get($colors, light);
+              @include font(11px, 600);
+            }
+          }
+
+          .play-icon {
+            width: 25px;
+            height: 25px;
+            top: 0;
+            bottom: 0;
+            z-index: 2;
+            margin: auto;
+            left: 0;
+            right: 0;
+            position: absolute;
+
+            img {
+              width: 34px;
+            }
+          }
+
+
+          .turned-in {
+            position: absolute;
+            left: 4px;
+            z-index: 2;
+            bottom: 4px;
+            color: map_get($colors, light);
+            display: flex;
+            flex-direction: row;
+
+            .material-icons {
+              font-size: 18px;
+              margin-right: 3px;
+              line-height: 18px;
+            }
+
+            span {
+              font-size: 12px;
+              line-height: 18px;
+              display: block;
+              @include font(11px, 600);
+
+            }
+          }
+
+          .channel {
+            position: absolute;
+            right: 4px;
+            z-index: 2;
+            bottom: 4px;
+
+            span {
+              @include font(11px, 600);
+              color: map_get($colors, light);
+              line-height: 18px;
+
+            }
+          }
+        }
+
+      }
+
+
+      .little-player-information {
+        .player-title-info {
+          line-height: 18px;
+
+          span {
+            font-size: 12px;
+            color: map_get($colors, dark);
+            @include font(12px, 600);
+          }
+        }
+
+        .player-location {
+          margin-top: 10px;
+          display: flex;
+          flex-direction: row;
+
+          .material-icons {
+            margin-right: 3px;
+            font-size: 18px;
+            color: map_get($colors, danger);
+          }
+
+          span {
+            line-height: 18px;
+            display: block;
+            @include font(11px, 300);
+            color: map_get($colors, dark);
+          }
+        }
+
+        .stat {
+          display: flex;
+          flex-direction: row;
+
+          .downloads {
+            display: flex;
+            flex-direction: row;
+
+            .material-icons {
+              margin-right: 3px;
+              font-size: 18px;
+              color: map_get($colors, danger);
+            }
+
+            span {
+              display: block;
+              line-height: 18px;
+              @include font(11px, 300);
+              color: map_get($colors, dark);
+            }
+          }
+
+          .bull {
+            margin-right: 6px;
+            margin-left: 6px;
+            line-height: 18px;
+          }
+
+          .likes {
+            line-height: 18px;
+
+            span {
+              @include font(11px, 300);
+              color: map_get($colors, dark);
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .load-more-embed {
+
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 8px;
+    padding-top: 30px;
+  }
+}

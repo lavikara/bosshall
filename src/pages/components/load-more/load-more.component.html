@@ -1,0 +1,17 @@
+<div class="load-more">
+    <div class="row">
+        <div class="col-6">
+            <h5 (click)="loadMore(true)" *ngIf="!loading && showPrevious">Show Previous</h5>
+            <h5 *ngIf="loading && showPrevious" fxLayout="row" fxLayoutAlign="flex-start center"><i
+                    class="fa fa-spin fa-refresh"></i>&nbsp;&nbsp;&nbsp; <span>Loading more...</span></h5>
+        </div>
+        <div class="col-6 text-right" [class.col-12]="!showPrevious">
+            <h5 (click)="loadMore(false)" *ngIf="!loading && showLoading">Show more</h5>
+            <h5 *ngIf="loading && showLoading" fxLayout="row" fxLayoutAlign="flex-end center"><i
+                    class="fa fa-spin fa-refresh"></i>&nbsp;&nbsp;&nbsp; <span>Loading more...</span></h5>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+</div>

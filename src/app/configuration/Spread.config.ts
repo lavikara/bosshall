@@ -1,0 +1,1 @@
+export const SpreadStatusEnum = Object.freeze({DRAFT: 1, ACTIVE: 2, BROADCASTING: 3});

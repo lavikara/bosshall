@@ -1,0 +1,49 @@
+<div class="little-box">
+    <div class="inner-little-box right">
+        <h6 class="little-box-header row">
+            <div class="col-md-9">
+                <div class="brand-title">
+                    <h4>EXTERNAL WEBSITES</h4>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="filter pull-right">
+                    <button (click)="addNewWebsite()" class="icon-holder transparent-bg transparent-border"
+                            type="button">
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </h6>
+
+
+        <div class="parent-little-box-row nano" id="activity">
+            <div class="nano-content">
+                <div class="little-box-row" *ngIf="websites && websites.length">
+
+                    <div *ngFor="let website of websites; let i = index" class="input-group">
+                        <label></label>
+                        <div class="complex">
+                            <i class="material-icons">language</i>
+                            <input (blur)="sendInput(i,$event)" [value]="website"
+                                   placeholder="https://www.example.com" type="text">
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="little-box-row" *ngIf="!websites || !websites.length">
+                    <p>No website added yet</p>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

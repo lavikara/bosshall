@@ -1,0 +1,46 @@
+<div class="player-view">
+    <video #videoElement *ngIf="type==='video'" [src]="data.preview" controls></video>
+    <audio #audioElement *ngIf="type==='audio'" [src]="data.preview" controls></audio>
+    <img *ngIf="type==='spread' && data.cover" class="quote" [src]="data.cover"/>
+    <div (click)="play()" *ngIf="!overlay" [ngStyle]="{'background-image':'url('+cover_image+')'}"
+         class="inner-player-view">
+        <div *ngIf="data && data.id" class="player-information">
+            <div class="channel">
+                <div class="channel-logo"><img [src]="data.Brand?.logo"/></div>
+                <div class="channel-title"><span class="inner-title">
+          {{data.Brand?.name}}
+        </span>
+                </div>
+            </div>
+
+
+            <div class="series">
+                {{data.name}}
+            </div>
+
+            <div [ngClass]="loading?'active':''" class="play">
+                <i class="fa fa-spin fa-circle-o-notch"></i>
+            </div>
+
+            <div class="player-footer" *ngIf="spreadStatus==='END'">
+                <div class="attendance">
+                    <div class="users">
+                        <img *ngFor="let attendance of data.Participants; let i=index" [ngStyle]="{'z-index':(i+1)}"
+                             [src]="attendance.picture" alt=""/>
+                    </div>
+                    <div class="attendance-text">
+                        <div class="inner-attendance-text">
+                            <div>+{{data.participantCount}}</div>
+                            <div>tunned in</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment-count" *ngIf="status">
+                    <i class="material-icons">workspaces</i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

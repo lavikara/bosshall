@@ -1,0 +1,97 @@
+app-include-footer-component {
+  footer {
+    @include box-shadow(-2px 0 2px rgba(map_get($colors, dark), 0.50));
+
+    .footer-container {
+      padding-left: 30px;
+      padding-right: 30px;
+      background: map_get($colors, primary);
+      padding-bottom: 30px;
+      padding-top: 30px;
+    }
+
+    .footer-image {
+      display: flex;
+      flex-direction: row;
+      height: 104px;
+    }
+
+
+    .footer-container-min {
+      background: map_get($colors, lightSmoke);
+      p {
+        text-align: center;
+        font-size: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 0;
+        font-weight: 400;
+      }
+    }
+
+
+    .address {
+      text-align: left;
+    }
+    .footer-image-social {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      max-width: 100px;
+      margin-top: 20px;
+      a .fa {
+        color: map_get($colors, light);
+        font-size: 18px;
+      }
+    }
+
+    .link-parent-container {
+
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      height: 100%;
+
+      @media only screen and (max-width: 480px) {
+        justify-content: flex-start;
+        margin-top: 10px;
+      }
+
+    .link-container {
+      min-width: 250px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      a {
+        display: block;
+        color: map_get($colors, light);
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+    }
+
+
+      .link-buttons {
+        margin-top: 10px;
+        a {
+          border: 2px solid map_get($colors, light);
+          background: transparent;
+          color: map_get($colors, light);
+          font-size: 12px;
+          min-width: 180px;
+          display: inline-block;
+          padding: 10px 5px;
+          text-align: center;
+          font-weight: bold;
+          min-height: 50px;
+          border-radius: 5px;
+        }
+      }
+  }
+
+  }
+}

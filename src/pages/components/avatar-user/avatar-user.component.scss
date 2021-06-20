@@ -1,0 +1,36 @@
+@import "../../../theme/theme";
+
+.avatar-container {
+  width: 100%;
+  display: block;
+  padding-top: 21px;
+  position: relative;
+
+  img {
+    width: 49px;
+    height: 49px;
+    display: block;
+    border-radius: 49px;
+    margin: 0 auto;
+  }
+
+  .online-status {
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    right: 20%;
+
+    &.online {
+      color: map_get($colors, success);
+    }
+
+    &.offline {
+      color: map_get($colors, light);
+    }
+
+    &.away {
+      color: map_get($colors, lightSmoke);
+    }
+  }
+
+}

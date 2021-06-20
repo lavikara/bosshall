@@ -1,0 +1,34 @@
+<div class="attendance-list-container">
+    <div class="attendance-list-sub-container">
+        <label>
+            <input type="search" placeholder="search">
+            <button class="placeholder-button"><i class="material-icons">search</i></button>
+        </label>
+        <button class="btn-presentation-add btn-click" *ngIf="canAddPresentation" (click)="addContainer()"><i class="material-icons">add</i></button>
+
+        <div class="attendance-participants-lists">
+
+            <div class="attendance-header">
+                <h3>Presentation</h3>
+                <button class="btn btn-dropdown"  (click)="toggle()">
+                    <i class="material-icons">{{complexList ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}</i>
+                </button>
+            </div>
+
+            <div class="attendance-content" *ngIf="complexList">
+                <app-selector-complex-list-attendance-component *ngFor="let presentationContainer of presentationContainers"
+                [content]="presentationContainer.id ? presentationContainer.id + '' : '-'" [id]="presentationContainer.id" [name]="presentationContainer.name" [type]="'presentation'"
+                 [description]="''" (click)="selectPresentation(presentationContainer)"></app-selector-complex-list-attendance-component>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="attendance-list-action" *ngIf="isChiefHost">
+        <a href="javascript:void(0)"  [routerLink]="'/bl/spread/'+spreadId + '/invitations'" class="more-participants">
+            <i class="material-icons">add</i>
+            <span>Add Manager</span>
+        </a>
+    </div>
+
+</div>

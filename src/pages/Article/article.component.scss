@@ -1,0 +1,79 @@
+.article-body {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 50px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    margin-top: 0;
+    text-transform: capitalize;
+  }
+
+  h3 {
+    font-size: 20px;
+    color: map_get($colors, danger);
+  }
+
+  h4 {
+    font-size: 16px;
+    color: map_get($colors, primary);
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 0;
+    line-height: 2;
+    margin-bottom: 0;
+  }
+
+
+  aside {
+    ul {
+      list-style-type: none;
+      padding-left: 10px;
+      border-left: 3px solid map_get($colors, danger);
+      li {
+        a {
+          font-weight: 500;
+        }
+        &.active {
+          a {
+            padding-left: 2px;
+            color: map_get($colors, danger);
+          }
+        }
+      }
+    }
+
+    &.active {
+      position: fixed;
+      top: 30px;
+    }
+  }
+
+  .article-text {
+    padding-bottom: 40px;
+
+    h4 {
+      margin-top: 25px;
+    }
+
+
+    p + h3 {
+      margin-top: 25px;
+    }
+
+  }
+}

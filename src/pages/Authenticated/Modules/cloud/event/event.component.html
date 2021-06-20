@@ -1,0 +1,73 @@
+<app-header-inc-component [constraintPage]="false" [clearSearch]="false" [isBrandPage]="false"></app-header-inc-component>
+
+<div class="cloud-container">
+    <div class="min-left-slide-container">
+
+        <app-cloud-thin-sidebar-include-component></app-cloud-thin-sidebar-include-component>
+    </div>
+    <div class="max-right-main-container">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div class="tab tab-bar mobile-only">
+    <nav>
+        <ul>
+            <li>
+                <a *ngIf="broadcasting" class="transparent-bg transparent-border" [routerLink]="'/bl/cloud/' + cloudId + '/broadcast'">
+                    <i class="material-icons">cast</i>
+                </a>
+                <a *ngIf="!broadcasting" class="transparent-bg transparent-border">
+                    <i class="material-icons">cast</i>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="'/bl/cloud/' + cloudId + '/participant'">
+                    <i class="material-icons">people</i>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="'/bl/cloud/' + cloudId + '/presentation'">
+                    <i class="material-icons">file_copy</i>
+                </a>
+            </li>
+
+            <li class="bg-danger slide-button">
+                <a (click)="toggleMore = !toggleMore">
+                    <i class="material-icons light">more_vert</i>
+                </a>
+                <div class="more-option-container" [class.active]="toggleMore">
+                    <ul>
+                        <li *ngIf="canBroadcast && !broadcasting" >
+                            <a (click)="connect()">
+                                <i class="material-icons">play_arrow</i>
+                            </a>
+                        </li>
+                        <li *ngIf="broadcasting">
+                            <a (click)="disconnect()">
+                                <i class="material-icons">stop</i>
+                            </a>
+                        </li>
+
+                        <li *ngIf="broadcasting && canBroadcastAudio">
+                            <a (click)="toggleAudio()">
+                                <i class="material-icons">mic</i>
+                            </a>
+                        </li>
+                        <li *ngIf="broadcasting && canBroadcastVideo">
+                            <a (click)="toggleVideo()">
+                                <i class="material-icons">
+                                    videocam
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="personal-video-container"></div>
+<div class="little-recording" cdkDrag></div>
+<div class="little-music-player" cdkDrag></div>
+<canvas class="js-canvas hidden"></canvas>

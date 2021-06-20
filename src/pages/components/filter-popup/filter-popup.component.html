@@ -1,0 +1,25 @@
+<div [attr.aria-labelledby]="popupId" class="dropdown-menu dropdown-menu-right notification small">
+    <div class="dropdown-title">{{title}}</div>
+    <div class="">
+        <div *ngFor="let item of popupList; let i=index" [ngClass]="selected===i?'active':''" (click)="select($event,i)"
+             class="notification-holder">
+            <div class="inner-notification dropdown-item">
+                <div *ngIf="item.icon" class="notification-icon">
+                    <i class="material-icons">{{item.icon}}</i>
+                </div>
+                <div class="notification-body">
+                    <div class="name">{{item.name}}</div>
+                </div>
+                <div *ngIf="item.toggle" class="notification-toggle  pull-right">
+                    <i *ngIf="selected!==i" class="material-icons smoke">toggle_off</i>
+                    <i *ngIf="selected===i" class="material-icons danger">toggle_on</i>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

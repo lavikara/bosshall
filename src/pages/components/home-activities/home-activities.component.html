@@ -1,0 +1,53 @@
+<div class="little-box">
+    <div class="inner-little-box">
+        <div class="little-box-header row">
+            <div class="col-md-6">
+                <h4>Activities</h4>
+            </div>
+            <div class="col-md-6">
+                <i aria-expanded="false" aria-haspopup="true" class="material-icons pull-right activity-cog"
+                   data-toggle="dropdown" id="activityFilter">settings</i>
+
+                <app-filter-include-component [popupId]="'activityFilter'" [popupList]="
+        [
+        {icon:'volume_up',name:'sound',toggle:true},
+        {icon:'notifications',name:'Notification',toggle:true},
+        {name:'For  selected brand',toggle:true}
+        ]" [title]="'Activity settings'"></app-filter-include-component>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <div class="parent-little-box-row nano" id="activity">
+            <div class="nano-content">
+                <div *ngFor="let item of brandActivitiesList; let i = index" class="little-box-row">
+                    <div class="row">
+                        <div class="col avatar">
+                            <img [src]="item.Brand.logo"/>
+                        </div>
+
+                        <div class="col body">
+                            <div class="title-heading row">
+                                <div class="col-md-6">
+                                    <h5>{{item.Brand.name}}</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <i class="material-icons">play_circle_outline</i>
+                                </div>
+                            </div>
+                            <p>{{item.description}}</p>
+                            <div class="time pull-right">{{item.createdAt | amTimeAgo}}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <p *ngIf="!brandActivitiesList.length" class="text-align-center">You have no activity yet.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

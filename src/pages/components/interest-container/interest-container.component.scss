@@ -1,0 +1,259 @@
+app-interest-container-selector {
+
+
+  .little-box {
+    border-left: 1px solid map_get($colors, lightSmoke);
+    margin-top: 15px;
+    height: 100%;
+    border-bottom: 1px solid map_get($colors, lightSmoke);
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    .inner-little-box {
+      padding-bottom: 15px;
+      margin: 0;
+      height: 100%;
+
+      .nano-content {
+        .little-box-row {
+          padding-right: 15px;
+
+        }
+
+        p {
+          font-size: 15px;
+        }
+
+      }
+
+      &.right {
+        border-right: 1px solid map_get($colors, lightSmoke);
+      }
+
+    }
+
+
+    .parent-little-box-row {
+
+      margin-top: 15px;
+      height: 100%;
+      min-height: 220px;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      .nano-content {
+
+      }
+    }
+
+    .little-box-header {
+      border-bottom: 1px solid map_get($colors, lightSmoke);
+      padding-left: 8px;
+
+      &.row {
+        margin: 0;
+
+        [class*=col-] {
+          padding: 0;
+
+          h4 {
+            font-size: 13px;
+            margin: 0;
+            color: map_get($colors, primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+          }
+
+          .material-icons {
+            font-size: 16px;
+            color: map_get($colors, secondary);
+            cursor: pointer;
+
+            &.activity-cog {
+              margin-right: 15px;
+            }
+          }
+
+          .brand-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h4 {
+              padding-top: 4px;
+              padding-bottom: 6px;
+            }
+          }
+
+          .filter {
+            padding-right: 15px;
+            display: inline-flex;
+            width: 80px;
+            flex-direction: row;
+
+            .icon-holder, .input-holder {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            }
+
+            .icon-holder {
+              margin-right: 3px;
+
+              .material-icons {
+                color: map_get($colors, smoke);
+                font-size: 14px;
+              }
+            }
+
+            input {
+              border: none;
+              width: 100px;
+              outline: none;
+              @include placeholder(map_get($colors, smoke), 11px, 400)
+            }
+          }
+        }
+      }
+
+    }
+
+    .little-box-row {
+      padding-left: 8px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+
+      &.active {
+        border-left: 5px solid map_get($colors, danger);
+        background: map_get($colors, lightSmoke);
+      }
+
+      &:hover {
+        background: map_get($colors, lightSmoke);
+        @include box-shadow(2px 0 2px rgba(map_get($colors, primary), 0.5));
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid map_get($colors, lightSmoke);
+      }
+
+      .row {
+        margin: 0;
+
+        .col {
+          padding: 0;
+
+          &.avatar {
+            max-width: 45px;
+          }
+
+          &.body {
+            .title-heading {
+              margin-bottom: 6px;
+
+              [class*=col-] {
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                h5 {
+                  margin: 0;
+                  font-size: 12px;
+                  line-height: 15px;
+                  padding-left: 8px;
+                  @include font(12px, 400);
+                  color: map_get($colors, primary);
+                }
+
+                p {
+                  margin-top: 6px;
+                }
+
+                .material-icons {
+                  float: right;
+                  font-size: 14px;
+                  color: map_get($colors, secondary);
+                }
+              }
+            }
+
+            p {
+              font-size: 11px;
+              color: map_get($colors, dark);
+              line-height: 12px;
+              margin-bottom: 3px;
+            }
+
+            .time {
+              font-size: 11px;
+              font-weight: 600;
+              color: map_get($colors, primary);
+            }
+
+            [class*=col-] {
+              padding: 0;
+
+              .toggle-holder {
+                cursor: pointer;
+
+                .material-icons {
+                  font-size: 36px;
+
+                  &.off {
+                    color: map_get($colors, smoke);
+                  }
+
+                  &.on {
+                    color: map_get($colors, danger);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+    }
+
+  }
+}
+
+.follow-container {
+  min-width: 250px;
+
+  span {
+    font-size: 12px;
+    color: map_get($colors, primary);
+  }
+
+  button {
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    height: 35px;
+    line-height: 30px;
+  }
+
+}
+
+.interests-menu-trigger {
+  .menu-trigger-title {
+    background: map-get($colors, primary);
+    color: map_get($colors, light);
+    padding: 8px 14px;
+
+    h5 {
+      margin: 0;
+      padding: 0;
+      font-weight: 600;
+      font-size: 15px;
+    }
+  }
+
+  .mat-menu-content {
+    padding-top: 0 !important;
+  }
+}

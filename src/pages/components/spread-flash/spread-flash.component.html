@@ -1,0 +1,36 @@
+<div class="spread-container">
+    <div class="spread-outter-heading">
+        Spread flash
+    </div>
+    <div class="inner-spread-holder row can-break-on-xs" >
+        <div class="spread-avatar col" *ngIf="display && display.id">
+            <img [src]="display.cover"/>
+        </div>
+        <div class="spread-msg col" *ngIf="display && display.id">
+            <div class="spread-creator">
+                <div class="creator-heading"><span>{{display.Brand.name}}</span></div>
+                <div class="created-time"><i class="material-icons">update</i> <span>{{display.createdAt | amTimeAgo}}</span></div>
+            </div>
+
+            <div class="spread-title" *ngIf="display && display.id">
+                <div class="title-heading"><span>{{display.name}}</span></div>
+                <div class="title-body" [innerHTML]="display.description | sanitizeHTML">
+                </div>
+            </div>
+        </div>
+        <div class="spread-msg col-12" *ngIf="!display || !display.id">
+
+            <p  class="text-align-center padding-top-20">Spread flash will display here.</p>
+
+        </div>
+
+
+    </div>
+    <div class="progress-bar-holder">
+        <div aria-valuemax="100" aria-valuemin="0" [attr.aria-valuenow]="percentage" class="progress-bar progress-bar-secondary"
+             role="progressbar" [style.width]="percentage+'%'">
+            <span class="sr-only">{{percentage}}% Complete</span>
+        </div>
+    </div>
+
+</div>

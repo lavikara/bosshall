@@ -1,0 +1,146 @@
+<div class="card max-800">
+    <div class="card-header card-header-danger card-header-icon">
+        <div class="card-icon danger-bg">
+            <!--<div class="logo"></div>-->
+            <i class="material-icons">workspaces</i>
+        </div>
+        <h4 class="card-title">Create Announcement</h4>
+    </div>
+
+    <form (ngSubmit)="createSpread()" (submit)="$event.preventDefault()" [formGroup]="spreadForm">
+
+        <div class="card-body">
+
+            <aw-wizard #wizardComponent [navBarLayout]="'large-filled-symbols'">
+                <aw-wizard-step [canExit]='true' navigationSymbol="1" stepTitle="Basic Information">
+                    <div class="wizard-body">
+                        <form [formGroup]="spreadForm">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-chip (click)="removeTag(i)" *ngFor="let item of tags; let i = index;"
+                                              class="mat-elevation-z2">{{item}}</mat-chip>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" for="title">Title</label>
+                                        <input class="form-control" formControlName="name" id="title" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Category</label>
+                                        <select (change)="addTag()" [formControl]="tagControl" class="form-control"
+                                                name="category">
+                                            <option *ngFor="let item of interests; let i = index"
+                                                    [value]="item.id">{{item.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" for="title">Invitation Type</label>
+                                        <select class="form-control" formControlName="invitationType" name="category">
+                                            <option *ngFor="let item of invitationType; let i = index"
+                                                    [value]="item">{{item}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" for="title">Program format</label>
+                                        <input class="form-control" formControlName="displayAction" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" for="startTime">Start</label>
+                                        <input class="form-control picker-time" formControlName="startTime" id="startTime"
+                                               name="startTime" placeholder="Start time" type="text" [altInput]="true"
+                                               [enableTime]="true"
+                                               dateFormat="Y-m-dTH:i"
+                                               altFormat="F j, Y H:i"
+                                               [convertModelValue]="true"   mwlFlatpickr>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" for="endTime">End</label>
+                                        <input class="form-control picker-time" formControlName="endTime" id="endTime"
+                                               [enableTime]="true"
+                                               dateFormat="Y-m-dTH:i"
+                                               altFormat="F j, Y H:i"
+                                               name="startTime" placeholder="End time" type="text"  [altInput]="true"
+                                               [convertModelValue]="true"  mwlFlatpickr>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea #editorEl class="myEditor" formControlName="description"
+                                                  name="editor"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="wizard-footer" fxLayout="row" fxLayoutAlign="flex-end center">
+                        <button (click)="continueDesign()" class="btn-custom danger-bg light mat-elevation-z2" fxLayout="row"
+                                fxLayoutAlign="space-between center" type="button">
+                            <span>Continue</span>
+                            <i class="material-icons">arrow_right</i>
+                        </button>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                </aw-wizard-step>
+                <aw-wizard-step navigationSymbol="2" stepTitle="Preview | Finish">
+                    <div class="finish-body">
+                        <div class="finish-body-heading">
+                            <div class="finish-title">
+                                {{spreadForm.controls['name'].value}}
+                            </div>
+                            <div class="finish-time">
+                                <i class="material-icons">update</i>
+                                <span>{{spreadForm.controls['startTime'].value | amCalendar}}</span>
+                            </div>
+                        </div>
+
+                        <div class="finish-body-images">
+                            <img [src]="spreadCover.url | sanitize"/>
+                        </div>
+
+                        <p [innerHTML]="spreadForm.controls['description'].value" class="writeup"></p>
+                    </div>
+
+
+                    <div class="wizard-footer" fxLayout="row" fxLayoutAlign="space-between center">
+
+                        <button awPreviousStep class="btn-custom danger-bg light mat-elevation-z2" fxLayout="row"
+                                fxLayoutAlign="space-between center" type="button"><i
+                                class="material-icons">arrow_left</i> <span>back</span></button>
+                        <button (click)="status()" class="btn-custom primary-bg light mat-elevation-z2" fxLayout="row"
+                                fxLayoutAlign="space-between center" type="submit"
+                        ><span>Spread</span> <i class="material-icons">workspaces</i></button>
+
+                    </div>
+                </aw-wizard-step>
+            </aw-wizard>
+        </div>
+
+    </form>
+
+</div>
+
+

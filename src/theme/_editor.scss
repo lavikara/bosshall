@@ -1,0 +1,18 @@
+.tui-image-editor-container .tui-image-editor-header-logo > img {
+  height: 50px !important;
+  width: auto !important;
+}
+
+app-image-editor-include {
+  display: block;
+  height: 100%;
+}
+
+.editor-container {
+  height: 100%;
+}
+
+
+#tui-image-editor {
+  @include border-radius(5px);
+}

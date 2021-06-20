@@ -1,0 +1,62 @@
+@import "../../../theme/theme";
+
+.multiple-participant-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 25px;
+  padding-left: 25px;
+  height: 100%;
+  width: 100%;
+
+  .participant-list {
+    height: 120px;
+    min-width: 120px;
+    max-width: 120px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .sidebar-button {
+    background: map_get($colors, light);
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+
+    .material-icons {
+      color: map_get($colors, primary);
+    }
+
+    &.blue-button {
+      background: map_get($colors, linkColor);
+
+      .material-icons {
+        color: map_get($colors, white);
+      }
+    }
+  }
+
+
+  .left-multiple-participant-container,
+  .right-multiple-participant-container {
+    width: 70px;
+  }
+
+  .inner-multiple-participant-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding-right: 30px;
+    padding-left:20px;
+    a {
+      margin-left: 8px;
+      margin-right: 8px;
+
+      img {
+        border-radius: 3px;
+      }
+    }
+  }
+}

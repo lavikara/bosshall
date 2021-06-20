@@ -1,0 +1,10 @@
+.mat-chip {
+  background-color: map_get($colors, danger) !important;
+  @include border-radius(10px);
+  padding: 4px 10px;
+  color: map_get($colors, light) !important;
+  margin-right: 5px;
+  border: none;
+  font-size: 12px;
+
+}

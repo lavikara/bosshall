@@ -1,0 +1,33 @@
+.search-container {
+  img {
+    width: 40px;
+    @include border-radius(40px);
+    height: 40px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+
+  .option-title,
+  .option-description {
+    display: block;
+  }
+
+  .option-title {
+    line-height: 1;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: map_get($colors, danger);
+  }
+
+  .option-description {
+    line-height: 1;
+    font-size: 0.8rem;
+    color: map_get($colors, text);
+  }
+}
+
+
+.mat-option {
+  height: 75px !important;
+}

@@ -1,0 +1,190 @@
+@import "../../../theme/theme";
+
+.message-container {
+
+  padding: 38px 38px 0 38px;
+  width: 100%;
+  height: calc(100vh - #{$header-size});
+  min-height: 760px;
+  display: block;
+  background: map_get($colors, light);
+
+  .message-container-header-outer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .button-container {
+      .btn-call {
+        border-radius: 5px;
+        height: 40px;
+        width: 40px;
+        background: map_get($colors, danger);
+        border: none;
+
+        .material-icons {
+          color: map_get($colors, light);
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .message-container-header-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+
+    img {
+      width: 33px;
+      height: 33px;
+      margin-right: 14px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      color: map_get($colors, primary);
+      margin: 0;
+    }
+  }
+
+  .message-line-breaker {
+    margin-top: 32px;
+    font-weight: bold;
+    position: relative;
+
+    &::before {
+      content: '';
+      right: 0;
+      height: 8px;
+      top: 0;
+      position: absolute;
+      width: calc(100% - 70px);
+      background: rgba(map_get($colors, primary), 0.69)
+    }
+
+    .message-title,
+    .message-timeline {
+      line-height: 12px;
+      font-size: 12px;
+    }
+
+    .message-title {
+      padding-top: 0;
+      position: relative;
+      top: -10px;
+    }
+
+    .message-timeline {
+      position: relative;
+      text-align: center;
+      font-weight: 400;
+      color: map_get($colors, linkColor);
+
+      &:before,
+      &:after {
+        content: '';
+        height: 1px;
+        background: map_get($colors, linkColor);
+        position: absolute;
+        width: calc( 50% - 59px);
+        margin: auto;
+
+        @media only screen and (max-width: 480px) {
+          width: 10%;
+        }
+      }
+
+      &:before {
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+
+      &:after {
+        left: 0;
+        top: 0;
+        bottom: 0;
+      }
+
+    }
+  }
+
+
+  .message-input-container {
+    height: 86px;
+    position: relative;
+    margin-bottom: 30px;
+
+    .replying-to {
+      padding: 8px 15px;
+      font-size: 13px;
+      color: map_get($colors, secondary);
+      top: -50%;
+      position: absolute;
+      background: map_get($colors, lightSmoke);
+      border-radius: 5px;
+
+      span {
+        color: map_get($colors, dark);
+      }
+
+      .btn-icon {
+        border: none;
+        padding: 0;
+        margin: 0;
+        top: -5px;
+        background: transparent;
+        right: -5px;
+        position: absolute;
+        .material-icons {
+          width: 13px;
+          height: 13px;
+          color: map_get($colors, danger);
+          font-size: 13px;
+        }
+      }
+    }
+    .message-input {
+      min-height: 40px;
+      background: map_get($colors, white);
+      border-radius: 3px;
+      padding: 7px;
+      font-size: 13px;
+      box-shadow: 1px 1px 1px rgba(map_get($colors, grey), 1), -1px -1px 1px rgba(map_get($colors, grey), 1);
+    }
+
+    .message-input-action {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .message-action-button {
+      border: none;
+      outline: 0;
+      box-shadow: none;
+      background: none;
+      &:first-child {
+        margin-right: 5px;
+      }
+
+      .material-icons {
+        font-size: 18px;
+      }
+    }
+  }
+  .message-container-lists {
+    height: calc(100% - 210px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+}
+
+.file-input {
+  display: none;
+}

@@ -1,0 +1,13 @@
+@keyframes flyingEmoji {
+  0% {
+    @include custom-transform(translate(0, 0));
+    opacity: 1;
+
+  }
+
+  100% {
+    @include custom-transform(translate(100vw, 0));
+    opacity: 0;
+    visibility: hidden;
+  }
+}

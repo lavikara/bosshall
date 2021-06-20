@@ -1,0 +1,279 @@
+app-inc-video-player {
+
+  .player-view {
+    position: relative;
+    min-height: 400px;
+    $playerContainer: 110px;
+    $playerWidth: 270px;
+
+    .player-view-action {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 200;
+      height: $playerContainer;
+      width: $playerContainer;
+      @include custom-transition(#{all 0.2s ease-out});
+
+      /*
+
+      .controller-action {
+        height: $playerContainer;
+
+        width: $playerContainer;
+        @include border-radius($playerContainer);
+        border: 3px solid map_get($colors, white);
+        background: rgba(map_get($colors, dark), 0.6);
+        position: relative;
+        z-index: 50;
+
+        @include box-shadow(#{2px 2px 2px map_get($colors, lightDark)});
+
+        &:before {
+          position: absolute;
+          border-left: 30px solid map_get($colors, white);
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+          left: 0;
+          height: 30px;
+          width: 30px;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          @include border-radius(5px);
+          content: '';
+        }
+      }
+      */
+
+      .controller-text {
+        height: 50px;
+        background: rgba(map_get($colors, dark), 0.9);
+        width: 0;
+        @include custom-transform(#{scale(0, 1)});
+        @include custom-transition(#{all 0.1s ease-out});
+        padding-right: 20px;
+        @include border-radius(50px);
+        position: absolute;
+        font-weight: bold;
+        color: map_get($colors, white);
+        top: 0;
+        bottom: 0;
+        /*
+        right: 5px;
+        */
+        right: 0;
+        @include box-shadow(#{2px 2px 2px map_get($colors, lightDark)});
+
+        margin: auto;
+
+        p {
+          font-size: 0rem;
+          margin-left: 10px;
+          font-weight: bold;
+        }
+
+      }
+
+
+    /*  &:hover {
+        width: $playerWidth;
+*/
+        .controller-text {
+          width: $playerWidth - $playerContainer;
+          @include custom-transform(#{scale(1, 1)});
+
+          p {
+            font-size: 0.9rem;
+          }
+        }
+
+      /*
+      }
+      */
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    audio {
+      height: 400px;
+      width: 100%;
+    }
+
+
+    .quote {
+      width: 100%;
+      min-height: 300px;
+      max-height:400px;
+      object-fit: cover;
+      &.ng-lazyloaded {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+
+    video, .inner-player-view {
+      @include border-radius(3px);
+    }
+
+    .inner-player-view {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      left: 0;
+
+      &:after {
+        content: '';
+        left: 0;
+        z-index: 10;
+        right: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+      }
+
+      .player-information {
+        height: 100%;
+        width: 100%;
+        z-index: 50;
+        padding: 6px;
+        position: relative;
+
+        .channel {
+          display: flex;
+          flex-direction: row;
+
+          .channel-logo {
+            margin-right: 10px;
+
+            img {
+              height: 30px;
+            }
+          }
+
+          .channel-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .inner-title {
+              color: map_get($colors, light);
+              font-size: 0.7rem;
+              font-weight: bold;
+              @include font(13px, 600);
+            }
+          }
+        }
+
+        .series {
+          @include font(13px, 600);
+          position: absolute;
+          color: map_get($colors, light);
+          right: 6px;
+          top: 6px;
+        }
+
+        .play {
+
+          background-size: 100% auto;
+          position: absolute;
+          height: 0;
+          width: 0;
+          top: 0;
+          right: 0;
+          visibility: hidden;
+          left: 0;
+          bottom: 0;
+          margin: auto;
+          cursor: pointer;
+          @include custom-transition(#{all 0.1s linear});
+
+          i {
+            font-size: 0px;
+            color: map_get($colors, white);
+          }
+
+          &.active {
+            visibility: visible;
+            opacity: 1;
+            height: 50px;
+            width: 50px;
+
+            i {
+              font-size: 50px;
+            }
+          }
+        }
+
+        .player-footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          right: 0;
+          left: 0;
+          padding: 6px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          .attendance {
+            display: flex;
+            flex-direction: row;
+
+            .users {
+              margin-right: 6px;
+
+              img {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                @include border-radius(50px);
+                position: relative;
+
+                &:not(:first-child) {
+                  left: -15px;
+                }
+              }
+            }
+
+            .attendance-text {
+              display: flex;
+              width: 150px;
+              flex-direction: column;
+              justify-content: center;
+
+              .inner-attendance-text {
+                position: relative;
+                left: 10px;
+                color: map_get($colors, light);
+                @include font(12px, 600);
+
+                div {
+                  line-height: 13px;
+                }
+
+              }
+            }
+          }
+
+          .comment-count {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
+}

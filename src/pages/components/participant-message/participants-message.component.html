@@ -1,0 +1,58 @@
+<div class="message-container" [style.padding]="paddingSize" [style.background]="bg">
+
+        <div class="message-container-header">
+            <div class="message-container-header-outer">
+                <div class="message-container-header-inner">
+                    <div [routerLink]="'/bl/brand'" class="logo-holder">
+                        <img [src]="spreadDetail.Brand?.logo | sanitize" alt="Brand logo" onerror="this.src = '/assets/img/logo.jpg'"/>
+                    </div>
+
+                    <h2>{{spreadDetail.name}} > {{isAllUser ? 'Bosshall' : screenName}}</h2>
+
+                </div>
+
+                <div class="button-container">
+                    <button class="btn-call" (click)="call()" *ngIf="!isChiefHost && isAllUser">
+                        <i class="material-icons">call</i>
+                    </button>
+                </div>
+            </div>
+            <div class="message-line-breaker">
+                <span class="message-title">Messages</span>
+                <div class="message-timeline">Today</div>
+            </div>
+        </div>
+
+
+        <div class="message-container-lists">
+            <app-replies-component-include [size]="size" *ngFor="let message of messages" [message]="message"></app-replies-component-include>
+        </div>
+
+
+    <div class="message-input-container">
+        <div class="replying-to" *ngIf="reply && reply.id">
+            Reply to @{{reply.screenName}} -  <span>{{reply.text}}</span>
+            <button class="btn-icon" (click)="removeReply()"><i class="material-icons">cancel</i></button>
+        </div>
+        <div class="message-input" #inputField contenteditable="true"></div>
+        <div class="message-input-action">
+            <div class="message-input-action-left">
+                <button class="message-action-button" [disabled]="!mainFeed" (click)="openFileChooser()">
+                    <i class="material-icons">attachment</i>
+                </button>
+                <button class="message-action-button" [disabled]="!mainFeed" (click)="openEmoji()">
+                    <i class="material-icons">tag_faces</i>
+                </button>
+            </div>
+
+            <div class="message-input-action-right">
+                <button class="message-action-button primary" (click)="sendMessage()">
+                    <i class="material-icons">send</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<input type="file" #fileElement class="file-input">

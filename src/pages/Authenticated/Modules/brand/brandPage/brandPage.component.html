@@ -1,0 +1,194 @@
+<app-header-inc-component [isBrandPage]="true"></app-header-inc-component>
+<div class="body page-constraint">
+    <div class="inner-body-bg">
+        <!--    <div class="flex-grow" *ngIf="!player || !player.id" >
+              <h5 class="text-align-center margin-top-30 font-weight-600">NO LISTING</h5>
+              <p class="text-align-center">No spread to list yet. You can start by creating a brand or selecting existing interest.</p>
+
+            </div>-->
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 main-col">
+                <div class="body-children">
+                    <!-- embedding custom video player -->
+                    <div class="player-embed" *ngIf="player && player.id">
+                        <app-inc-video-player
+                                (onEnd)="onEnd($event)"
+                                (onPause)="onPause($event)"
+                                (onPlay)="onPlay($event)"
+                                [data]="player"
+                                [type]="'spread'">
+                        </app-inc-video-player>
+                    </div>
+
+                    <p *ngIf="!player || !player.id" class="text-align-center padding-top-20">Follow more brands to get spreads.</p>
+
+                    <!-- embedding video player stopped-->
+
+
+                    <div class="body-inner-container" *ngIf="player && player.id">
+
+                        <!--title container start-->
+                        <div class="title-container row">
+                            <div class="title-title col-md-8 col-sm-8 col-8 main-col">
+                                <div class="title-logo">
+                                    <img [src]="player.Brand?.logo"/></div>
+                                <div class="title-text" fxLayout="row" fxLayoutAlign="flex-start center">
+                                    <span>{{player.name}}</span> &nbsp; &nbsp;
+                                    <i class="material-icons --cursor" *ngIf="player.downloaded && player.AudienceType" (click)="downloadSpread()">get_app</i></div>
+                                <div class="text-toggle"><button (click)="descriptionToggle=!descriptionToggle"><i class="material-icons">{{!descriptionToggle? 'keyboard_arrow_right': 'keyboard_arrow_down'}}</i></button></div>
+                            </div>
+                            <div [class.danger]="player.spreadFlag" class="report col-md-4 col-sm-4 col-4 main-col">
+                                <a (click)="flagContent()" class="report-action pull-right can-override-pull">
+                                    <span class="report-icon"><i class="material-icons">flag</i></span>
+                                    <span class="report-text">report</span> </a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!--title container ends -->
+
+                        <!-- Spread description -->
+                        <div class="spread-description" *ngIf="descriptionToggle">
+                            <div class="spread-description-title">Description</div>
+                            <div class="spread-description-details" [innerHTML]="player.description"></div>
+                        </div>
+                        <!-- Spread description ends -->
+
+                        <!--location container starts -->
+                        <div class="location-container row" *ngIf="player && player.id">
+                            <div class="location col-md-8 col-sm-8 col-6 main-col">
+                                <div *ngIf="spreadStatus !== 'END'">
+                                    <button class="button bordered primary-border" (click)="join()">
+                                        <i class="material-icons primary">volume_up</i> <span class="primary">{{joinStatus}}</span>
+                                    </button>
+                                </div>
+                                <div *ngIf="spreadStatus === 'END'" fxLayout="row" fxLayoutAlign="flex-start">
+                                    <div class="location-icon">
+                                        <i class="material-icons">location_on</i>
+                                    </div>
+                                    <div class="location-text">
+                                        <span>{{player.Brand?.address}} - {{player.Brand.Country ? player.Brand?.Country.name :''}}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="location-time col-md-4 col-sm-4 col-6 main-col">
+                                <div class="inner-location-time pull-right can-override-pull">
+                                    <div class="time-icon">
+                                        <i class="material-icons">update</i>
+                                    </div>
+                                    <div class="time-text">
+                                        <span>{{player.startTime | amCalendar}}</span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                        <!-- location container ends -->
+
+                        <!-- comment section -->
+                        <div>
+                            <div class="comment-holder row">
+                                <!-- comment title -->
+                                <div class="comment-title col-md-9 col-sm-8 col-8 main-col">
+                                    <div class="comment-icon">
+                                        <i class="material-icons">comment</i>
+                                    </div>
+                                    <div class="comment-text">
+                                        <span>Comments (<small>+{{player.comment_count}}</small>)</span>
+                                    </div>
+                                </div>
+                                <div class="like-portion col-md-3 col-sm-4 col-4">
+                                    <div class="inner-like-portion pull-right">
+                                        <div class="like-icon js-emoji-container">
+                                            <emoji-mart (emojiSelect)="addEmoji(player.id, $event)" class="js-emoji-hover"
+                                                        [backgroundImageFn]="emojiBackgroundFn.backgroundImageFn"
+                                                        [sheetSize]="20" [emojiSize]="16"
+                                                        set="apple"></emoji-mart>
+
+                                            <div [matBadgeColor]="'accent'" [matBadgeSize]="'small'" [matBadge]="player.likeMeta | likeCount"
+                                                 class="likes-stat-icon" fxLayout="row"
+                                                 fxLayoutAlign="flex-end" matBadgeOverlap="false"
+                                                 matBadgePosition="below after">
+                                                <div *ngFor="let item of player.likeMeta | likes"
+                                                     [style.background-image]="item['background-image']"
+                                                     [style.background-position]="item['background-position']" [style.background-size]="item['background-size']"
+                                                     [style.height]="'18px'"
+                                                     [style.width]="'18px'"
+                                                ></div>
+
+                                                <div>
+                                                    <i class="material-icons">favorite</i>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                            <!-- comment title ends -->
+
+                            <!-- embed comment input here -->
+                            <div class="comment-embed">
+                                <app-inc-comment-add-component (onKeyPress)="onKey($event)" [content]="'Write a comment'"
+                                                               [spreadId]="player.id"></app-inc-comment-add-component>
+
+                            </div>
+                            <!-- embed comment input ends-->
+
+
+                            <!-- comment list embed -->
+                            <div class="comment-list-embed">
+                                <app-inc-comment-list-component [id]="player.id"
+                                                                [reply]="0"></app-inc-comment-list-component>
+                            </div>
+                            <!--comment list embed ends-->
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 main-col">
+                <div class="body-children">
+                    <div class="row no-pad">
+                        <div class="col-md-6">
+                            <app-brand-include-component (onBrandActivated)="reloadSignal=$event"></app-brand-include-component>
+                        </div>
+
+                        <div class="col-md-6">
+                            <app-home-activities-component></app-home-activities-component>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <app-player-list-include-component [clickScroll]="true"
+                                                           [isGeneralListing]="true"
+                                                           [triggerReload]="reloadSignal"
+                                                           (onMediaReceived)="transferMedia($event)"
+                                                           (onMediaChange)="mediaChanged($event)"
+                                                           [canFilter]="true"
+                                                           [title]="'BROADCAST'"
+                        ></app-player-list-include-component>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-include-footer-component></app-include-footer-component>
+
+
+
+
+

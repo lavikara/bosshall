@@ -1,0 +1,15 @@
+@import "../../../theme/theme";
+
+.thin-sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.top-sidebar-button {
+  margin-top: 50px;
+}
+
+.footer-sidebar-button {
+  margin-top: 25vh;
+}

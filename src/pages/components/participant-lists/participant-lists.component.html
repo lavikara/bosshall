@@ -1,0 +1,41 @@
+<div class="attendance-list-container">
+    <div class="attendance-list-sub-container">
+        <label>
+            <input type="search" placeholder="search" [(ngModel)]="searchModel">
+            <button class="placeholder-button"><i class="material-icons">search</i></button>
+        </label>
+
+        <div class="attendance-participants-lists">
+            <div class="attendance-header">
+                <h3>General</h3>
+                <button class="btn btn-dropdown" (click)="toggle('single')">
+                    <i class="material-icons">{{singleList ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}</i>
+                </button>
+            </div>
+
+            <div class="attendance-content" *ngIf="singleList">
+                <app-single-list-attendance-component></app-single-list-attendance-component>
+            </div>
+
+            <div class="attendance-header">
+                <h3>Audience ({{participants?.length ? participants?.length : 0}})</h3>
+                <button class="btn btn-dropdown"  (click)="toggle('complex')">
+                    <i class="material-icons">{{complexList ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}</i>
+                </button>
+            </div>
+
+            <div class="attendance-content" *ngIf="complexList">
+                <app-selector-complex-list-attendance-component *ngFor="let participant of participants|doubleSearchFilter:searchModel" [name]="participant.firstname + ' ' + participant.lastname + ' (' + participantText(participant.permission) + ')'" [description]="participant.Country?.name" [picture]="participant.picture" [id]="participant.id"></app-selector-complex-list-attendance-component>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="attendance-list-action" *ngIf="isChiefHost">
+        <a href="javascript:void(0)" [routerLink]="'/bl/spread/'+spreadId + '/invitations'" class="more-participants">
+            <i class="material-icons">add</i>
+            <span>More Participants</span>
+        </a>
+    </div>
+
+</div>

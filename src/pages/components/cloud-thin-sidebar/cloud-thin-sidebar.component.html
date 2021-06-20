@@ -1,0 +1,50 @@
+<div class="thin-sidebar">
+    <div class="thin-inner">
+        <app-avatar-component-include [id]="userId"></app-avatar-component-include>
+
+        <div class="top-sidebar-button">
+            <button class="sidebar-button" *ngIf="mainFeed && mainFeed.stream" [routerLink]="'/bl/cloud/' + cloudId + '/broadcast'" [class.active]="isType('broadcast')" (click)="selectButton('broadcast')">
+                <i class="material-icons" *ngIf="!cloudConnected">cast</i>
+                <i class="material-icons" *ngIf="cloudConnected">cast_connected</i>
+                <span>Broadcast</span>
+            </button>
+
+            <button class="sidebar-button" [routerLink]="'/bl/cloud/' + cloudId + '/participant'" [class.active]="isType('participant')" (click)="selectButton('participant')">
+                <i class="material-icons">people</i>
+                <span>Participants</span>
+            </button>
+
+            <button class="sidebar-button" [routerLink]="'/bl/cloud/' + cloudId + '/presentation'"  [class.active]="isType('presentation')" (click)="selectButton('presentation')">
+                <i class="material-icons">file_copy</i>
+                <span>Presentation</span>
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="footer-sidebar-button">
+        <button class="sidebar-button round" *ngIf="broadcasting && canBroadcastAudio" (click)="toggleAudio()">
+            <i class="material-icons">mic</i>
+        </button>
+
+        <button class="sidebar-button round" *ngIf="broadcasting && canBroadcastVideo" (click)="toggleVideo()">
+            <i class="material-icons">
+                videocam
+            </i>
+        </button>
+
+        <button class="sidebar-button round" *ngIf="canBroadcast && !broadcasting" (click)="connect()">
+            <i class="material-icons">cast_connected</i>
+        </button>
+
+        <button class="sidebar-button round" *ngIf="broadcasting" (click)="disconnect()">
+            <i class="material-icons">stop_circle</i>
+        </button>
+
+<!--        <button class="sidebar-button sidebar-button-medium active">-->
+<!--            <i class="material-icons">settings</i>-->
+<!--            <span>Settings</span>-->
+<!--        </button>-->
+    </div>
+</div>

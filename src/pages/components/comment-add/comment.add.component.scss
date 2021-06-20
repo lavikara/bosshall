@@ -1,0 +1,79 @@
+app-inc-comment-add-component {
+
+  .comment-input-container {
+    .inner-comment-holder {
+      .col {
+        padding: 0;
+
+        &.long-col {
+          max-width: calc(100% - 50px);
+        }
+
+        &.short {
+          max-width: 40px;
+          margin-right: 10px;
+        }
+
+        .user-avatar {
+          img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            @include border-radius(50px);
+          }
+        }
+
+        .fake-input {
+          width: 100%;
+          @include border-radius(8px);
+          border: 1px solid map_get($colors, smoke);
+          display: flex;
+          flex-direction: row;
+          position: relative;
+
+          .editable-portion {
+            width: 80%;
+            padding: 14px 6px;
+            @include font(11px, 400);
+            line-height: 12px;
+
+            img {
+              width: 80px;
+              height: auto;
+              padding: 10px 10px 10px 0;
+            }
+          }
+
+          .fake-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            .fake-input-button {
+              display: flex;
+              flex-direction: row;
+              padding-bottom: 14px;
+
+              .emoji {
+                margin-right: 7px;
+                margin-left: 7px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .material-icons {
+                  color: map_get($colors, dark);
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    input[type=file] {
+      display: none;
+    }
+  }
+}

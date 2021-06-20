@@ -1,0 +1,30 @@
+.swal2-container {
+  z-index: 9800 !important;
+}
+
+.swal2-container .swal2-modal.swal2-show {
+  overflow-y: visible;
+  overflow-x: visible;
+
+  font-family: 'Open Sans', sans-serif;
+
+  .swal2-icon {
+    font-size: 1rem !important;
+  }
+
+  .swal2-title {
+    font-size: $h3;
+  }
+
+  .swal2-content {
+    font-size: $p;
+  }
+
+
+  .swal2-actions {
+    > button {
+      @include button($p);
+    }
+  }
+
+}

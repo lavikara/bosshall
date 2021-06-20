@@ -1,0 +1,60 @@
+<app-loading-in-component></app-loading-in-component>
+
+<div id="app-sendcode-component">
+
+
+    <div class="row">
+        <div class="col-md-2 col-lg-2 hidden-sm"></div>
+        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="box">
+                <div class="card form-body" fxLayout="column" fxLayoutAlign="space-between">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon danger-bg">
+                            <!--<div class="logo"></div>-->
+                            <i class="material-icons">mail</i>
+                        </div>
+                        <h4 class="card-title">SEND CONFIRMATION CODE</h4>
+                    </div>
+                    <form (ngSubmit)="sendCode()" (submit)="$event.preventDefault()" [formGroup]="sendCodeForm" class="loginForm"
+                          name="loginForm">
+                        <p class="didYou">Did you forgot your password?</p>
+                        <p class="enterit">Enter your email and we will send you a verification code!</p>
+                        <label>
+                            <input class="form-control" formControlName="email" name="username"
+                                   placeholder="Email eg : johndoe@example.com" type="email"/>
+                        </label>
+                        <div class="clearfix"></div>
+
+                        <br/>
+
+                        <div class="captcha-holder" fxLayout="row" fxLayoutAlign="center center">
+                            <ngx-recaptcha2 #captchaElem
+                                            (expire)="handleExpire()"
+                                            (load)="handleLoad()"
+                                            (reset)="handleReset()"
+                                            (success)="handleSuccess($event)"
+                                            [hl]="'en'"
+                                            [siteKey]="captchaKey"
+                                            [size]="'Normal'"
+                                            [theme]="'Light'"
+                                            [type]="'Image'"
+                                            [useGlobalDomain]="false"
+                                            formControlName="recaptcha">
+                            </ngx-recaptcha2>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <button [disabled]="!sendCodeForm.valid" class="btn primary-bg light text-center mat-elevation-z4"
+                                type="submit">{{buttonText}}</button>
+                        <p class="text-center verification">Remember account? <a class="link" routerLink="/login">Sign
+                            in</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2 hidden-sm"></div>
+
+    </div>
+
+</div>
+

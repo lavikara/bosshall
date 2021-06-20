@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-header card-header-danger card-header-icon">
+        <div class="card-icon danger-bg">
+            <!--<div class="logo"></div>-->
+            <i class="material-icons">album</i>
+        </div>
+        <h4 class="card-title">Brand Story</h4>
+    </div>
+    <div class="card-body">
+        <textarea [readonly]="!edit" [(ngModel)]="story" [ngModelOptions]="{standalone: true}"
+                  class="full-textarea"></textarea>
+        <button (click)="saveStory()" *ngIf="edit" class="btn btn-danger pull-right" type="button"
+        ><span>Save</span></button>
+    </div>
+</div>

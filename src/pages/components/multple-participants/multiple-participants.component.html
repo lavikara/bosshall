@@ -1,0 +1,18 @@
+<div class="multiple-participant-container" *ngIf="mainFeed && mainFeed.stream">
+    <div class="left-multiple-participant-container">
+        <button class="sidebar-button" [class.blue-button]="blueButton">
+            <i class="material-icons">keyboard_arrow_left</i>
+        </button>
+    </div>
+    <div class="inner-multiple-participant-container">
+        <div *ngFor="let sub of subscribers|AudioVideo; let i = index" class="participant-list stream-container col-md-6 col-xs-6">
+            <user-video [streamManager]="sub" (click)="updateMainStreamManager(sub)"></user-video>
+        </div>
+    </div>
+    <div class="right-multiple-participant-container">
+
+        <button class="sidebar-button" [class.blue-button]="blueButton">
+            <i class="material-icons">keyboard_arrow_right</i>
+        </button>
+    </div>
+</div>

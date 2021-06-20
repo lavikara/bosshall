@@ -1,0 +1,29 @@
+@import "../../../../../../../theme/theme";
+
+.screen-container-inner {
+  height: 100%;
+
+  .multiple-participants-screen {
+    background: map_get($colors, primary);
+    height: 195px;
+    width: 100%;
+  }
+
+  #SenderID {
+    height:100%;
+  }
+
+  .single-user-display {
+    height:  calc(100vh - 255px);
+    position: relative;
+
+
+    img {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      object-fit: cover;
+    }
+
+  }
+}

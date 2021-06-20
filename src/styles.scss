@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+@import "theme/theme";
+//generic styles
+@import "~ngx-smart-modal/ngx-smart-modal";
+//style import starts here
+@import "pages/Authentication/registration/registration";
+@import "pages/Authentication/login/login";
+@import "pages/Authentication/confirmReg/confirmreg";
+@import "pages/Authentication/sendCode/sendcode";
+@import "pages/Authenticated/authenticated.component";
+@import "pages/components/component-include.component";
+@import "../src/lib/sass/material-dashboard.scss";
+@import "pages/Article/article.component";
+
+.socialPortion {
+  margin: 1em auto;
+  position: relative;
+  display: block;
+  width: 160px;
+
+  button.btn-facebook {
+    width: 50px;
+    height: 50px;
+    background: #3B5998;
+    margin-right: 20px;
+    color: white;
+    @include border_radius(50px);
+  }
+
+  button.btn-google {
+    width: 50px;
+    height: 50px;
+    background: #db3236;
+    color: white;
+    margin-left: 20px;
+    @include border_radius(50px);
+
+  }
+
+  button {
+    i {
+      font-size: 1em;
+    }
+  }
+}
+
+
+.media-frame {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background: rgba(0, 0, 0, 1);
+
+  audio,
+  video,
+  img {
+
+    border: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 20;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    bottom: 10vh;
+    right: 0vw;
+    left: 0vw;
+    position: absolute;
+    height: 45px;
+    line-height: 45px;
+    margin: auto;
+    text-align: center;
+    display: none;
+  }
+
+  &:hover  {
+
+    h2 {
+      display: block;
+    }
+
+    &:before  {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}

@@ -1,0 +1,203 @@
+@mixin custom-transition($value) {
+  transition: $value;
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+}
+
+@mixin custom-transform($value) {
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -ms-transform: $value;
+  -o-transform: $value;
+  transform: $value;
+}
+
+
+@mixin font($size,$weight:400) {
+  font-size: $size !important;
+  font-weight: $weight !important;
+}
+
+;
+
+@mixin image($content,$width,$height:35px,$placement:0 auto) {
+  background: url($content) no-repeat center;
+  background-size: 100% $height;
+  width: $width;
+  height: $height;
+  margin: $placement;
+}
+
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+
+
+@mixin border-radius($radius:100%) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin button($size) {
+  max-width: 150px;
+  height: 50px;
+  right: 10px;
+  top: 10px;
+  z-index: 15;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: $size;
+}
+
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min1}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+
+@mixin onlySm {
+  @media only screen and (max-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+
+@mixin onlyMd {
+  @media only screen and (max-width: #{$screen-lg-min}) and (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+
+@mixin onlyLg {
+  @media only screen and (max-width: #{$screen-xl-min}) and (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+
+@mixin belowLg {
+  @media only screen and (max-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+@mixin belowMd {
+  @media only screen and (max-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+@mixin belowSm {
+  @media only screen and (max-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .can-break-on-xs {
+    display: block !important;
+
+    .col {
+      max-width: 100% !important;
+
+      &:last-child {
+        margin-top: 1rem;
+      }
+
+      .right {
+        float: right;
+        margin-right: 15px !important;
+      }
+    }
+  }
+}
+
+
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+@media only screen and (max-width: 576px) {
+  .can-override-pull {
+    clear: both !important;
+    float: none;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .row {
+    [class*=col-] {
+      &.no-pad-sm-down {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 33.9em) {
+  .hidden-xs-down {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 47.9em) {
+  .hidden-sm-down {
+    display: none !important;
+  }
+}
+
+
+@mixin placeholder($color,$fontsize,$fontWeight) {
+  &::placeholder {
+    color: map_get($colors, $color) !important;
+    @include font($fontsize, $fontWeight);
+  }
+  &:-moz-placeholder {
+    color: map_get($colors, $color) !important;
+    @include font($fontsize, $fontWeight);
+  }
+  &::-webkit-input-placeholder {
+    color: map_get($colors, $color) !important;
+    @include font($fontsize, $fontWeight);
+  }
+
+}

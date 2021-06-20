@@ -1,0 +1,181 @@
+@import "../../../theme/theme";
+
+.comment-container {
+  .comment-container-inner{
+    display: flex;
+    flex-direction: row;
+    margin-top: 39px;
+    margin-bottom: 39px;
+    padding-right: 23px;
+
+  }
+
+  .comment-avatar {
+    margin-right: 17px;
+  }
+
+  .comment-header {
+    padding: 14px 24px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+
+
+    .comment-username,
+    .comment-time,
+    .comment-edited {
+      font-size: 11px;
+      line-height: 13px;
+    }
+
+    .comment-username {
+      margin-right: 5px;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 0;
+      color: map_get($colors, dark);
+    }
+
+    .comment-time {
+      margin-right: 8px;
+      font-weight: bold;
+      color: map_get($colors, primary);
+    }
+  }
+
+  .comment-body {
+    padding-right: 24px;
+    padding-left: 24px;
+    font-size: 11px;
+    line-height: 1.2;
+    font-weight: 300;
+  }
+
+  .comment-action {
+    margin-top: 8px;
+    margin-left: 24px;
+    margin-right: 24px;
+    padding-bottom: 14px;
+
+    .material-icons {
+      font-size: 11px;
+      margin-right: 5px;
+    }
+
+    span {
+      font-size: 11px;
+      font-weight: bold;
+    }
+  }
+
+  .comment-content {
+    background: map_get($colors, white);
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px map_get($colors, lightSmoke), -1px -1px 1px map_get($colors, lightSmoke);
+  }
+
+  .replies-container {
+    padding-right: 24px;
+    padding-left: 15px;
+    position: relative;
+
+    .comment-avatar {
+      margin-right: 0;
+    }
+    .comment-header {
+      padding-top: 0;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      background: rgba(map_get($colors, primary), 0.22);
+      height:100%;
+      width: 5px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .comment-content {
+      box-shadow: none;
+    }
+  }
+
+
+  .min-comment {
+    border-radius: 3px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 10px;
+    box-shadow: 1px 1px 1px map_get($colors, lightSmoke), -1px -1px 1px map_get($colors, lightSmoke);
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+
+    .comment-container-inner {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+      .comment-header {
+      align-items: center;
+
+      .comment-avatar {
+        margin-right: 8px;
+      }
+    }
+
+    .comment-header,
+    .comment-body {
+      padding: 0;
+    }
+  }
+
+  .request-container {
+    background: map_get($colors, light);
+    display: inline-block;
+    padding: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    box-shadow: 1px 1px 1px map_get($colors, lightSmoke), -1px -1px 1px map_get($colors, lightSmoke);
+
+    .comment-body {
+      margin-top: 15px;
+    }
+
+    .comment-avatar {
+      width: 50px;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+    .comment-content {
+      box-shadow: none;
+    }
+
+    .btn {
+      padding: 5px 20px;
+      font-size: 13px;
+      text-transform: none;
+    }
+
+    .comment-action-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 15px;
+
+      margin-left: 8px;
+      .btn:first-child {
+        margin-right: 8px;
+        margin-left: 0;
+      }
+    }
+  }
+}

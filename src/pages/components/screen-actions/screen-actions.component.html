@@ -1,0 +1,25 @@
+<user-video [streamManager]="mainFeed"></user-video>
+<div class="screen-action-container">
+    <div class="screen-action-container-inner">
+        <div class="screen-action-container-top">
+            <div class="talking-action" *ngIf="streamInfo && streamInfo.firstname">
+                <i class="material-icons">person</i>
+                <span>{{streamInfo.firstname}} {{streamInfo.lastname}}</span>
+                <i class="material-icons">mic</i>
+            </div>
+            <button class="sidebar-button" disabled *ngIf="mainFeed && mainFeed.stream">
+                <i class="material-icons" *ngIf="mainFeed && mainFeed.stream.audioActive">mic</i>
+                <i class="material-icons" *ngIf="mainFeed && !mainFeed.stream.audioActive">mic_off</i>
+            </button>
+            <button class="sidebar-button" disabled *ngIf="mainFeed && mainFeed.stream">
+                <i class="material-icons" *ngIf="mainFeed && mainFeed.stream.videoActive">videocam</i>
+                <i class="material-icons" *ngIf="mainFeed && !mainFeed.stream.videoActive">videocam_off</i>
+            </button>
+        </div>
+        <div class="screen-action-container-bottom desktop-only" *ngIf="mainFeed">
+            <button class="sidebar-button" (click)="setAction('chat')">
+                <i class="material-icons">chat</i>
+            </button>
+        </div>
+    </div>
+</div>

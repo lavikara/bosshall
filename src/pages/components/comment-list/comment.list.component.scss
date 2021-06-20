@@ -1,0 +1,198 @@
+app-inc-comment-list-component {
+
+  .main-comment {
+    &.main {
+      padding-bottom: 40px;
+
+    }
+
+    .comment-listing-view {
+      margin-bottom: 15px;
+      display: inline-block;
+
+      .row {
+        &.inline-row {
+          display: inline-flex;
+
+        }
+
+        .demarcation {
+          width: 100%;
+        }
+
+        .embedded-comment {
+          width: 100%;
+        }
+
+        .col {
+          padding: 0;
+
+          &.message {
+            max-width: none;
+            flex-basis: auto;
+            width: auto;
+            flex-grow: 0;
+            min-width: 300px;
+          }
+
+          &.add-reply {
+            flex-basis: 0;
+            width: calc(100% - 40px);
+            margin-left: 40px;
+          }
+
+          &.avatar {
+            max-width: 40px;
+            margin-right: 10px;
+
+            img {
+              margin-top: 3px;
+              object-fit: cover;
+              width: 40px;
+              height: 40px;
+              @include border-radius(5px);
+            }
+          }
+
+
+          &.message {
+
+            .inner-message {
+              background: map_get($colors, lightSmoke);
+              @include border-radius(8px);
+              padding: 6px 10px 6px 10px;
+              display: inline-flex;
+
+              .sender-name {
+                margin-right: 6px;
+                @include font(13px, 600);
+                color: map_get($colors, primary);
+
+
+              }
+
+              .message-text {
+                @include font(12px, 300);
+                color: map_get($colors, dark);
+
+                img {
+                  max-width: 250px;
+                }
+              }
+            }
+
+
+            .stat {
+              padding-top: 6px;
+              position: relative;
+              width: 100%;
+              display: inline-flex;
+              flex-direction: row;
+              justify-content: space-between;
+
+              .reaction {
+                .reaction-actions {
+                  position: relative;
+
+
+                  display: flex;
+                  flex-direction: row;
+
+                  .like {
+                    font-weight: 600;
+                  }
+
+                  .reaction-space {
+                    margin-right: 6px;
+                    margin-left: 6px;
+                  }
+                }
+
+                .clickable {
+                  font-size: 11px;
+                  font-weight: 400;
+                  color: map_get($colors, primary);
+                  cursor: pointer;
+                }
+
+                .reaction-display {
+                  margin: 10px 0;
+                }
+
+              }
+
+              .inner-stat {
+                display: flex;
+                flex-direction: row;
+
+                .likes-stat-text {
+                  line-height: 18px;
+
+                  span {
+                    @include font(13px, 600);
+
+                  }
+                }
+
+                .likes-stat-icon {
+                  margin-right: 6px;
+                  margin-left: 3px;
+                  display: flex;
+                  flex-direction: row;
+
+                  .inner-icon {
+                    line-height: 18px;
+                  }
+
+                  .material-icons {
+                    font-size: 18px;
+                    margin: 0 3px;
+                    color: map_get($colors, lightDark);
+
+                    &:first-child {
+                      color: map_get($colors, secondary);
+                    }
+
+                    &:last-child {
+                      color: map_get($colors, danger);
+                    }
+                  }
+                }
+
+                .time {
+                  &:before {
+                    content: '●';
+                    margin-right: 6px;
+                  }
+
+                  line-height: 18px;
+                  @include font(12px, 400);
+                }
+
+              }
+
+              .flag {
+                .material-icons {
+                  color: map_get($colors, secondary);
+                  font-size: 18px;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+    }
+
+    .load-more-embed {
+      padding-top: 30px;
+      position: absolute;
+      bottom: 8px;
+      left: 30px;
+      right: 30px;
+    }
+  }
+
+}

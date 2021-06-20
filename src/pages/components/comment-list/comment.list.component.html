@@ -1,0 +1,126 @@
+<div [ngClass]="!reply?'main':''" class="main-comment">
+    <div *ngFor="let item of (comments | slice: 0: endCommentPosition); let i =index" class="comment-listing-view">
+        <ng-template #userShot let-user="user">
+            <div (mouseenter)="showHeadShot(true)" (mouseleave)="showHeadShot(false)">
+                <div *ngIf="hovered" class="head-shot-container mat-elevation-z1 lightSmoke-border-light white-bg">
+                    <div *ngIf="!user.id">
+                        <mat-spinner></mat-spinner>
+
+                    </div>
+                    <div *ngIf="user.id" class="head-shot-inner" fxLayout="row">
+                        <div class="image-cover">
+                            <img [src]="user.picture"/>
+                        </div>
+                        <div class="head-shot-info">
+
+                            <h4 class="font-size-12 primary">{{user.firstname}} {{user.lastname}}</h4>
+                            <p class="font-size-12">{{user.headline}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ng-template>
+        <div class="row inline-row">
+            <div class="col avatar">
+                <img [src]="item.SendMsg.picture"/>
+            </div>
+
+            <div class="col message">
+                <div class="inner-message">
+                    <ng-container *ngTemplateOutlet="userShot;context:{user:item.SendMsg}"></ng-container>
+                    <div class="sender-name" (mouseenter)="showHeadShot(true)" (mouseleave)="showHeadShot(false)">
+                        {{item.SendMsg.firstname}} {{item.SendMsg.lastname}}
+                    </div>
+                    <div [innerHTML]="item.comment |sanitizeHTML" class="message-text"></div>
+                </div>
+                <div class="demarcation"></div>
+                <div class="stat pull-right">
+                    <div class="reaction">
+                        <div class="reaction-actions">
+                            <div class="emoji-hover">
+                            </div>
+
+                            <div class="clickable like js-emoji-container">
+                                Like
+                                <emoji-mart (emojiSelect)="addEmoji(item.id, $event)" class="js-emoji-hover"
+                                            [backgroundImageFn]="emojiBackgroundFn.backgroundImageFn"
+                                            [sheetSize]="20" [emojiSize]="16"
+                                            set="apple"></emoji-mart>
+
+                            </div>
+                            <div *ngIf="!reply" class="reaction-space">&bull;</div>
+
+                            <div (click)="openReply(item.id);" *ngIf="!reply"
+                                 class="clickable like">
+                                Reply
+                            </div>
+                        </div>
+
+                        <div *ngIf="!reply || replyOpen[item.id]" class="reaction-display">
+                            <div (click)="showReply(i,item.id)" class="clickable" *ngIf="replyOpen[item.id]">
+                                Show more replies
+                            </div>
+                            <div (click)="showReply(i,item.id)" class="clickable" *ngIf="!replyOpen[item.id]">
+                                Show replies
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="inner-stat">
+
+                        <div class="likes-stat-icon">
+                            <div *ngFor="let item of item.likeMeta | likes"
+                                 [style.background-image]="item['background-image']"
+                                 [style.background-position]="item['background-position']" [style.background-size]="item['background-size']"
+                                 [style.height]="'18px'"
+                                 [style.width]="'18px'"
+                            ></div>
+                            <div *ngIf="!(item.likeMeta | likeCount)" class="likes-stat-icon">
+                                <i class="material-icons danger">favorite</i>
+                            </div>
+                            <div [matBadgeColor]="'accent'" [matBadgeSize]="'small'"
+                                 [matBadge]="item.likeMeta | likeCount" matBadgePosition="above after"></div>
+                        </div>
+                        <div class="time">
+                            <span>{{item.createdAt | amTimeAgo}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+
+
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="embedded-comment">
+                <div class="demarcation"></div>
+
+                <div class="col add-reply">
+                    <div *ngIf="item.replies && item.replies.length" class="embedded-comment-listing">
+                        <app-inc-comment-list-component [id]="id" [replies]="item.replies"
+                                                        [reply]="item.id"></app-inc-comment-list-component>
+
+                    </div>
+                    <div *ngIf="!reply && replyOpen[item.id]" class="embedded-comment">
+                        <app-inc-comment-add-component (onKeyPress)="onKey($event)" [commentId]="item.id"
+                                                       [content]="'Reply to '+item.SendMsg.firstname+'...'"
+                                                       [spreadId]="id"></app-inc-comment-add-component>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="!reply" class="load-more-embed">
+        <app-inc-load-more-component (onPageChange)="pageChanged($event)" [complexRequest]="commentInstance"
+                                     [page]="1"></app-inc-load-more-component>
+    </div>
+
+
+</div>

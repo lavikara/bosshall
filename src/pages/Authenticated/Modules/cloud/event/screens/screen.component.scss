@@ -1,0 +1,22 @@
+@import "../../../../../../theme/theme";
+
+.main-screen-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  .main-screen-container-comment {
+    width: 358px;
+    background: map_get($colors, white);
+
+    .message-container {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+
+  .main-screen-container-inner {
+    flex: 1;
+    position: relative;
+  }
+}
