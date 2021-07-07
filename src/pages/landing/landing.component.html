@@ -1,0 +1,252 @@
+<nav app-nav class="nav" style="position: absolute"></nav>
+
+<div class="skeleton">
+  <header class="hero skeleton-main">
+
+    <main class="root-container">
+      <h2><svg class="svg-icon">
+          <use xlink:href="#star"></use>
+        </svg>
+        <span style="align-self: flex-end; line-height: 1;">Only visual radio solution</span>
+      </h2>
+      <h1>With Bosshalls Comes Greater Media Experience</h1>
+      <p>
+        Bosshalls allows radio presenters to display videos/pictures that represent the message
+        of their entertainment, sports review shows during broadcasts.
+      </p>
+    </main>
+
+    <div class="explore-button root-container">
+      <a href="#">Explore <svg class="svg-icon">
+          <use xlink:href="#chevron-down-circle-outline"></use>
+        </svg>
+      </a>
+    </div>
+
+  </header>
+
+  <aside class="beside-hero">
+
+    <h3 style="text-align: center;">Get started now</h3>
+
+    <div class="login-form">
+      <form action="">
+        <div class="field">
+          <div class="control has-icons-right">
+            <input type="text" class="input" placeholder="User Name">
+            <span class="icon is-right">
+              <svg class="svg-icon">
+                <use xlink:href="#account"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control has-icons-right">
+            <input type="password" class="input" placeholder="Password">
+            <span class="icon is-right">
+              <svg class="svg-icon">
+                <use xlink:href="#key"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input class="checkbox" type="checkbox">
+              <span>I accept the <a href="#">Terms and conditions</a></span>
+            </label>
+          </div>
+        </div>
+
+        <br>
+        <div class="field">
+          <div class="control">
+            <button type="submit" class="button is-link btn1">Log in</button>
+          </div>
+        </div>
+
+        <br>
+        <div class="field">
+          <div class="control">
+            <button type="submit" class="button is-link btn2">
+              <svg class="svg-icon">
+                <use xlink:href="#facebook"></use>
+              </svg>
+              <span>Continue in with Facebook</span>
+            </button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button type="submit" class="button is-link btn3">
+              <img src="/assets/img/google-color.svg" alt="">
+              <span>Continue in with Google</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </aside>
+</div>
+
+<section id="intro-pics" class="section root-container" style="position: relative;">
+  <div id="pics-append-arrows">
+    <span class="font-color">
+      1 / 2
+    </span>
+  </div>
+
+  <div class="intro-pics">
+    <article class="picture-box">
+      <figure class="picture">
+        <img src="/assets/img/image1.jpg" alt="soccer" srcset="">
+      </figure>
+      <header class="text">
+        <h2>Bosshalls</h2>
+        <p>
+          is a leading streaming provider in making radio sports and
+          entertainment review shows extremely visual
+        </p>
+      </header>
+    </article>
+
+    <article class="picture-box">
+      <figure class="picture">
+        <img src="/assets/img/image2.jpg" alt="soccer" srcset="">
+      </figure>
+      <header class="text">
+        <h2>Bosshalls</h2>
+        <p>
+          is a leading streaming provider in making radio sports and
+          entertainment review shows extremely visual
+        </p>
+      </header>
+    </article>
+
+  </div>
+</section>
+
+<div class="line root-container picture-box-margin-fix">
+  <div class="stroke"></div>
+</div>
+
+<section id="intro-vids" class="section">
+  <div id="vids-slide-arrows">
+    <div id="vids-append-arrows">
+      <span class="font-color">
+        1 / 3
+      </span>
+    </div>
+  </div>
+
+  <div class="intro-vids">
+    <article *ngFor="let video of videos" class="video-box">
+      <video #vid class="video" (click)="stopPlay(vid, icon)">
+        <source [src]="video.url" [type]="video.mime">Your browser does not support videos.
+      </video>
+      <span #icon class="play-icon" (click)="playVideo(vid, icon)">
+        <svg class="svg-icon">
+          <use xlink:href="#play"></use>
+        </svg>
+      </span>
+      <h1>The title or name of the video will be written here</h1>
+    </article>
+  </div>
+
+</section>
+
+<div class="line root-container">
+  <div class="stroke"></div>
+</div>
+
+<section id="tailored-for" class="section root-container">
+  <h2>Tailored For...</h2>
+  <ul class="tailored-for">
+    <li class="for-whom">
+      <figure>
+        <img src="/assets/img/thumb1.jpg" alt="thumb" srcset="">
+        <figcaption>OAPs</figcaption>
+      </figure>
+    </li>
+    <li class="for-whom">
+      <figure>
+        <img src="/assets/img/thumb2.jpg" alt="thumb" srcset="">
+        <figcaption>Non-OAPs</figcaption>
+      </figure>
+    </li>
+    <li class="for-whom">
+      <figure>
+        <img src="/assets/img/thumb3.jpg" alt="thumb" srcset="">
+        <figcaption>Sports journalists</figcaption>
+      </figure>
+    </li>
+    <li class="for-whom">
+      <figure>
+        <img src="/assets/img/thumb4.jpg" alt="thumb" srcset="">
+        <figcaption>Athletes & Ex-athletes</figcaption>
+      </figure>
+    </li>
+    <li class="for-whom">
+      <figure>
+        <img src="/assets/img/thumb5.jpg" alt="thumb" srcset="">
+        <figcaption>Movie critics</figcaption>
+      </figure>
+    </li>
+    <li class="for-whom">
+      <figure>
+        <img src="/assets/img/thumb6.jpg" alt="thumb" srcset="">
+        <figcaption>Entertainment</figcaption>
+      </figure>
+    </li>
+  </ul>
+</section>
+
+<div class="line root-container"></div>
+
+<section id="app-features" class="section root-container">
+  <article>
+    <header>
+      <h2>App Features</h2>
+    </header>
+    <div class="app-features">
+      <ul>
+        <li>
+          <span>
+            <svg class="svg-icon">
+              <use xlink:href="#monitor"></use>
+            </svg>
+          </span>
+          Auto and manual content display
+        </li>
+        <li>
+          <span>
+            <svg class="svg-icon">
+              <use xlink:href="#account-group-outline"></use>
+            </svg>
+          </span>
+          Virtual guest invitation
+        </li>
+        <li>
+          <span>
+            <svg class="svg-icon">
+              <use xlink:href="#record-circle-outline"></use>
+            </svg>
+          </span>
+          VOD recording
+        </li>
+      </ul>
+      <figure>
+        <img src="/assets/img/phone.png" alt="Mobile" srcset="">
+      </figure>
+    </div>
+  </article>
+
+</section>
+
+<app-footer></app-footer>

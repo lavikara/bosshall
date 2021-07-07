@@ -1,0 +1,83 @@
+// If we're going to override Bulma variables, we need to do it before importing Bulma modules
+// So in our styles.scss file, we should import this file before importing Bulma and/or its modules
+
+/* Imports necessary to modify bulma initial variables */
+@import "node_modules/bulma/sass/utilities/initial-variables",
+"node_modules/bulma/sass/utilities/functions";
+/* Override initial variables default here */
+// Add a serif family
+$family-serif: "Montserrat",
+sans-serif;
+$primary: #216583;
+$link: #EF5350;
+$background-color: white;
+$control-radius: 0;
+/* End override initial variables */
+
+/* Import necessary to modify bulma derived variables */
+@import "node_modules/bulma/sass/utilities/derived-variables";
+/* Override derived variables default here */
+/* End override derived variables */
+
+/* My variables */
+$default-font-color: rgb(50, 50, 50);
+$control-width: 1400px;
+$margin: 2em;
+$padding: 2em;
+$page-padding: 6rem;
+$line-margin: 2em;
+
+/* Headings */
+$leading: 1em !default;
+$scale: 1 !default;
+
+$nav-easing: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+@mixin navbar-padding {
+    padding: 0.8em 0;
+}
+
+@mixin border-radius {
+    border-radius: 10px 10px 10px 10px;
+}
+
+@mixin remove-click-highligh {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+h1 {
+    $multiplier: 2.5;
+    font-size: $multiplier * $scale * 1em;
+    font-weight: bold;
+}
+
+h2 {
+    $multiplier: 1.4;
+    font-size: $multiplier * $scale * 1em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1 * $scale * 1em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: $scale / 2 * 1em;
+}
+
+h5 {
+    font-size: $scale / 3 * 1em;
+}
+
+h6 {
+    font-size: $scale / 4 * 1em;
+}
+
+// multiplying by 1em is just to convert to the type

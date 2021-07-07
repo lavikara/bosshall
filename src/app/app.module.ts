@@ -37,13 +37,16 @@ import {CloudService} from './providers/cloud/cloud.provider';
 import {MessageService} from './providers/cloud/message/message.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {EmojiBackgroundFn} from './providers/emoji-backgroundFn';
+import { LandingComponent } from '../pages/landing/landing.component';
+import { InlineSvgComponent } from './inline-svg/inline-svg.component';
+import { FooterComponent } from '../pages/landing/footer/footer.component';
 
 
 const appRoutes: Routes = [
     {
         path: '', component: AppComponent,
         children: [
-            {path: '', component: LoginComponent, data: {title: 'Login - BossHall'}},
+            {path: '', component: LandingComponent, data: {title: 'BossHall'}},
             {path: 'login', component: LoginComponent, data: {title: 'Login - BossHall'}},
             {path: 'register', component: RegistrationComponent, data: {title: 'Register - Bosshall'}},
             {
@@ -86,6 +89,9 @@ const appRoutes: Routes = [
         ConfirmResetComponent,
         SendCodeComponent,
         ForgotpasswordComponent,
+        LandingComponent,
+        InlineSvgComponent,
+        FooterComponent,
     ],
     imports: [
         BrowserModule,
