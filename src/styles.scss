@@ -186,42 +186,7 @@ button[type=submit] {
   height: 3.2em;
 }
 
-footer {
-  padding-bottom: $padding;
-
-  div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      span {
-          margin: auto;
-          padding: 2em;
-          font-size: 0.5em;
-
-          @media (min-width: 48em) {
-              font-size: 1em;
-          }
-      }
-
-      .social-media {
-          display: flex;
-          align-items: center;
-
-          li {
-              display: inline-flex;
-              align-items: center;
-              box-sizing: content-box;
-              color: $link;
-              background-color: lighten($link, 32%);
-              border-radius: 50%;
-              padding: 0.5em;
-              margin-left: $margin / 2;
-          }
-      }
-  }
-}
-
+/*
 .socialPortion {
   margin: 1em auto;
   position: relative;
@@ -312,3 +277,4 @@ footer {
   }
 
 }
+*/

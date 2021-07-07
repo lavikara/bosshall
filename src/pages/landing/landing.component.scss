@@ -1,20 +1,7 @@
-// @import "node_modules/bulma/sass/elements/_all";
-// @import "node_modules/bulma/sass/form/_all";
-// @import "/src/variables";
-$primary: #216583;
-$link: #EF5350;
-$background-color: white;
-$control-radius: 0;
-$grey-lightest: $primary;
-$grey-darker: $primary;
-
-$default-font-color: rgb(50, 50, 50);
-$control-width: 1400px;
-$margin: 2em;
-$padding: 2em;
-$page-padding: 6rem;
-$line-margin: 2em;
-
+@import "src/variables";
+@import "node_modules/bulma/sass/utilities/_all";
+@import "node_modules/bulma/sass/elements/_all";
+@import "node_modules/bulma/sass/form/_all";
 
 .picture-box {
     $division: 100% / 3;
@@ -274,7 +261,6 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 100% inherit;
     margin-right: 0;
 
     form {
@@ -369,18 +355,9 @@ main {
 
 // bigger checkbox for this project
 input[type=checkbox].checkbox {
-    /* Double-sized Checkboxes */
-    -ms-transform: scale(2);
-    /* IE */
-    -moz-transform: scale(2);
-    /* FF */
-    -webkit-transform: scale(2);
-    /* Safari and Chrome */
-    -o-transform: scale(2);
-    /* Opera */
-    transform: scale(2);
+    transform: scale(1.6);
     padding: 10px;
-    margin: 0 0.5rem;
+    margin: 0 0.3rem;
 
     &+span {
         font-size: 0.75em;

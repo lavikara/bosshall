@@ -1,0 +1,195 @@
+@import "src/variables";
+
+$min-height: 50px;
+
+.root-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: $min-height;
+    cursor: pointer;
+
+    @media (min-width: 64em) {
+        margin: 0 auto;
+    }
+}
+
+.list-container {
+    display: none;
+    position: relative;
+
+    @media (min-width: 48em) {
+        display: block;
+        margin-left: 2em;
+    }
+
+    &--active {
+        display: block;
+        z-index: 3;
+    }
+}
+
+.list {
+    position: fixed;
+    width: 100vw;
+    top: $min-height + (3/4) * $min-height;
+    left: 0;
+    display: block;
+    margin-left: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+
+    @media (min-width: 48em) {
+        position: static;
+        display: flex;
+        width: auto;
+        align-items: center;
+    }
+
+    $anti-shake: 2px;
+
+    &__item {
+        font-size: 0.9em;
+        font-weight: bold;
+        padding-bottom: 5px + $anti-shake;
+        text-transform: uppercase;
+        background-color: rgba($color: $link, $alpha: 0.9);
+
+        @media (min-width: 48em) {
+            margin: 0 2em;
+            padding-top: 10px;
+            font-size: 0.8em;
+            background: none;
+            color: white;
+        }
+
+        @media (min-width: 64em) {
+            font-size: 0.7em;
+        }
+
+        a {
+            padding-top: 2.5em;
+            color: $default-font-color;
+            color: $grey-light; // TODO
+        }
+
+        &:hover a, a:hover {
+            color: $link;
+        }
+    }
+
+    &__item:hover,
+    &__item:active,
+    .active {
+        color: $link;
+
+        @media (min-width: 48em) {
+            border-bottom: $anti-shake solid $link;
+            padding-bottom: $anti-shake;
+        }
+    }
+}
+
+.menu-button {
+    padding: 2em 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background-color: transparent;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+    transition: $nav-easing;
+    @include border-radius;
+
+    @media (min-width: 48em) {
+        display: none;
+    }
+
+    &:hover {
+        background: mix(black, $primary, 10);
+    }
+
+    $slice-height: 2px;
+
+    &__slice {
+        position: relative;
+        height: $slice-height;
+        width: 40px;
+        background: white;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            height: $slice-height;
+            width: 100%;
+            background: white;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            height: $slice-height;
+            width: 100%;
+            background: white;
+        }
+    }
+
+    &__slice,
+    &__slice:before,
+    &__slice:after {
+        will-change: transform;
+        transition: $nav-easing;
+    }
+
+    &--active {
+        .menu-button__slice {
+            background: $link;
+            transform: rotate(90deg);
+
+            &:before {
+                background: $link;
+                transform: rotate(-45deg) translate(-7px, -7px) scaleX(0.7);
+            }
+
+            &:after {
+                background: $link;
+                transform: rotate(45deg) translate(-7px, 7px) scaleX(0.7);
+            }
+        }
+    }
+}
+
+.login-buttons {
+    display: none;
+    text-align: center;
+    margin-left: auto;
+    @include navbar-padding;
+
+    @media (min-width: 48em) {
+        display: block;
+    }
+
+    .button {
+        text-transform: uppercase;
+        color: $link;
+        font-size: 0.9em;
+        font-weight: bold;
+        margin-left: $margin;
+
+        @media (min-width: 48em) {
+            font-size: 0.9em;
+        }
+
+        @media (min-width: 64em) {
+            font-size: 0.7em;
+        }
+    }
+}

@@ -40,6 +40,7 @@ import {EmojiBackgroundFn} from './providers/emoji-backgroundFn';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { InlineSvgComponent } from './inline-svg/inline-svg.component';
 import { FooterComponent } from '../pages/landing/footer/footer.component';
+import { NavComponent } from '../pages/components/nav/nav.component';
 
 
 const appRoutes: Routes = [
@@ -92,6 +93,7 @@ const appRoutes: Routes = [
         LandingComponent,
         InlineSvgComponent,
         FooterComponent,
+        NavComponent,
     ],
     imports: [
         BrowserModule,
