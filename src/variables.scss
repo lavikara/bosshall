@@ -18,6 +18,7 @@ $control-radius: 0;
 @import "node_modules/bulma/sass/utilities/derived-variables";
 /* Override derived variables default here */
 /* End override derived variables */
+@import "node_modules/bulma/sass/utilities/_all";
 
 /* My variables */
 $default-font-color: rgb(50, 50, 50);

@@ -1,23 +1,26 @@
-<div class="root-container">
-    <img src="assets/images/logo.jpg" class="logo" alt="">
+<nav class="nav" style="position: absolute">
+  <div class="root-container">
+    <img src="assets/img/logo.jpg" class="logo" alt="">
     <div class="list-container">
       <ul class="list">
         <li routerLink="/home" class="list__item" [class.active]="false">
           <a routerLink="/home">Home</a>
         </li>
         <li routerLink="/about" class="list__item" [class.active]="false">
-          <a routerLink="/about">About</a></li>
+          <a routerLink="/about">About</a>
+        </li>
         <li routerLink="/faq" class="list__item" [class.active]="false">
-          <a routerLink="/faq">Faq</a></li>
+          <a routerLink="/faq">Faq</a>
+        </li>
       </ul>
     </div>
     <div #burger class="menu-button">
       <div class="menu-button__slice"></div>
     </div>
-  
+
     <div class="login-buttons">
       <button routerLink="/interest" class="button is-white">Sign in</button>
       <button class="button is-link is-outlined">Sign up</button>
     </div>
   </div>
-  
+</nav>
