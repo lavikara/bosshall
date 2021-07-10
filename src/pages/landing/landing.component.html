@@ -17,7 +17,7 @@
     </main>
 
     <div class="explore-button root-container">
-      <a href="#">Explore <svg class="svg-icon">
+      <a (click)="scrollDown(introPics)">Explore <svg class="svg-icon">
           <use xlink:href="#chevron-down-circle-outline"></use>
         </svg>
       </a>
@@ -57,7 +57,7 @@
           <div class="control">
             <label class="checkbox">
               <input class="checkbox" type="checkbox">
-              <span>I accept the <a href="#">Terms and conditions</a></span>
+              <span>I accept the <a routerLink="/terms" class="link">Terms and conditions</a></span>
             </label>
           </div>
         </div>
@@ -95,7 +95,7 @@
   </aside>
 </div>
 
-<section id="intro-pics" class="section root-container" style="position: relative;">
+<section #introPics id="intro-pics" class="section root-container" style="position: relative;">
   <div id="pics-append-arrows">
     <span class="font-color">
       1 / 2

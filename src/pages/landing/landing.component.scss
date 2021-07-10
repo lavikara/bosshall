@@ -243,10 +243,11 @@ main {
     a {
         display: inline-flex;
         align-items: center;
+        color: $link;
 
         &:link,
         &:hover {
-            color: $link;
+            color: $primary;
         }
 
         .svg-icon {
@@ -361,5 +362,13 @@ input[type=checkbox].checkbox {
     &+span {
         font-size: 0.75em;
         margin: 0.5rem;
+    }
+}
+
+.link {
+    color: $link;
+
+    &:link, &:hover {
+        color: $link;
     }
 }
