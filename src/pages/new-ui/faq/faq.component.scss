@@ -1,0 +1,30 @@
+@import "src/variables";
+
+.question {
+    $icon-content-space: 3rem;
+    font-size: 0.8em;
+    margin: 2em 0;
+
+    @media (min-width: 48em) {
+        max-width: 90%;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        font-size: 0.8em;
+        cursor: pointer;
+
+        .icon {
+            flex-basis: $icon-content-space;
+            color: $primary;
+            flex-grow: 0;
+            align-self: flex-start;
+            justify-content: flex-start; // from bulma's icon.sass
+        }
+    }
+
+    p {
+        margin-left: $icon-content-space;
+    }
+}

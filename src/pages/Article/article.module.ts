@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
-import {HelpComponent} from './Help/help.component';
-import {PrivacyComponent} from './Privacy/privacy.component';
-import {IncludeComponentModule} from '../components/include.component.module';
-import {RouterModule, Routes} from '@angular/router';
-import {TermsArticleComponent} from './Terms/terms.component';
-import {FaqArticleComponent} from './faq/faq.component';
-import {ArticleComponent} from "./article.component";
-import {CommonModule} from "@angular/common";
-import {ContactUsComponent} from "./contact-us/contact-us.component";
+import { NgModule } from '@angular/core';
+import { HelpComponent } from './Help/help.component';
+import { PrivacyComponent } from './Privacy/privacy.component';
+import { IncludeComponentModule } from '../components/include.component.module';
+import { RouterModule, Routes } from '@angular/router';
+import { TermsArticleComponent } from './Terms/terms.component';
+import { FaqArticleComponent } from './faq/faq.component';
+import { ArticleComponent } from "./article.component";
+import { CommonModule } from "@angular/common";
+import { ContactUsComponent } from "./contact-us/contact-us.component";
 
 const routes: Routes = [
     {

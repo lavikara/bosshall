@@ -52,10 +52,6 @@ $picture-box-margin-fix: 1em;
         right: $page-padding;
         bottom: $padding * 2;
     }
-
-    .font-color {
-        color: $default-font-color;
-    }
 }
 
 .picture-box-margin-fix {
@@ -120,11 +116,6 @@ $picture-box-margin-fix: 1em;
 
         @media (min-width: 48em) {
             margin-right: $page-padding; // corresponds to centerPadding in our action.js (slick carousel)
-        }
-
-
-        .font-color {
-            color: $default-font-color;
         }
     }
 }
@@ -371,4 +362,11 @@ input[type=checkbox].checkbox {
     &:link, &:hover {
         color: $link;
     }
+}
+
+.count {
+    color: #8d8d8d;
+    width: 70px;
+    margin: 0 0.5em;
+    text-align: center;
 }

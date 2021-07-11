@@ -1,0 +1,32 @@
+@import "src/variables";
+
+.banner {
+    position: relative;
+    background-image: url('/assets/img/rectangle.jpg');
+    min-height: 256px;
+    max-height: 291px;
+    height: 15vmin;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text-container {
+    position: absolute;
+    height: 35%;
+    width: 60%;
+    bottom: -1.5em;
+    left: 50%;
+
+    .text {
+        position: relative;
+        left: -50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        height: 100%;
+        color: $primary;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+}

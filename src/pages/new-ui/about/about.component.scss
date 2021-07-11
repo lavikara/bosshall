@@ -1,0 +1,113 @@
+@import "src/variables";
+
+.about-box:nth-of-type(even) {
+    .one {
+        order: 1;
+    }
+}
+
+.text-container {
+    width: 60%;
+    margin: $margin auto;
+    text-align: center;
+    padding: 0 $padding;
+}
+
+.about-box {
+    background-color: #fcfeff;
+    margin-top: $margin;
+    margin-bottom: $margin;
+
+    @media (min-width: 48em) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .one,
+    .two {
+        flex-basis: 45%;
+        padding: $padding 0;
+
+        @media (min-width: 48em) {
+            padding: $page-padding 0;
+        }
+
+        h2 {
+            font-weight: 1em;
+            color: $primary;
+            text-transform: uppercase;
+            line-height: 1;
+            margin: $margin / 2 0;
+        }
+
+        p {
+            font-size: 0.8em;
+        }
+    }
+}
+
+.video-box {
+    position: relative;
+    color: $link;
+    margin: auto;
+
+    h1 {
+        font-size: 0.85em;
+        text-align: center;
+        font-weight: bolder;
+        margin: auto;
+        margin-top: 1em;
+        margin-bottom: -2em;
+        color: $default-font-color;
+
+        @media (min-width: 48em) {
+            width: 50%;
+        }
+    }
+
+    .video {
+        border-radius: 1em;
+    }
+
+    .play-icon {
+        display: inline-flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5em;
+        height: 5em;
+        cursor: pointer;
+
+        .svg-icon {
+            position: relative;
+            top: -50%;
+            left: -50%;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.bottom-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 8em;
+    background: linear-gradient(0deg, rgba(33, 101, 131, 0.33), rgba(33, 101, 131, 0.33)), url('/assets/img/rectangle2.jpg');
+    box-shadow: 0px 20px 60px rgba(34, 34, 34, 0.2);
+    min-width: 1165px;
+    min-height: 412px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+
+    p {
+        align-self: center;
+        color: white;
+        margin: auto $page-padding;
+        font-size: 1.6em;
+
+        @media (min-width: 48em) {
+            max-width: 70%;
+        }
+    }
+}

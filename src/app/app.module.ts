@@ -1,3 +1,4 @@
+import { AboutComponent } from '../pages/new-ui/about/about.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -39,8 +40,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EmojiBackgroundFn } from './providers/emoji-backgroundFn';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { InlineSvgComponent } from './inline-svg/inline-svg.component';
-import { FooterComponent } from '../pages/landing/footer/footer.component';
+import { FooterComponent } from '../pages/new-ui/footer/footer.component';
 import { NavComponent } from '../pages/components/nav/nav.component';
+import { FaqComponent } from '../pages/new-ui/faq/faq.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
     GoogleLoginProvider,
@@ -51,9 +53,12 @@ const appRoutes: Routes = [
     {
         path: '', component: AppComponent,
         children: [
-            { path: '', component: LandingComponent, data: { title: 'BossHall' } },
+            { path: '', component: LandingComponent },
+            { path: 'home', component: LandingComponent },
             { path: 'login', component: LoginComponent, data: { title: 'Login - BossHall' } },
             { path: 'register', component: RegistrationComponent, data: { title: 'Register - Bosshall' } },
+            { path: 'about', component: AboutComponent },
+            { path: 'faq', component: FaqComponent },
             {
                 path: 'rConfirmation',
                 component: ConfirmregComponent,
@@ -98,6 +103,8 @@ const appRoutes: Routes = [
         InlineSvgComponent,
         FooterComponent,
         NavComponent,
+        AboutComponent,
+        FaqComponent
     ],
     imports: [
         BrowserModule,
@@ -146,6 +153,7 @@ const appRoutes: Routes = [
             }
         ),
         MatProgressSpinnerModule,
+        SocialLoginModule
     ],
     // tslint:disable-next-line:max-line-length
     providers: [
@@ -155,8 +163,25 @@ const appRoutes: Routes = [
         ValidatorHelper,
         FormBuilder,
         {
-            provide: LocationStrategy,
-            useClass: HashLocationStrategy
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+                autoLogin: false,
+                providers: [
+                    {
+                        id: GoogleLoginProvider.PROVIDER_ID,
+                        provider: new GoogleLoginProvider(
+                            'clientId'
+                        )
+                    },
+                    {
+                        id: FacebookLoginProvider.PROVIDER_ID,
+                        provider: new FacebookLoginProvider('clientId')
+                    }
+                ],
+                onError: (err) => {
+                    console.error(err);
+                }
+            } as SocialAuthServiceConfig,
         }
     ],
     bootstrap: [AppComponent]
