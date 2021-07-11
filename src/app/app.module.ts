@@ -123,7 +123,7 @@ const appRoutes: Routes = [
             preset: intersectionObserverPreset
         }),
         FlatpickrModule.forRoot(),
-        AngularDateTimePickerModule,
+        // AngularDateTimePickerModule,
         PipeModule,
         MatDialogModule,
         NgxSmartModalModule.forRoot(),

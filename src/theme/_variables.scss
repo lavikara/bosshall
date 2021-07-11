@@ -95,7 +95,7 @@ $screen-xl-min: 1200px;
 
 
 //images
-$imageAsset: './assets/img/';
+$imageAsset: '/assets/img/';
 $Image: (
         logo:$imageAsset+'logo.png',
         envelope:$imageAsset+'envelop.png'

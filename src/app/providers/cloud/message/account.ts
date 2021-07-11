@@ -10,7 +10,7 @@ export abstract class Account {
 
     private storeKey = '_messageAccounts';
 
-    public abstract async queryUserId(id): Promise<{id: number, name: string, picture: string}>;
+    public abstract queryUserId(id): Promise<{id: number, name: string, picture: string}>;
 
     public getChatUser(message: Message) {
         const chatAccounts = this.localStorageService.get(this.storeKey) || {};

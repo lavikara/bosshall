@@ -35,12 +35,11 @@
               "./node_modules/ngx-lightbox/lightbox.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
               "./src/lib/js/popper.min.js",
               "./src/lib/js/bootstrap-material-design.min.js",
               "./src/lib/js/material-dashboard.min.js",
               "./src/lib/js/scrollerjs.js",
-              "src/assets/scripts/action.js"
+              "./src/assets/scripts/action.js"
             ]
           },
           "configurations": {
