@@ -13,9 +13,12 @@
 .text-container {
     position: absolute;
     height: 35%;
-    width: 60%;
     bottom: -1.5em;
     left: 50%;
+
+    @media (min-width: 48em) {
+        width: 60%;
+    }
 
     .text {
         position: relative;
@@ -26,7 +29,14 @@
         background-color: white;
         height: 100%;
         color: $primary;
+        font-size: 1.8em;
         font-weight: bold;
         text-transform: capitalize;
+        padding: $padding / 2;
+
+        @media (min-width: 48em) {
+            font-size: 2em;
+            padding: 0;
+        }
     }
 }

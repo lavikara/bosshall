@@ -1,0 +1,112 @@
+@import "src/variables";
+
+.hero {
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('/assets/img/hero.png');
+    color: white;
+
+    @media (min-width: 65em) {
+        justify-content: flex-end;
+    }
+
+
+    main {
+        width: 90%;
+        margin-left: 0;
+
+        h1,
+        h2 {
+            font-weight: 700;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 0.85em;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        p {
+            font-family: 'Raleway', sans-serif;
+            width: 85%;
+        }
+    }
+
+    .explore-button {
+        text-align: left;
+        margin: $margin 0;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            color: $link;
+
+            &:link,
+            &:hover {
+                color: $primary;
+            }
+
+            .svg-icon {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.beside-hero {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: $padding * 1.5 $padding 0 $padding; // to match with that of .root-container
+
+    @media (min-width: 48em) {
+        height: 100vh;
+        min-height: 500px;
+    }
+
+    @media (min-width: 65em) {
+        justify-content: flex-start;
+        padding: $padding * 3 $page-padding 0 $page-padding; // to match with that of .root-container
+    }
+
+    h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.3em;
+        text-align: center;
+        color: $primary;
+        margin: 0 auto 1em auto;
+
+        @media (min-width: 48em) {
+            margin: 1em auto;
+        }
+    }
+}
+
+// bigger checkbox for this project
+input[type=checkbox].checkbox {
+    transform: scale(1.6);
+    padding: 10px;
+    margin: 0 0.3rem;
+
+    &+span {
+        font-size: 0.75em;
+        margin: 0.5rem;
+    }
+}
+
+.link {
+    color: $link;
+
+    &:link,
+    &:hover {
+        color: $link;
+    }
+}

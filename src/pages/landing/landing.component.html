@@ -1,99 +1,5 @@
 <app-nav></app-nav>
-
-<div class="skeleton">
-  <header class="hero skeleton-main">
-
-    <main class="root-container">
-      <h2><svg class="svg-icon">
-          <use xlink:href="#star"></use>
-        </svg>
-        <span style="align-self: flex-end; line-height: 1;">Only visual radio solution</span>
-      </h2>
-      <h1>With Bosshalls Comes Greater Media Experience</h1>
-      <p>
-        Bosshalls allows radio presenters to display videos/pictures that represent the message
-        of their entertainment, sports review shows during broadcasts.
-      </p>
-    </main>
-
-    <div class="explore-button root-container">
-      <a (click)="scrollDown(introPics)">Explore <svg class="svg-icon">
-          <use xlink:href="#chevron-down-circle-outline"></use>
-        </svg>
-      </a>
-    </div>
-
-  </header>
-
-  <aside class="beside-hero">
-
-    <h3 style="text-align: center;">Get started now</h3>
-
-    <div class="login-form">
-      <form action="">
-        <div class="field">
-          <div class="control has-icons-right">
-            <input type="text" class="input" placeholder="User Name">
-            <span class="icon is-right">
-              <svg class="svg-icon">
-                <use xlink:href="#account"></use>
-              </svg>
-            </span>
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control has-icons-right">
-            <input type="password" class="input" placeholder="Password">
-            <span class="icon is-right">
-              <svg class="svg-icon">
-                <use xlink:href="#key"></use>
-              </svg>
-            </span>
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <label class="checkbox">
-              <input class="checkbox" type="checkbox">
-              <span>I accept the <a routerLink="/terms" class="link">Terms and conditions</a></span>
-            </label>
-          </div>
-        </div>
-
-        <br>
-        <div class="field">
-          <div class="control">
-            <button type="submit" class="button is-link btn1">Log in</button>
-          </div>
-        </div>
-
-        <br>
-        <div class="field">
-          <div class="control">
-            <button type="submit" class="button is-link btn2">
-              <svg class="svg-icon">
-                <use xlink:href="#facebook"></use>
-              </svg>
-              <span>Continue in with Facebook</span>
-            </button>
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <button type="submit" class="button is-link btn3">
-              <img src="/assets/img/google-color.svg" alt="">
-              <span>Continue in with Google</span>
-            </button>
-          </div>
-        </div>
-
-      </form>
-    </div>
-
-  </aside>
-</div>
+<app-hero [elementToScrollto]="introPics"></app-hero>
 
 <section #introPics id="intro-pics" class="section root-container" style="position: relative;">
   <div id="pics-append-arrows">
@@ -140,7 +46,7 @@
   <div id="vids-slide-arrows">
     <div id="vids-append-arrows">
       <span id="vids-count" class="count">
-        1 / 3
+        1 / 6
       </span>
     </div>
   </div>
@@ -155,7 +61,7 @@
           <use xlink:href="#play"></use>
         </svg>
       </span>
-      <h1>The title or name of the video will be written here</h1>
+      <h1>{{video.title}}</h1>
     </article>
   </div>
 

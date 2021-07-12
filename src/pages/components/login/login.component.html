@@ -1,0 +1,75 @@
+<div class="login">
+
+    <form (ngSubmit)="login()" (submit)="$event.preventDefault()" [formGroup]="loginForm">
+        <div class="field">
+            <div class="control has-icons-right">
+                <input class="input" formControlName="email" id="email" type="email"
+                       placeholder="email@example.com" required>
+                <span class="icon is-right">
+                    <svg class="svg-icon">
+                        <use xlink:href="#account"></use>
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control has-icons-right">
+                <input class="input" formControlName="password" id="password"
+                       placeholder="***********" type="password" required>
+                <span class="icon is-right">
+                    <svg class="svg-icon">
+                        <use xlink:href="#key"></use>
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+        <div style="margin: auto; width: fit-content;">
+            <ngx-recaptcha2 #captchaElem (expire)="handleExpire()" (load)="handleLoad()"
+                            (reset)="handleReset()" (success)="handleSuccess($event)" [hl]="'en'"
+                            [siteKey]="captchaKey" [size]="'Normal'" [theme]="'Light'"
+                            [type]="'Image'" [useGlobalDomain]="false" formControlName="recaptcha">
+            </ngx-recaptcha2>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
+                    <input class="checkbox" type="checkbox">
+                    <span> I accept the <a routerLink="/terms" class="link">Terms and
+                            conditions</a></span>
+                </label>
+            </div>
+        </div>
+
+        <br>
+        <div class="field">
+            <div class="control">
+                <button [disabled]="!loginForm.valid" class="button is-link btn1"
+                        type="submit">{{buttonText}}</button>
+            </div>
+        </div>
+
+        <br>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link btn2">
+                    <svg class="svg-icon">
+                        <use xlink:href="#facebook"></use>
+                    </svg>
+                    <span>Continue in with Facebook</span>
+                </button>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link btn3">
+                    <img src="/assets/img/google-color.svg" alt="">
+                    <span>Continue in with Google</span>
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+window.loadSlickCarousel = function () {
     $('.intro-pics').on('beforeChange', function (event, slick, direction) {
         // set index number for display
         let index = $('.intro-pics').slick('slickCurrentSlide') + 1;
@@ -34,11 +34,11 @@ $(document).ready(function () {
 
     $('.intro-vids').on('swipe', function (event, slick, direction) {
         let index = $('.intro-vids').slick('slickCurrentSlide') + 1;
-        $('#vids-count').text(`${index} / 3`);
+        $('#vids-count').text(`${index} / 6`);
     })
         .slick({
             centerMode: true,
-            centerPadding: '6rem', // corresponds to $page-padding in variables.scss
+            centerPadding: '12rem',
             slidesToShow: 1,
             focusOnSelect: true,
             arrows: true,
@@ -46,7 +46,7 @@ $(document).ready(function () {
                 {
                     breakpoint: 1024, // and below. i.e max-width, unless mobileFirst option is set
                     settings: {
-                        centerPadding: '3em',
+                        centerPadding: '4em',
                     }
                 }
             ],
@@ -62,4 +62,4 @@ $(document).ready(function () {
                     </svg>
                     `,
         });
-});
+}

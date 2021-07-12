@@ -4,6 +4,7 @@
     $icon-content-space: 3rem;
     font-size: 0.8em;
     margin: 2em 0;
+    overflow-y: hidden;
 
     @media (min-width: 48em) {
         max-width: 90%;
@@ -26,5 +27,6 @@
 
     p {
         margin-left: $icon-content-space;
+        margin-bottom: 1em;
     }
 }

@@ -1,10 +1,9 @@
-import { AboutComponent } from '../pages/new-ui/about/about.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from '../pages/Authentication/login/login';
+import { LoginComponent as OlderLoginComponent } from '../pages/Authentication/login/login';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from '../pages/Authentication/registration/registration';
 import { ConfirmregComponent } from '../pages/Authentication/confirmReg/confirmreg';
@@ -48,6 +47,11 @@ import {
     GoogleLoginProvider,
     FacebookLoginProvider
 } from 'angularx-social-login';
+import { PolicyComponent } from 'src/pages/new-ui/policy/policy.component';
+import { TermsComponent } from './../pages/new-ui/terms/terms.component';
+import { AboutComponent } from '../pages/new-ui/about/about.component';
+import { HeroComponent } from '../pages/components/hero/hero.component';
+import { LoginComponent } from './../pages/components/login/login.component';
 
 const appRoutes: Routes = [
     {
@@ -55,10 +59,12 @@ const appRoutes: Routes = [
         children: [
             { path: '', component: LandingComponent },
             { path: 'home', component: LandingComponent },
-            { path: 'login', component: LoginComponent, data: { title: 'Login - BossHall' } },
+            { path: 'login', component: OlderLoginComponent, data: { title: 'Login - BossHall' } },
             { path: 'register', component: RegistrationComponent, data: { title: 'Register - Bosshall' } },
             { path: 'about', component: AboutComponent },
             { path: 'faq', component: FaqComponent },
+            { path: 'terms', component: TermsComponent },
+            { path: 'policy', component: PolicyComponent },
             {
                 path: 'rConfirmation',
                 component: ConfirmregComponent,
@@ -93,6 +99,7 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
+        OlderLoginComponent,
         LoginComponent,
         RegistrationComponent,
         ConfirmregComponent,
@@ -104,7 +111,10 @@ const appRoutes: Routes = [
         FooterComponent,
         NavComponent,
         AboutComponent,
-        FaqComponent
+        FaqComponent,
+        TermsComponent,
+        PolicyComponent,
+        HeroComponent
     ],
     imports: [
         BrowserModule,

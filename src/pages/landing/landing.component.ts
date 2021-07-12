@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Video } from 'src/model/Video';
 import { VideoService } from 'src/app/providers/video/video.service';
+
+declare global {
+  interface Window { loadSlickCarousel: any; } // see action.js
+}
+window.loadSlickCarousel = window.loadSlickCarousel || {};
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit {
   videos: Video[];
 
   constructor(private videoService: VideoService) {
@@ -33,8 +38,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  scrollDown(elementToScrollTo) {
-    elementToScrollTo.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  ngAfterViewInit(): void {
+    window.loadSlickCarousel();
   }
-
 }
