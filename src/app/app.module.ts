@@ -52,6 +52,7 @@ import { TermsComponent } from './../pages/new-ui/terms/terms.component';
 import { AboutComponent } from '../pages/new-ui/about/about.component';
 import { HeroComponent } from '../pages/components/hero/hero.component';
 import { LoginComponent } from './../pages/components/login/login.component';
+import { LoginNewUiComponent } from './login-new-ui/login-new-ui.component';
 
 const appRoutes: Routes = [
     {
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
             { path: '', component: LandingComponent },
             { path: 'home', component: LandingComponent },
             { path: 'login', component: OlderLoginComponent, data: { title: 'Login - BossHall' } },
+            { path: 'new-login', component: LoginNewUiComponent },
             { path: 'register', component: RegistrationComponent, data: { title: 'Register - Bosshall' } },
             { path: 'about', component: AboutComponent },
             { path: 'faq', component: FaqComponent },
@@ -114,7 +116,8 @@ const appRoutes: Routes = [
         FaqComponent,
         TermsComponent,
         PolicyComponent,
-        HeroComponent
+        HeroComponent,
+        LoginNewUiComponent
     ],
     imports: [
         BrowserModule,
