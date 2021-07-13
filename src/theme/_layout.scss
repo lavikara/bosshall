@@ -1,6 +1,6 @@
 body {
-  margin: 0;
-  padding: 0;
+  // margin: 0;
+  // padding: 0;
   background: map_get($colors, light) !important;
 
 
@@ -29,7 +29,7 @@ body {
 }
 
 
-html, body, *, .mat-menu-panel {
+.mat-menu-panel {
   font-family: 'Open Sans', sans-serif;
 }
 

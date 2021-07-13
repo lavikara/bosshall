@@ -10,12 +10,11 @@
     display: block;
   }
 
-  .material-icons {
-
-  }
+  .material-icons {}
 }
 
-.button {
+// Previously, it was .button {, but I had to add .row before it so it won't clash with new the UI's CSS
+.row .button {
   max-width: 150px;
   height: 50px;
   right: 10px;
@@ -32,13 +31,15 @@
     font-size: 18px;
     margin-right: 5px;
   }
-  span  {
+
+  span {
     font-size: 12px;
     line-height: 18px;
     font-weight: normal;
     @include font(11px, 600);
     color: map_get($colors, white);
   }
+
   &.bordered {
     min-width: 150px;
     height: 50px;

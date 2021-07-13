@@ -11,7 +11,8 @@ export class HeroComponent implements OnInit {
   constructor() { }
 
   scrollDown() {
-    this.elementToScrollTo.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    if (this.elementToScrollTo != null)
+      this.elementToScrollTo.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   }
 
   ngOnInit(): void {
