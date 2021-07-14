@@ -5,8 +5,8 @@
         <div class="col-12">
             <div class="cover-holder">
                 <button class="button change-cover" (click)="changeImage('cover')">
-                        <i class="material-icons">camera_alt</i>
-                     <span>Add cover image</span>
+                    <i class="material-icons">camera_alt</i>
+                    <span>Add cover image</span>
                 </button>
                 <div [style.background-image]="('url('+backgroundImage.url+')' | sanitizeStyle)"
                      class="cover-image"></div>
@@ -21,9 +21,9 @@
                                 <span>Change picture</span>
                             </div>
                         </div>
-                        <input #coverImage (change)="fileChanged('cover',$event)" type="file"/>
-                        <input #profileImage (change)="fileChanged('profile',$event)" type="file"/>
-                        <img [src]="picture.url | sanitize" (click)="openLightbox(picture.url)"/>
+                        <input #coverImage (change)="fileChanged('cover',$event)" type="file" />
+                        <input #profileImage (change)="fileChanged('profile',$event)" type="file" />
+                        <img [src]="picture.url | sanitize" (click)="openLightbox(picture.url)" />
                     </div>
 
 
@@ -42,8 +42,8 @@
                         <div class="input-group">
                             <label>Headline *</label>
                             <div class="complex">
-                                <input class="form-control" formControlName="headline" matInput name="headline"
-                                       type="text">
+                                <input class="form-control" formControlName="headline" matInput
+                                       name="headline" type="text">
 
                             </div>
                         </div>
@@ -55,8 +55,8 @@
                         <div class="input-group">
                             <label>Bio *</label>
                             <div class="complex">
-                                <textarea class="form-control" formControlName="bio" matInput name="bio"
-                                          type="text"></textarea>
+                                <textarea class="form-control" formControlName="bio" matInput
+                                          name="bio" type="text"></textarea>
                             </div>
                         </div>
                     </div>
@@ -67,8 +67,8 @@
                             <label>First Name*</label>
                             <div class="complex">
                                 <i class="material-icons">person</i>
-                                <input class="form-control" formControlName="firstname" matInput name="firstname"
-                                       type="text">
+                                <input class="form-control" formControlName="firstname" matInput
+                                       name="firstname" type="text">
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
                             <label>Last Name*</label>
                             <div class="complex">
                                 <i class="material-icons">person</i>
-                                <input class="form-control" formControlName="lastname" matInput name="lastname"
-                                       type="text">
+                                <input class="form-control" formControlName="lastname" matInput
+                                       name="lastname" type="text">
                             </div>
                         </div>
                     </div>
@@ -89,8 +89,10 @@
                             <label>Country*</label>
                             <div class="complex">
                                 <i class="material-icons">language</i>
-                                <select class="form-control" formControlName="country" matNativeControl>
-                                    <option *ngFor="let item of countries" [value]="item.id">{{item.name}}</option>
+                                <select class="form-control" formControlName="country"
+                                        matNativeControl>
+                                    <option *ngFor="let item of countries" [value]="item.id">
+                                        {{item.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -100,7 +102,8 @@
                             <label>E-mail*</label>
                             <div class="complex">
                                 <i class="material-icons">email</i>
-                                <input class="form-control" formControlName="email" matInput name="email" type="text">
+                                <input class="form-control" formControlName="email" matInput
+                                       name="email" type="text">
                             </div>
                         </div>
                     </div>
@@ -111,7 +114,8 @@
                             <label>State*</label>
                             <div class="complex">
                                 <i class="material-icons">place</i>
-                                <input class="form-control" formControlName="state" matInput name="state" type="text">
+                                <input class="form-control" formControlName="state" matInput
+                                       name="state" type="text">
                             </div>
 
                         </div>
@@ -121,8 +125,8 @@
                             <label>Address*</label>
                             <div class="complex">
                                 <i class="material-icons">place</i>
-                                <input class="form-control" formControlName="address" matInput name="address"
-                                       type="text">
+                                <input class="form-control" formControlName="address" matInput
+                                       name="address" type="text">
 
                             </div>
                         </div>
@@ -133,19 +137,25 @@
 
             </div>
             <div class="col-md-5 col-sm-6 col-lg-4 col-12">
-                <app-interest-container-selector (onChange)="receivedInterest($event)" [title]="'INTERESTS*'"
-                                                 [selected]="editProfile.controls['interests'].value"></app-interest-container-selector>
+                <app-interest-container-selector (onChange)="receivedInterest($event)"
+                                                 [title]="'INTERESTS*'"
+                                                 [selected]="editProfile.controls['interests'].value">
+                </app-interest-container-selector>
+                <app-interest-container-modal (onChange)="receivedInterest($event)"
+                                                 [title]="'INTERESTS*'"
+                                                 [selected]="editProfile.controls['interests'].value">
+                </app-interest-container-modal>
             </div>
             <div class="col-12 no-space">
                 <p class="writeup pull-right">
-        <span class="writeup-important">
-          This is for internal purpose and will not be shared to third party
-        </span>
+                    <span class="writeup-important">
+                        This is for internal purpose and will not be shared to third party
+                    </span>
                 </p>
                 <div class="clearfix"></div>
                 <div class="col-12" fxLayout="row" fxLayoutAlign="flex-end">
-                    <button class="button bordered primary-border transparent-bg" fxLayout="row" fxLayoutAlign="center center"
-                            type="submit">
+                    <button class="button bordered primary-border transparent-bg" fxLayout="row"
+                            fxLayoutAlign="center center" type="submit">
                         <span class="primary">SAVE</span>
                         <i class="material-icons primary">arrow_right</i>
                     </button>

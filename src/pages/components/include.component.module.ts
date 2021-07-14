@@ -20,6 +20,7 @@ import { BrandContainerIncludeComponent } from './brand-containers/brand-contain
 import { FilterPopupComponent } from './filter-popup/filter-popup.component';
 import { VideoPlayerFilterComponent } from './video-player-filter/video-player-filter.component';
 import { InterestContainer } from './interest-container/interest-container.component';
+import { InterestContainerModalComponent } from './interest-container-modal/interest-container-modal.component';
 import { ExternalWebsiteComponent } from './external-website/external-website.component';
 import { BrandStoryComponent } from './brandStory/brandStory.component';
 import { ConnectedAttendanceIncludeComponent } from './connected-attendance/connected-attendance.component';
@@ -79,6 +80,7 @@ import { BannerComponent } from './banner/banner.component';
         SearchUserComponent,
         PaginationContainerComponent,
         InterestContainer,
+        InterestContainerModalComponent,
         ImageEditorComponent,
         HomeActivityIncludeComponent,
         BrandContainerIncludeComponent,
@@ -139,6 +141,7 @@ import { BannerComponent } from './banner/banner.component';
         TopNotificationComponent,
         ConnectedAttendanceIncludeComponent,
         InterestContainer,
+        InterestContainerModalComponent,
         ComplexListAttendanceIncludeComponent,
         ParticipantsMessageIncludeComponent,
         FooterIncludeComponent,
