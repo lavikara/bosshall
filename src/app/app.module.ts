@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent as OlderLoginComponent } from '../pages/Authentication/login/login';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegistrationComponent } from '../pages/Authentication/registration/registration';
 import { ConfirmregComponent } from '../pages/Authentication/confirmReg/confirmreg';
 import { ConfirmResetComponent } from '../pages/Authentication/confirmReset/confirmReset';
 import { SendCodeComponent } from '../pages/Authentication/sendCode/sendcode';
@@ -51,8 +49,12 @@ import { PolicyComponent } from 'src/pages/new-ui/policy/policy.component';
 import { TermsComponent } from './../pages/new-ui/terms/terms.component';
 import { AboutComponent } from '../pages/new-ui/about/about.component';
 import { HeroComponent } from '../pages/components/hero/hero.component';
+import { LoginComponent as OldLoginPageComponent } from '../pages/Authentication/login/login';
+import { RegistrationComponent as OldRegistrationPageComponent } from '../pages/Authentication/registration/registration';
+import { RegistrationComponent } from '../pages/components/registration/registration.component';
+import { RegistrationPageComponent } from '../pages/new-ui/registration-page/registration-page.component';
 import { LoginComponent } from './../pages/components/login/login.component';
-import { LoginNewUiComponent } from './login-new-ui/login-new-ui.component';
+import { LoginPageComponent } from '../pages/new-ui/login-page/login-page.component';
 
 const appRoutes: Routes = [
     {
@@ -60,9 +62,10 @@ const appRoutes: Routes = [
         children: [
             { path: '', component: LandingComponent },
             { path: 'home', component: LandingComponent },
-            { path: 'login', component: OlderLoginComponent, data: { title: 'Login - BossHall' } },
-            { path: 'new-login', component: LoginNewUiComponent },
-            { path: 'register', component: RegistrationComponent, data: { title: 'Register - Bosshall' } },
+            { path: 'login', component: LoginPageComponent },
+            { path: 'old-login', component: OldLoginPageComponent, data: { title: 'Login - BossHall' } },
+            { path: 'register', component: RegistrationPageComponent },
+            { path: 'old-register', component: OldRegistrationPageComponent, data: { title: 'Register - Bosshall' } },
             { path: 'about', component: AboutComponent },
             { path: 'faq', component: FaqComponent },
             { path: 'terms', component: TermsComponent },
@@ -101,9 +104,6 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        OlderLoginComponent,
-        LoginComponent,
-        RegistrationComponent,
         ConfirmregComponent,
         ConfirmResetComponent,
         SendCodeComponent,
@@ -117,7 +117,12 @@ const appRoutes: Routes = [
         TermsComponent,
         PolicyComponent,
         HeroComponent,
-        LoginNewUiComponent
+        OldLoginPageComponent,
+        OldRegistrationPageComponent,
+        LoginComponent,
+        LoginPageComponent,
+        RegistrationComponent,
+        RegistrationPageComponent
     ],
     imports: [
         BrowserModule,

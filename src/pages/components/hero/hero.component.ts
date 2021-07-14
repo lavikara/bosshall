@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeroComponent implements OnInit {
   @Input('elementToScrollto') elementToScrollTo: HTMLElement;
+  @Input('isLoginPage') isLoginPage = true;
 
   constructor() { }
 
