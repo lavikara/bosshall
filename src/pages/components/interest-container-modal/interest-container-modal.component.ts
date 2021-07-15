@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {EntitiesService} from "../../../app/providers/user/entities.service";
-import {KeyNameModel} from "../../../model/KeyNameModel";
-import {FormControl} from "@angular/forms";
-import {BrandModel} from "../../../model/BrandModel";
-import {UserService} from "../../../app/providers/user/user.provider";
-import {BrandService} from "../../../app/providers/brand/brand.service";
+import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { EntitiesService } from "../../../app/providers/user/entities.service";
+import { KeyNameModel } from "../../../model/KeyNameModel";
+import { FormControl } from "@angular/forms";
+import { BrandModel } from "../../../model/BrandModel";
+import { UserService } from "../../../app/providers/user/user.provider";
+import { BrandService } from "../../../app/providers/brand/brand.service";
 
 @Component({
   selector: 'app-interest-container-modal',
@@ -22,7 +23,7 @@ export class InterestContainerModalComponent implements OnInit {
 
   constructor(private entity: EntitiesService,
     private brandService: BrandService,
-    private userService: UserService) {
+    private userService: UserService, private router: Router) {
   }
 
   get interestBrands(): Array<BrandModel> {
@@ -102,6 +103,11 @@ export class InterestContainerModalComponent implements OnInit {
 
   public closeModal(modal: HTMLElement) {
     modal.classList.remove('is-active');
+  }
+
+  public gotoProfile(modal: HTMLElement) {
+    modal.classList.remove('is-active');
+    this.router.navigateByUrl('/bl/profile');
   }
 
 }

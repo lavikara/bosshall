@@ -15,7 +15,8 @@ export class FirstLoginGuard implements CanLoad {
         if (this.authProvider.recorded) {
             return true;
         } else {
-            this.router.navigate(['/bl/profile']);
+            // this.router.navigate(['/bl/profile']); // TODO
+            this.router.navigate(['/bl/profile/interests']);
         }
     }
 

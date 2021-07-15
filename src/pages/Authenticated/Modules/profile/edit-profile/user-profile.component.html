@@ -141,10 +141,6 @@
                                                  [title]="'INTERESTS*'"
                                                  [selected]="editProfile.controls['interests'].value">
                 </app-interest-container-selector>
-                <app-interest-container-modal (onChange)="receivedInterest($event)"
-                                                 [title]="'INTERESTS*'"
-                                                 [selected]="editProfile.controls['interests'].value">
-                </app-interest-container-modal>
             </div>
             <div class="col-12 no-space">
                 <p class="writeup pull-right">
@@ -167,6 +163,5 @@
     </form>
 
 </div>
-
 
 <app-include-footer-component></app-include-footer-component>

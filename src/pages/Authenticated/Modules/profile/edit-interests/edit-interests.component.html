@@ -1,0 +1,22 @@
+<!-- <app-header-inc-component [isBrandPage]="false"></app-header-inc-component> -->
+<form (ngSubmit)="updateProfile()" (submit)="$event.preventDefault()" [formGroup]="editProfile">
+    <div style="display: none;">
+        <input class="form-control" formControlName="headline" matInput name="headline" type="text">
+        <textarea class="form-control" formControlName="bio" matInput name="bio"
+                  type="text"></textarea>
+        <input class="form-control" formControlName="firstname" matInput name="firstname"
+               type="text">
+        <input class="form-control" formControlName="lastname" matInput name="lastname" type="text">
+        <select class="form-control" formControlName="country" matNativeControl>
+            <option *ngFor="let item of countries" [value]="item.id">
+                {{item.name}}</option>
+        </select>
+        <input class="form-control" formControlName="email" matInput name="email" type="text">
+        <input class="form-control" formControlName="state" matInput name="state" type="text">
+        <input class="form-control" formControlName="address" matInput name="address" type="text">
+    </div>
+    <app-interest-container-modal (onChange)="receivedInterest($event)" [title]="'INTERESTS*'"
+                                  [selected]="editProfile.controls['interests'].value">
+    </app-interest-container-modal>
+    <button style="display: none" type="submit">Save</button>
+</form>

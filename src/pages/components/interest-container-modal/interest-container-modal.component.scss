@@ -54,6 +54,7 @@
         font-size: 0.6em;
         padding: 0.5em 0;
         margin-bottom: 0;
+        cursor: pointer;
     }
 
     h2 {
@@ -62,7 +63,7 @@
 }
 
 .modal {
-    z-index: 99999;
+    z-index: 50;
 
     &-card-head {
         display: block;

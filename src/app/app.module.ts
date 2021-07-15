@@ -180,6 +180,7 @@ const appRoutes: Routes = [
         CloudService,
         ValidatorHelper,
         FormBuilder,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {
