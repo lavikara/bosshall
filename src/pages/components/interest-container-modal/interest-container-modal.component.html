@@ -19,7 +19,7 @@
                             </h5>
                             <h5 (onMenuOpen)="searchBrands(item.id)" *ngIf="item.selected"
                                 [matMenuTriggerFor]="interests" class="interests-text"
-                                style="cursor: pointer; font-weight: bold;">
+                                style="cursor: pointer; font-weight: bold">
                                 {{item.name}}
                             </h5>
                             <mat-menu #interests="matMenu" class="interests-menu-trigger">
@@ -43,19 +43,13 @@
                     <li *ngIf="!interests.length" class="text-align-center">
                         No interest available yet.
                     </li>
-                    <li class="thumb" style="--image: url('/assets/img/thumb3.jpg')">
-                        <span class="check">
-                            <svg class="svg-icon">
-                                <use xlink:href="#check"></use>
-                            </svg>
-                        </span>
-                    </li>
                 </ul>
             </div>
         </section>
         <footer class="modal-card-foot">
             <button class="button is-link btn1" (click)="closeModal(modal)">Done</button>
-            <button class="button no-border" (click)="closeModal(modal)">Take me to my profile</button>
+            <button class="button no-border" (click)="closeModal(modal)">Take me to my
+                profile</button>
         </footer>
     </div>
 </div>
