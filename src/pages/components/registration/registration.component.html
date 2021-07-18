@@ -25,6 +25,9 @@
                 </span>
             </div>
         </div>
+        <div class="forgot-password">
+            <a [routerLink]="['/SendCode']">Forgot Password</a>
+        </div>
 
         <div style="margin: auto; width: fit-content;">
             <ngx-recaptcha2 #captchaElem (expire)="handleExpire()" (load)="handleLoad()"

@@ -4,7 +4,7 @@
         <div class="field">
             <div class="control has-icons-right">
                 <input class="input" formControlName="email" id="email" type="email"
-                       placeholder="email@example.com"required>
+                       placeholder="email@example.com" required>
                 <span class="icon is-right">
                     <svg class="svg-icon">
                         <use xlink:href="#account"></use>
@@ -16,7 +16,7 @@
         <div class="field">
             <div class="control has-icons-right">
                 <input class="input" formControlName="password" id="password"
-                       placeholder="***********" type="password" [readonly]="disablePasswordField"
+                       placeholder="***********" type="password" [disabled]="disablePasswordField"
                        required>
                 <span class="icon is-right">
                     <svg class="svg-icon">
@@ -24,6 +24,9 @@
                     </svg>
                 </span>
             </div>
+        </div>
+        <div class="forgot-password">
+            <a [routerLink]="['/SendCode']">Forgot Password</a>
         </div>
 
         <div style="margin: auto; width: fit-content;">
@@ -63,10 +66,10 @@
         <div class="field">
             <div class="control">
                 <button class="button is-link btn3" type="button" (click)="signInWithGoogle()"
-                   [disabled]="loggedIn">
+                        [disabled]="loggedIn">
                     <img src="/assets/img/google-color.svg" alt="">
                     <span>Continue with Google</span>
-            </button>
+                </button>
             </div>
         </div>
     </form>

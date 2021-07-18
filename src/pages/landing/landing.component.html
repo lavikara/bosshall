@@ -52,8 +52,8 @@
   </div>
 
   <div class="intro-vids">
-    <article *ngFor="let video of videos" class="video-box">
-      <video #vid class="video" (click)="stopPlay(vid, icon)">
+    <article *ngFor="let video of videos" class="video-box" (click)="playVideo(vid, icon)">
+      <video #vid class="video" controls>
         <source [src]="video.url" [type]="video.mime">Your browser does not support videos.
       </video>
       <span #icon class="play-icon" (click)="playVideo(vid, icon)">

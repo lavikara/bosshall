@@ -44,7 +44,7 @@ export class AuthService {
     public login(type?: AuthSignInFormType) {
         this.api.shouldAuthenticate = false;
         this.api.requestType = 'post';
-        this.api.url = type == AuthSignInFormType.SocialMedia ? 'auth/login/social-media' : 'auth/login';
+        this.api.url = type == AuthSignInFormType.SocialMediaLogin ? 'auth/login/social-media' : 'auth/login';
 
         return this._entry((r) => {
             this.authProvider.token = r.data.token;
@@ -65,10 +65,14 @@ export class AuthService {
         }
         this.api.shouldAuthenticate = false;
         this.api.requestType = 'post';
-        this.api.url = type == AuthSignInFormType.SocialMedia ? 'auth/register/social-media'
+        this.api.url = type == AuthSignInFormType.SocialMediaLogin ? 'auth/register/social-media'
             : 'auth/register';
 
         return this._entry(() => {
+            // log in the user soon
+            setTimeout(() => {
+                this.login(type);
+            }, 1000);
             this.router.navigate(['/rConfirmation']);
         });
     }
@@ -107,7 +111,6 @@ export class AuthService {
 
     private _entry(complete: (value?: any) => any) {
         return new Promise((resolve, reject) => {
-            console.warn(this._formGroup.value) // TODO
             const subscription: Subscription = this.api.getUrl(this._formGroup.value).subscribe({
                 next: (r: ApiModel) => {
                     this.notificationService.notifierMessage('success', r.statusText);

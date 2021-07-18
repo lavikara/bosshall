@@ -9,13 +9,19 @@ footer {
     justify-content: space-between;
     align-items: center;
 
-    span {
+    .links {
         margin: auto;
         padding: 2em;
         font-size: 0.5em;
 
         @media (min-width: 48em) {
             font-size: 1em;
+        }
+
+        a:link,
+        a:visited,
+        a:hover {
+            color: $link;
         }
     }
 
@@ -32,10 +38,6 @@ footer {
             border-radius: 50%;
             padding: 0.5em;
             margin-left: $margin / 2;
-
-            &:link, &:visited, &:hover {
-                color: $link;
-            }
         }
     }
 }

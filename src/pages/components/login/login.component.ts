@@ -10,8 +10,8 @@ import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 export enum AuthSignInFormType {
-  Regular,
-  SocialMedia
+  RegularLogin,
+  SocialMediaLogin
 }
 
 @Component({
@@ -21,8 +21,8 @@ export enum AuthSignInFormType {
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  formType: AuthSignInFormType = AuthSignInFormType.Regular;
   public disablePasswordField = false;
+  cachedSocialMediaAuthToken: string = null;
 
   @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
   private _defaultButtonText = 'Sign In!';
@@ -66,26 +66,23 @@ export class LoginComponent implements OnInit {
 
     this.socialMediaAuthService.authState.subscribe(user => {
       if (user.email.length > 0) {
-        this.loginForm.setValue({ email: user.email });
-        this.loginForm.setValue({ password: '*************' });
         this.disablePasswordField = true;
-        this.formType = AuthSignInFormType.SocialMedia;
-        this.login(user.authToken);
+        this.cachedSocialMediaAuthToken = user.authToken;
+        this.login(AuthSignInFormType.SocialMediaLogin);
       } else {
         this.notificationService.notifierMessage('error',
           'Cannot sign in with selected account, which has no associated email');
         this.disablePasswordField = false;
-        this.formType = AuthSignInFormType.Regular;
       }
     });
   }
 
-  public login(socialMediaAuthToken?: string) {
-    if (socialMediaAuthToken)
-      this.loginForm.setValue({ socialMediaAuthToken });
+  public login(authType: AuthSignInFormType = AuthSignInFormType.RegularLogin) {
+    if (this.cachedSocialMediaAuthToken != null)
+      this.loginForm.setValue({ socialMediaAuthToken: this.cachedSocialMediaAuthToken });
     this.authService.formGroup = this.loginForm;
     this._buttonText = 'Processing...';
-    this.authService.login(this.formType).then(r => {
+    this.authService.login(authType).then(r => {
       this._buttonText = this._defaultButtonText;
     }).catch(() => {
       this._buttonText = this._defaultButtonText;

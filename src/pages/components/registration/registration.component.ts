@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
     recaptcha: new FormControl('', [Validators.required]),
     socialMediaAuthToken: new FormControl
   });
-  formType: AuthSignInFormType = AuthSignInFormType.Regular;
+  formType: AuthSignInFormType = AuthSignInFormType.RegularLogin;
 
   @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
   private defaultButtonText = 'Sign up!';
@@ -39,13 +39,13 @@ export class RegistrationComponent implements OnInit {
         this.registerForm.setValue({ email: user.email });
         this.registerForm.setValue({ password: '*************' });
         this.disablePasswordField = true;
-        this.formType = AuthSignInFormType.SocialMedia;
+        this.formType = AuthSignInFormType.SocialMediaLogin;
         this.register(user.authToken);
       } else {
         this.notificationService.notifierMessage('error',
           'Cannot signup with selected account, which has no associated email');
         this.disablePasswordField = false;
-        this.formType = AuthSignInFormType.Regular;
+        this.formType = AuthSignInFormType.RegularLogin;
       }
     });
   }

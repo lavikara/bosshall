@@ -28,7 +28,7 @@
         </div>
         <div class="two">
             <figure class="image">
-                <img src="/assets/img/640x360.png" alt="About">
+                <img src="/assets/img/cam-men.jpg" alt="About">
             </figure>
         </div>
     </article>
@@ -46,7 +46,7 @@
         </div>
         <div class="two">
             <figure class="image">
-                <img src="/assets/img/640x360.png" alt="About">
+                <img src="/assets/img/ideology.jpg" alt="About">
             </figure>
         </div>
     </article>
@@ -65,7 +65,7 @@
         </div>
         <div class="two">
             <figure class="image">
-                <img src="/assets/img/640x360.png" alt="About">
+                <img src="/assets/img/evb.jpg" alt="About">
             </figure>
         </div>
     </article>
@@ -83,7 +83,7 @@
         </div>
         <div class="two">
             <figure class="image">
-                <img src="/assets/img/640x360.png" alt="About">
+                <img src="/assets/img/brainstorm.jpg" alt="About">
             </figure>
         </div>
     </article>
@@ -91,12 +91,13 @@
 </section>
 
 <section id="bottom" class="section root-container">
-    <article class="video-box">
-        <video class="video">
-            <source src="/assets/vids/video1.mp4" type="video/mp4">Your browser does not support
+    <article class="video-box" (click)="playVideo(vid, icon)">
+        <video #vid class="video" controls>
+            <source src="/assets/vids/Branding.mp4" type="video/mp4">
+            Your browser does not support
             videos.
         </video>
-        <span class="play-icon">
+        <span #icon class="play-icon" (click)="playVideo(vid, icon)">
             <svg class="svg-icon">
                 <use xlink:href="#play"></use>
             </svg>

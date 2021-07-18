@@ -1,4 +1,4 @@
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { QueryList, ElementRef } from '@angular/core';
 import { Component, OnInit, AfterViewInit, ViewChildren } from '@angular/core';
 import { Faq } from 'src/model/Faq';
@@ -20,7 +20,8 @@ export class FaqComponent implements OnInit, AfterViewInit {
   private articleAndItsHeight: Map<HTMLElement, DisplayHeight>;
   public plusIcon: any;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private titleService: Title) {
+    titleService.setTitle("FAQ - Bosshalls")
     this.questions = [
       new Faq('Who can use Bosshalls?', `Anybody can use Bosshall`),
       new Faq('Must I create my brand profile to broadcast on bosshalls?', `
