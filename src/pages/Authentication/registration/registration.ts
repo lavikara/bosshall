@@ -1,15 +1,16 @@
-import {Component, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../../app/providers/user/auth.service';
-import {appConfig} from '../../../app/app.config';
-import {ReCaptcha2Component} from 'ngx-captcha';
-import {AuthProvider} from '../../../app/providers/auth.provider';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../app/providers/user/auth.service';
+import { appConfig } from '../../../app/app.config';
+import { ReCaptcha2Component } from 'ngx-captcha';
+import { AuthProvider } from '../../../app/providers/auth.provider';
+import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { NotificationService } from 'src/app/providers/user/notification.service';
 
 @Component({
     selector: 'app-register-component',
     templateUrl: 'registration.html'
 })
-
 export class RegistrationComponent {
     public registerForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -17,12 +18,13 @@ export class RegistrationComponent {
         agree: new FormControl('', [Validators.requiredTrue]),
         recaptcha: new FormControl('', [Validators.required])
     });
-    @ViewChild('captchaElem', {static: false}) captchaElem: ReCaptcha2Component;
+    @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
     private defaultButtonText = 'Sign up!';
 
-    constructor(private auth: AuthService, private authProvider: AuthProvider) {
-
-    }
+    constructor(private auth: AuthService,
+        private authProvider: AuthProvider,
+        private socialMediaAuthService: SocialAuthService,
+        private notificationService: NotificationService) { }
 
     private _date: Date = new Date();
 
@@ -95,4 +97,5 @@ export class RegistrationComponent {
     public handleLoad() {
         this.registerForm.controls['recaptcha'].reset();
     }
+
 }

@@ -1,7 +1,7 @@
 <nav class="nav" style="position: absolute">
   <div class="root-container">
     <img src="assets/img/logo.jpg" class="logo" alt="">
-    <div class="list-container">
+    <div #navList class="list-container">
       <ul class="list">
         <li routerLink="/home" class="list__item" [class.active]="false">
           <a routerLink="/home">Home</a>
@@ -14,13 +14,15 @@
         </li>
       </ul>
     </div>
-    <div #burger class="menu-button">
-      <div class="menu-button__slice"></div>
-    </div>
 
     <div class="login-buttons">
       <button routerLink="/login" class="button is-white">Sign in</button>
       <button routerLink="/register" class="button is-link is-outlined">Sign up</button>
     </div>
+
+    <div #burger class="menu-button" (click)="menuClicked()">
+      <div class="menu-button__slice"></div>
+    </div>
+
   </div>
 </nav>

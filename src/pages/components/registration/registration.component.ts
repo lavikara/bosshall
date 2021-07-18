@@ -4,6 +4,9 @@ import { AuthService } from '../../../app/providers/user/auth.service';
 import { appConfig } from '../../../app/app.config';
 import { ReCaptcha2Component } from 'ngx-captcha';
 import { AuthProvider } from '../../../app/providers/auth.provider';
+import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { AuthSignInFormType } from '../login/login.component';
+import { NotificationService } from 'src/app/providers/user/notification.service';
 
 @Component({
   selector: 'app-registration',
@@ -11,18 +14,41 @@ import { AuthProvider } from '../../../app/providers/auth.provider';
   styleUrls: ['../login/login.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  public disablePasswordField = false;
+
   public registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     agree: new FormControl('', [Validators.requiredTrue]),
     recaptcha: new FormControl('', [Validators.required])
   });
+  formType: AuthSignInFormType = AuthSignInFormType.Regular;
+
   @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
   private defaultButtonText = 'Sign up!';
 
-  constructor(private auth: AuthService, private authProvider: AuthProvider) { }
+  constructor(private auth: AuthService,
+    private authProvider: AuthProvider,
+    private socialMediaAuthService: SocialAuthService,
+    private notificationService: NotificationService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.socialMediaAuthService.authState.subscribe(user => {
+      this.notificationService.notifierMessage('success', 'Signing you up');
+      if (user.email.length > 0) {
+        this.registerForm.setValue({ email: user.email });
+        this.registerForm.setValue({ password: '*************' });
+        this.disablePasswordField = true;
+        this.formType = AuthSignInFormType.SocialMedia;
+        this.register(user.authToken);
+      } else {
+        this.notificationService.notifierMessage('error',
+          'Cannot signup with selected account, which has no associated email');
+        this.disablePasswordField = false;
+        this.formType = AuthSignInFormType.Regular;
+      }
+    });
+  }
 
   private _date: Date = new Date();
 
@@ -65,10 +91,12 @@ export class RegistrationComponent implements OnInit {
     return this.authProvider.user && this.authProvider.user.id;
   }
 
-  public register() {
+  public register(socialMediaAuthToken?: string) {
     this.auth.formGroup = this.registerForm;
+    if (socialMediaAuthToken)
+      this.auth.formGroup.setValue({ socialMediaAuthToken: socialMediaAuthToken });
     this._buttonText = 'Processing...';
-    this.auth.register().then(r => {
+    this.auth.register(this.formType).then(r => {
       this._buttonText = this.defaultButtonText;
     }).catch(() => {
       this._buttonText = this.defaultButtonText;
@@ -94,6 +122,14 @@ export class RegistrationComponent implements OnInit {
 
   public handleLoad() {
     this.registerForm.controls['recaptcha'].reset();
+  }
+
+  registerWithGoogle(): void {
+    this.socialMediaAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  registerWithFacebook(): void {
+    this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
 }

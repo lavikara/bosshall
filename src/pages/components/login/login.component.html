@@ -16,7 +16,8 @@
         <div class="field">
             <div class="control has-icons-right">
                 <input class="input" formControlName="password" id="password"
-                       placeholder="***********" type="password" required>
+                       placeholder="***********" type="password" [readonly]="disablePasswordField"
+                       required>
                 <span class="icon is-right">
                     <svg class="svg-icon">
                         <use xlink:href="#key"></use>
@@ -34,17 +35,24 @@
         </div>
 
         <br>
-        <div class="field">
+        <div *ngIf="!loggedIn" class="field">
             <div class="control">
                 <button [disabled]="!loginForm.valid" class="button is-link btn1"
                         type="submit">{{buttonText}}</button>
+            </div>
+        </div>
+        <div *ngIf="loggedIn" class="field">
+            <div class="control">
+                <button class="button is-link btn1" type="button" (click)="signOut()">
+                    Sign Out!</button>
             </div>
         </div>
 
         <br>
         <div class="field">
             <div class="control">
-                <button type="submit" class="button is-link btn2">
+                <button class="button is-link btn2" type="button" (click)="signInWithFacebook()"
+                        [disabled]="loggedIn">
                     <svg class="svg-icon">
                         <use xlink:href="#facebook"></use>
                     </svg>
@@ -54,12 +62,13 @@
         </div>
         <div class="field">
             <div class="control">
-                <button type="submit" class="button is-link btn3">
+                <button class="button is-link btn3" type="button" (click)="signInWithGoogle()"
+                   [disabled]="loggedIn">
                     <img src="/assets/img/google-color.svg" alt="">
                     <span>Continue in with Google</span>
-                </button>
+            </button>
             </div>
         </div>
-
     </form>
+
 </div>

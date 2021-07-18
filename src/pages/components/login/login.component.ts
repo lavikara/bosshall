@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../app/providers/user/notification.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { appConfig } from '../../../app/app.config';
@@ -5,14 +6,24 @@ import { AuthService } from '../../../app/providers/user/auth.service';
 import { ReCaptcha2Component } from 'ngx-captcha';
 import { ActivatedRoute } from '@angular/router';
 import { AuthProvider } from '../../../app/providers/auth.provider';
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+
+export enum AuthSignInFormType {
+  Regular,
+  SocialMedia
+}
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  formType: AuthSignInFormType = AuthSignInFormType.Regular;
+  public disablePasswordField = false;
+
   @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
   private _defaultButtonText = 'Sign In!';
   private token: string;
@@ -20,7 +31,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor(
     private authProvider: AuthProvider,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private socialMediaAuthService: SocialAuthService,
+    private notificationService: NotificationService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.minLength(3)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -48,18 +61,31 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.token = this.activatedRoute.snapshot.queryParamMap.get('t');
     if (this.token) {
       this.validateRegistration();
-
     }
+
+    this.socialMediaAuthService.authState.subscribe(user => {
+      this.notificationService.notifierMessage('success', user.email);
+      if (user.email.length > 0) {
+        this.loginForm.setValue({ email: user.email });
+        this.loginForm.setValue({ password: '*************' });
+        this.disablePasswordField = true;
+        this.formType = AuthSignInFormType.SocialMedia;
+        this.login(user.authToken);
+      } else {
+        this.notificationService.notifierMessage('error',
+          'Cannot sign in with selected account, which has no associated email');
+        this.disablePasswordField = false;
+        this.formType = AuthSignInFormType.Regular;
+      }
+    });
   }
 
-  ngAfterViewInit() {
-
-  }
-
-  public login() {
+  public login(socialMediaAuthToken?: string) {
     this.authService.formGroup = this.loginForm;
+    if (socialMediaAuthToken)
+      this.authService.formGroup.setValue({ socialMediaAuthToken: socialMediaAuthToken });
     this._buttonText = 'Processing...';
-    this.authService.login().then(r => {
+    this.authService.login(this.formType).then(r => {
       this._buttonText = this._defaultButtonText;
     }).catch(() => {
       this._buttonText = this._defaultButtonText;
@@ -96,7 +122,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }).catch(e => {
       // this.notificationService.message('Account validated successfully','close',()=>{},0);
     });
-
   }
+
+  signInWithGoogle(): void {
+    if (!this.loggedIn)
+      this.socialMediaAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFacebook(): void {
+    if (!this.loggedIn)
+      this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authProvider.signOut();
+  }
+
 
 }

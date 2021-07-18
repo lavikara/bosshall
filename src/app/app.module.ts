@@ -9,7 +9,7 @@ import { ConfirmResetComponent } from '../pages/Authentication/confirmReset/conf
 import { SendCodeComponent } from '../pages/Authentication/sendCode/sendcode';
 import { ForgotpasswordComponent } from '../pages/Authentication/forgotPassword/forgotpassword';
 import { IncludeComponentModule } from '../pages/components/include.component.module';
-import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker'; // TODO
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { ValidatorHelper } from './providers/input.provider/validator.input.provider';
@@ -189,7 +189,7 @@ const appRoutes: Routes = [
                     {
                         id: GoogleLoginProvider.PROVIDER_ID,
                         provider: new GoogleLoginProvider(
-                            'clientId'
+                            '407279663931-81qge66h06isiemvhuiaf0ktkubpiin0.apps.googleusercontent.com'
                         )
                     },
                     {

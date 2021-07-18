@@ -68,6 +68,7 @@ $min-height: 50px;
         padding-bottom: 5px + $anti-shake;
         text-transform: uppercase;
         background-color: rgba($color: $link, $alpha: 0.9);
+        height: fit-content;
 
         @media (min-width: 48em) {
             margin: 0 2em;
@@ -82,9 +83,13 @@ $min-height: 50px;
         }
 
         a {
-            padding-top: 2.5em;
             color: $default-font-color;
             color: $grey-light; // TODO
+
+            @media (max-width: 48em) {
+                display: block;
+                padding: 2em;
+            }
         }
 
         &:hover a,
@@ -181,16 +186,12 @@ $min-height: 50px;
 }
 
 .login-buttons {
-    display: none;
     text-align: center;
     margin-left: auto;
     @include navbar-padding;
 
-    @media (min-width: 48em) {
-        display: block;
-    }
-
     .button {
+        display: inline-block;
         text-transform: uppercase;
         color: $link;
         font-size: 0.9em;

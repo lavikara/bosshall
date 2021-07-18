@@ -16,7 +16,7 @@ export class FirstLoginGuard implements CanLoad {
             return true;
         } else {
             // this.router.navigate(['/bl/profile']); // TODO
-            this.router.navigate(['/bl/profile/interests']);
+            this.router.navigate(['/bl/profile']);
         }
     }
 

@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {ApiProvider} from '../api.service';
-import {FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
-import {NotificationService} from './notification.service';
-import {ApiModel} from '../../../model/ApiModel';
-import {Subject, Subscription} from 'rxjs/index';
-import {AuthProvider} from '../auth.provider';
-import {StartupService} from '../startup.service';
-import {ConnectionSocketProvider} from '../socket/connection.socket.provider';
+import { Injectable } from '@angular/core';
+import { ApiProvider } from '../api.service';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NotificationService } from './notification.service';
+import { ApiModel } from '../../../model/ApiModel';
+import { Subject, Subscription } from 'rxjs/index';
+import { AuthProvider } from '../auth.provider';
+import { StartupService } from '../startup.service';
+import { ConnectionSocketProvider } from '../socket/connection.socket.provider';
+import { AuthSignInFormType } from 'src/pages/components/login/login.component';
 
 @Injectable({
     providedIn: 'root'
@@ -15,11 +16,11 @@ import {ConnectionSocketProvider} from '../socket/connection.socket.provider';
 export class AuthService {
 
     constructor(private api: ApiProvider,
-                private router: Router,
-                private notificationService: NotificationService,
-                private startupProvider: StartupService,
-                private connectionSocketProvider: ConnectionSocketProvider,
-                private authProvider: AuthProvider) {
+        private router: Router,
+        private notificationService: NotificationService,
+        private startupProvider: StartupService,
+        private connectionSocketProvider: ConnectionSocketProvider,
+        private authProvider: AuthProvider) {
         this.handleSystemMessage();
     }
 
@@ -35,15 +36,16 @@ export class AuthService {
             if (!res.data || !res.data.name) {
                 return;
             }
-           this.notificationService.notifierMessage(res.data.name, res.data.content);
+            this.notificationService.notifierMessage(res.data.name, res.data.content);
         });
-       this.connectionSocketProvider.setObservable('System', systemSubject);
+        this.connectionSocketProvider.setObservable('System', systemSubject);
     }
 
-    public login() {
+    public login(type?: AuthSignInFormType) {
         this.api.shouldAuthenticate = false;
         this.api.requestType = 'post';
-        this.api.url = 'auth/login';
+        this.api.url = type == AuthSignInFormType.SocialMedia ? 'auth/login/social-media' : 'auth/login';
+
         return this._entry((r) => {
             this.authProvider.token = r.data.token;
             this.authProvider.user = r.data.user;
@@ -53,18 +55,19 @@ export class AuthService {
                 this.router.navigate(['/bl/brand']).then(r => {
                     this.startupProvider.afterAuthentication();
                 });
-
-            }, 2000);
+            }, 1000);
         });
     }
 
-    public register(): Promise<any> {
+    public register(type?: AuthSignInFormType): Promise<any> {
         if (!this._formGroup) {
             return;
         }
         this.api.shouldAuthenticate = false;
         this.api.requestType = 'post';
-        this.api.url = 'auth/register';
+        this.api.url = type == AuthSignInFormType.SocialMedia ? 'auth/register/social-media'
+            : 'auth/register';
+
         return this._entry(() => {
             this.router.navigate(['/rConfirmation']);
         });

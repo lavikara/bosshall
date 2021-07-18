@@ -1,3 +1,4 @@
+import { SocialAuthService } from 'angularx-social-login';
 import {Injectable} from '@angular/core';
 import {LocalStorageService} from 'ngx-store';
 import {UserModel} from '../../model/UserModel';
@@ -12,7 +13,8 @@ import {Subject} from 'rxjs';
 export class AuthProvider {
 
     constructor(private localStorageService: LocalStorageService,
-                private http: HttpClient, private router: Router) {
+                private http: HttpClient, private router: Router,
+                private socialMediaAuthService: SocialAuthService) {
     }
 
     get user(): UserModel {
@@ -98,6 +100,7 @@ export class AuthProvider {
     }
 
     public signOut() {
+        this.socialMediaAuthService.signOut();
         this.localStorageService.clear();
         this.router.navigate(['/']).then(r => {
             window.location.reload(true);

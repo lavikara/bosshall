@@ -25,8 +25,11 @@
     </header>
   
     <aside class="beside-hero">
-      <h3 style="text-align: center;">Get started now</h3>
-      <app-login *ngIf="isLoginPage == true"></app-login>
+      <h3 style="text-align: center;">
+        <span *ngIf="isLoginPage">Login</span>
+        <span *ngIf="!isLoginPage">Get started now</span>
+      </h3>
+      <app-login *ngIf="isLoginPage"></app-login>
       <app-registration *ngIf="!isLoginPage"></app-registration>
     </aside>
   </div>
