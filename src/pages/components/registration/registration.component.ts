@@ -20,7 +20,8 @@ export class RegistrationComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     agree: new FormControl('', [Validators.requiredTrue]),
-    recaptcha: new FormControl('', [Validators.required])
+    recaptcha: new FormControl('', [Validators.required]),
+    socialMediaAuthToken: new FormControl
   });
   formType: AuthSignInFormType = AuthSignInFormType.Regular;
 
@@ -34,7 +35,6 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.socialMediaAuthService.authState.subscribe(user => {
-      this.notificationService.notifierMessage('success', 'Signing you up');
       if (user.email.length > 0) {
         this.registerForm.setValue({ email: user.email });
         this.registerForm.setValue({ password: '*************' });
@@ -92,9 +92,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   public register(socialMediaAuthToken?: string) {
-    this.auth.formGroup = this.registerForm;
     if (socialMediaAuthToken)
-      this.auth.formGroup.setValue({ socialMediaAuthToken: socialMediaAuthToken });
+      this.registerForm.setValue({ socialMediaAuthToken });
+    this.auth.formGroup = this.registerForm;
     this._buttonText = 'Processing...';
     this.auth.register(this.formType).then(r => {
       this._buttonText = this.defaultButtonText;

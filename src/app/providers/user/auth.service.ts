@@ -107,6 +107,7 @@ export class AuthService {
 
     private _entry(complete: (value?: any) => any) {
         return new Promise((resolve, reject) => {
+            console.warn(this._formGroup.value) // TODO
             const subscription: Subscription = this.api.getUrl(this._formGroup.value).subscribe({
                 next: (r: ApiModel) => {
                     this.notificationService.notifierMessage('success', r.statusText);

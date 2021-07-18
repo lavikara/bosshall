@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.minLength(3)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      recaptcha: new FormControl('', [Validators.required])
+      recaptcha: new FormControl('', [Validators.required]),
+      socialMediaAuthToken: new FormControl
     });
   }
 
@@ -64,7 +65,6 @@ export class LoginComponent implements OnInit {
     }
 
     this.socialMediaAuthService.authState.subscribe(user => {
-      this.notificationService.notifierMessage('success', user.email);
       if (user.email.length > 0) {
         this.loginForm.setValue({ email: user.email });
         this.loginForm.setValue({ password: '*************' });
@@ -81,9 +81,9 @@ export class LoginComponent implements OnInit {
   }
 
   public login(socialMediaAuthToken?: string) {
-    this.authService.formGroup = this.loginForm;
     if (socialMediaAuthToken)
-      this.authService.formGroup.setValue({ socialMediaAuthToken: socialMediaAuthToken });
+      this.loginForm.setValue({ socialMediaAuthToken });
+    this.authService.formGroup = this.loginForm;
     this._buttonText = 'Processing...';
     this.authService.login(this.formType).then(r => {
       this._buttonText = this._defaultButtonText;
