@@ -102,7 +102,6 @@ export class RegistrationComponent implements OnInit {
       this._buttonText = this.defaultButtonText;
     });
     setTimeout(() => {
-      this.registerForm.reset();
       this.captchaElem.resetCaptcha();
 
     }, 2000);

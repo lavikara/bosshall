@@ -52,6 +52,7 @@ export class AuthService {
             this.authProvider.recorded = r.data.profileUpdated;
             setTimeout(() => {
                 // tslint:disable-next-line:no-shadowed-variable
+                this._formGroup.reset();
                 this.router.navigate(['/bl/brand']).then(r => {
                     this.startupProvider.afterAuthentication();
                 });

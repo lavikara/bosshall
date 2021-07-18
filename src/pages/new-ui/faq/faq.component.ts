@@ -18,10 +18,21 @@ export class FaqComponent implements OnInit, AfterViewInit {
   public questions: Faq[];
   @ViewChildren('article') articles: QueryList<ElementRef>;
   private articleAndItsHeight: Map<HTMLElement, DisplayHeight>;
+  private showPlusIconFlag = new Array<boolean>();
   public plusIcon: any;
+  public minusIcon: any;
 
   constructor(private sanitizer: DomSanitizer, private titleService: Title) {
-    titleService.setTitle("FAQ - Bosshalls")
+    titleService.setTitle("FAQ - Bosshalls");
+    this.plusIcon = this.sanitizer.bypassSecurityTrustHtml(`
+                <svg class="svg-icon">
+                  <use xlink:href="#plus-circle-outline"></use>
+                </svg>`);
+    this.minusIcon = this.sanitizer.bypassSecurityTrustHtml(`
+                <svg class="svg-icon">
+                  <use xlink:href="#minus-circle-outline"></use>
+                </svg>`);
+
     this.questions = [
       new Faq('Who can use Bosshalls?', `Anybody can use Bosshall`),
       new Faq('Must I create my brand profile to broadcast on bosshalls?', `
@@ -84,24 +95,35 @@ export class FaqComponent implements OnInit, AfterViewInit {
       `)
     ];
     this.articleAndItsHeight = new Map;
-    this.plusIcon = this.sanitizer.bypassSecurityTrustHtml(`
-                <svg class="svg-icon">
-                  <use xlink:href="#plus-circle-outline"></use>
-                </svg>`);
+
+    // to aid in loading plus and minus icons
+    this.questions.map((ques, index) => {
+      this.showPlusIconFlag[index] = true;
+    })
+  }
+
+  getIcon(index: number) {
+    if (this.showPlusIconFlag[index])
+      return this.plusIcon;
+    else
+      return this.minusIcon;
   }
 
   expandArticle(article: HTMLElement) {
     let displayProperties = this.articleAndItsHeight.get(article);
+
+    // set whether the icon should be + or -
+    let htmlElements = Array.from(this.articleAndItsHeight.keys());
+    let index = htmlElements.indexOf(article);
+
     if (displayProperties.isExpanded) {
       article.style.height = `${displayProperties.questionHeight}px`;
       displayProperties.isExpanded = false;
+      this.showPlusIconFlag[index] = true;
     } else {
       article.style.height = `${displayProperties.answerHeight}px`;
       displayProperties.isExpanded = true;
-      // article.querySelector('.icon').innerHTML = this.sanitizer.bypassSecurityTrustHtml(`
-      //         <svg class="svg-icon">
-      //           <use xlink:href="#plus-circle-outline"></use>
-      //         </svg>`);
+      this.showPlusIconFlag[index] = false;
     }
 
   }

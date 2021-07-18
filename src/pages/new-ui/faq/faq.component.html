@@ -3,10 +3,10 @@
 <app-banner [text]="'Frequently Asked Questions'"></app-banner>
 
 <section id="faq" class="root-container section">
-    <article *ngFor="let question of questions" #article (click)="expandArticle(article)"
+    <article *ngFor="let question of questions; index as i" #article (click)="expandArticle(article)"
              class="question">
         <header>
-            <span class="icon" [innerHTML]="plusIcon"></span>
+            <span class="icon" [innerHTML]="getIcon(i)"></span>
             <h2>{{question.question}}</h2>
         </header>
         <p>{{question.answer}}</p>
