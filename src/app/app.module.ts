@@ -37,7 +37,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EmojiBackgroundFn } from './providers/emoji-backgroundFn';
 import { LandingComponent } from '../pages/landing/landing.component';
 import { InlineSvgComponent } from './inline-svg/inline-svg.component';
-import { FooterComponent } from '../pages/new-ui/footer/footer.component';
 import { NavComponent } from '../pages/components/nav/nav.component';
 import { FaqComponent } from '../pages/new-ui/faq/faq.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
@@ -110,7 +109,6 @@ const appRoutes: Routes = [
         ForgotpasswordComponent,
         LandingComponent,
         InlineSvgComponent,
-        FooterComponent,
         NavComponent,
         AboutComponent,
         FaqComponent,
@@ -194,7 +192,7 @@ const appRoutes: Routes = [
                     },
                     {
                         id: FacebookLoginProvider.PROVIDER_ID,
-                        provider: new FacebookLoginProvider('clientId')
+                        provider: new FacebookLoginProvider('826180111339167')
                     }
                 ],
                 onError: (err) => {

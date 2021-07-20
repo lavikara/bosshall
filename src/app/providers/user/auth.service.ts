@@ -44,8 +44,9 @@ export class AuthService {
     public login(type?: AuthSignInFormType) {
         this.api.shouldAuthenticate = false;
         this.api.requestType = 'post';
-        this.api.url = type == AuthSignInFormType.SocialMediaLogin ? 'auth/login/social-media' : 'auth/login';
-
+        this.api.url = type == AuthSignInFormType.RegularLogin ?
+            'auth/login' : 'auth/login/social-media';
+            
         return this._entry((r) => {
             this.authProvider.token = r.data.token;
             this.authProvider.user = r.data.user;
@@ -66,14 +67,14 @@ export class AuthService {
         }
         this.api.shouldAuthenticate = false;
         this.api.requestType = 'post';
-        this.api.url = type == AuthSignInFormType.SocialMediaLogin ? 'auth/register/social-media'
-            : 'auth/register';
+        this.api.url = type == AuthSignInFormType.RegularLogin ?
+            'auth/register' : 'auth/register/social-media';
 
         return this._entry(() => {
             // log in the user soon
             setTimeout(() => {
                 this.login(type);
-            }, 1000);
+            }, 2000);
             this.router.navigate(['/rConfirmation']);
         });
     }

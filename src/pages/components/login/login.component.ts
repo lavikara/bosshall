@@ -22,11 +22,10 @@ export enum AuthSignInFormType {
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   public disablePasswordField = false;
-  cachedSocialMediaAuthToken: string = null;
-
-  @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
   private _defaultButtonText = 'Sign In!';
   private token: string;
+
+  @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
 
   constructor(
     private authProvider: AuthProvider,
@@ -38,7 +37,9 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.minLength(3)]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       recaptcha: new FormControl('', [Validators.required]),
-      socialMediaAuthToken: new FormControl
+      socialMediaIdToken: new FormControl, // needed for google
+      socialMediaAuthToken: new FormControl, // needed for facebook
+      socialMediaCompany: new FormControl
     });
   }
 
@@ -67,7 +68,11 @@ export class LoginComponent implements OnInit {
     this.socialMediaAuthService.authState.subscribe(user => {
       if (user.email.length > 0) {
         this.disablePasswordField = true;
-        this.cachedSocialMediaAuthToken = user.authToken;
+        this.loginForm.get('email').setValue(user.email);
+        this.loginForm.get('password').setValue('     '); //TODO
+
+        this.loginForm.get('socialMediaIdToken').setValue(user.idToken);
+        this.loginForm.get('socialMediaAuthToken').setValue(user.authToken);
         this.login(AuthSignInFormType.SocialMediaLogin);
       } else {
         this.notificationService.notifierMessage('error',
@@ -78,8 +83,6 @@ export class LoginComponent implements OnInit {
   }
 
   public login(authType: AuthSignInFormType = AuthSignInFormType.RegularLogin) {
-    if (this.cachedSocialMediaAuthToken != null)
-      this.loginForm.setValue({ socialMediaAuthToken: this.cachedSocialMediaAuthToken });
     this.authService.formGroup = this.loginForm;
     this._buttonText = 'Processing...';
     this.authService.login(authType).then(r => {
@@ -90,7 +93,6 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.loginForm.reset();
       this.captchaElem.resetCaptcha();
-
     }, 2000);
   }
 
@@ -122,13 +124,13 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    if (!this.loggedIn)
-      this.socialMediaAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.loginForm.get('socialMediaCompany').setValue('Google');
+    this.socialMediaAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   signInWithFacebook(): void {
-    if (!this.loggedIn)
-      this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.loginForm.get('socialMediaCompany').setValue('Facebook');
+    this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
   signOut(): void {

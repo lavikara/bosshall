@@ -8,7 +8,8 @@ import { MomentModule } from 'ngx-moment';
 import { LoadMoreIncludeComponent } from './load-more/load-more.component';
 import { SpreadFlashIncludeComponent } from './spread-flash/spread-flash.component';
 import { PlayerListIncludeComponent } from './player-list/player-list.component';
-import { FooterIncludeComponent } from './footer/footer.component';
+// import { FooterIncludeComponent as OldFooterIncludeComponent } from './footer/footer.component';
+import { FooterComponent } from '../new-ui/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { SpreadCreateIncludeComponent } from './spread-create/spread-create.component';
@@ -88,7 +89,8 @@ import { BannerComponent } from './banner/banner.component';
         TopNotificationComponent,
         BrandStoryComponent,
         ParticipantsMessageIncludeComponent,
-        FooterIncludeComponent,
+        // OldFooterIncludeComponent,
+        FooterComponent,
         LoadingInclComponent,
         SingleListAttendanceIncludeComponent,
         MultipleParticipantsIncludeComponent,
@@ -127,7 +129,8 @@ import { BannerComponent } from './banner/banner.component';
         SweetAlert2Module,
         HttpClientModule,
         RouterModule, MatChipsModule, PickerModule, NotifierModule, DragDropModule, MatExpansionModule, MatPaginatorModule, LazyLoadImageModule, FlatpickrModule],
-    exports: [HeaderIncComponent,
+    exports: [
+        HeaderIncComponent,
         VideoPlayerComponent,
         CommentAddIncludeComponent,
         CommentListIncludeComponent,
@@ -144,7 +147,8 @@ import { BannerComponent } from './banner/banner.component';
         InterestContainerModalComponent,
         ComplexListAttendanceIncludeComponent,
         ParticipantsMessageIncludeComponent,
-        FooterIncludeComponent,
+        // OldFooterIncludeComponent,
+        FooterComponent,
         AvatarUserIncludeComponent,
         CloudThinSidebarIncludeComponent,
         VideoPlayerFilterComponent,

@@ -10,8 +10,9 @@
                 <ul class="interests-list">
                     <li class="thumb"
                         *ngFor="let item of (interests| doubleSearchFilter:filter.value); let i=index"
-                        [ngClass]="item.selected?'active':''" (click)="pushInterest(item)"
-                        style="--image: url('/assets/img/thumb3.jpg')">
+                        [ngClass]="item.selected?'active':''"
+                        (click)="pushInterest(item); addForUnselectIfFormNotSaved(item)"
+                        style="--image: url('/assets/img/{{'bg-icon.jpg'}}')">
                         <div style="width: 100%">
                             <h5 *ngIf="!item.selected" class="interests-text"
                                 style="font-style: italic;">
@@ -47,9 +48,10 @@
             </div>
         </section>
         <footer class="modal-card-foot">
-            <button class="button is-link btn1" (click)="closeModal(modal)">Done</button>
-            <button class="button no-border" (click)="gotoProfile(modal)">Take me to my
-                profile</button>
+            <button class="button is-link btn1" (click)="closeModal()">Done</button>
+            <button class="button no-border" (click)="gotoProfile()">
+                Take me to my profile
+            </button>
         </footer>
     </div>
 </div>

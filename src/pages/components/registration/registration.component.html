@@ -63,20 +63,22 @@
         <br>
         <div class="field">
             <div class="control">
-                <a class="button is-link btn2">
+                <button class="button is-link btn2" type="button" (click)="registerWithFacebook()"
+                        [disabled]="loggedIn">
                     <svg class="svg-icon">
                         <use xlink:href="#facebook"></use>
                     </svg>
-                    <span>Continue with Facebook</span>
-                </a>
+                    <span>Sign up with Facebook</span>
+                </button>
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <a class="button is-link btn3">
+                <button class="button is-link btn3" type="button" (click)="registerWithGoogle()"
+                        [disabled]="loggedIn">
                     <img src="/assets/img/google-color.svg" alt="">
-                    <span>Continue with Google</span>
-                </a>
+                    <span>Sign up with Google</span>
+                </button>
             </div>
         </div>
 

@@ -66,7 +66,6 @@ export class ApiProvider {
         if (this._shouldAuthenticate || shouldAuthenticate) {
             this.addAuthorization();
         }
-
         this._url = this._url.replace(/^\//g, '');
 
         const option = {headers: new HttpHeaders(this._header), responseType: this._responseType, reportProgress: true};

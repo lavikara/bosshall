@@ -21,9 +21,10 @@ export class RegistrationComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     agree: new FormControl('', [Validators.requiredTrue]),
     recaptcha: new FormControl('', [Validators.required]),
-    socialMediaAuthToken: new FormControl
+    socialMediaIdToken: new FormControl, // needed for google
+    socialMediaAuthToken: new FormControl, // needed for facebook
+    socialMediaCompany: new FormControl
   });
-  formType: AuthSignInFormType = AuthSignInFormType.RegularLogin;
 
   @ViewChild('captchaElem', { static: false }) captchaElem: ReCaptcha2Component;
   private defaultButtonText = 'Sign up!';
@@ -36,16 +37,17 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.socialMediaAuthService.authState.subscribe(user => {
       if (user.email.length > 0) {
-        this.registerForm.setValue({ email: user.email });
-        this.registerForm.setValue({ password: '*************' });
         this.disablePasswordField = true;
-        this.formType = AuthSignInFormType.SocialMediaLogin;
-        this.register(user.authToken);
+        this.registerForm.get('email').setValue(user.email);
+        this.registerForm.get('password').setValue('     '); // TODO
+
+        this.registerForm.get('socialMediaIdToken').setValue(user.idToken);
+        this.registerForm.get('socialMediaAuthToken').setValue(user.authToken);
+        this.register(AuthSignInFormType.SocialMediaLogin);
       } else {
         this.notificationService.notifierMessage('error',
           'Cannot signup with selected account, which has no associated email');
         this.disablePasswordField = false;
-        this.formType = AuthSignInFormType.RegularLogin;
       }
     });
   }
@@ -91,19 +93,16 @@ export class RegistrationComponent implements OnInit {
     return this.authProvider.user && this.authProvider.user.id;
   }
 
-  public register(socialMediaAuthToken?: string) {
-    if (socialMediaAuthToken)
-      this.registerForm.setValue({ socialMediaAuthToken });
+  public register(authType: AuthSignInFormType = AuthSignInFormType.RegularLogin) {
     this.auth.formGroup = this.registerForm;
     this._buttonText = 'Processing...';
-    this.auth.register(this.formType).then(r => {
+    this.auth.register(authType).then(r => {
       this._buttonText = this.defaultButtonText;
     }).catch(() => {
       this._buttonText = this.defaultButtonText;
     });
     setTimeout(() => {
       this.captchaElem.resetCaptcha();
-
     }, 2000);
   }
 
@@ -124,10 +123,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerWithGoogle(): void {
+    this.registerForm.get('socialMediaCompany').setValue('Google');
     this.socialMediaAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   registerWithFacebook(): void {
+    this.registerForm.get('socialMediaCompany').setValue('Facebook');
     this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 

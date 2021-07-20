@@ -1,11 +1,12 @@
 import { Router } from '@angular/router';
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { EntitiesService } from "../../../app/providers/user/entities.service";
 import { KeyNameModel } from "../../../model/KeyNameModel";
 import { FormControl } from "@angular/forms";
 import { BrandModel } from "../../../model/BrandModel";
 import { UserService } from "../../../app/providers/user/user.provider";
 import { BrandService } from "../../../app/providers/brand/brand.service";
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-interest-container-modal',
@@ -16,10 +17,12 @@ export class InterestContainerModalComponent implements OnInit {
 
   @Output()
   onChange: EventEmitter<any> = new EventEmitter<Array<any>>();
+  @ViewChild('modal') modal: ElementRef;
 
   private _title: string;
   public filter: FormControl = new FormControl('');
   private interestEntry: any = {} as any;
+  private cacheItemsForRemovalIfFormNotSaved: Array<KeyNameModel>;
 
   constructor(private entity: EntitiesService,
     private brandService: BrandService,
@@ -59,7 +62,7 @@ export class InterestContainerModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.interestEntry = this.userService.interestsBrand(true, 1);
-
+    this.cacheItemsForRemovalIfFormNotSaved = new Array(); // reset it
   }
 
   public searchBrands(interestId: number) {
@@ -101,13 +104,20 @@ export class InterestContainerModalComponent implements OnInit {
     this.onChange.emit(selectedInterests);
   }
 
-  public closeModal(modal: HTMLElement) {
-    modal.classList.remove('is-active');
+  public closeModal() {
+    this.modal.nativeElement.classList.remove('is-active');
   }
 
-  public gotoProfile(modal: HTMLElement) {
-    modal.classList.remove('is-active');
+  public gotoProfile() {
+    this.modal.nativeElement.classList.remove('is-active');
+    this.cacheItemsForRemovalIfFormNotSaved.forEach(item => {
+      this.pushInterest(item);
+    })
     this.router.navigateByUrl('/bl/profile');
+  }
+
+  addForUnselectIfFormNotSaved(item: KeyNameModel) {
+    this.cacheItemsForRemovalIfFormNotSaved.push(item);
   }
 
 }
