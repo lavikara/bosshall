@@ -137,7 +137,7 @@ $min-height: 50px;
         position: relative;
         height: $slice-height;
         width: 40px;
-        background: white;
+        background: $grey-light;
 
         &:before {
             content: "";
@@ -146,7 +146,7 @@ $min-height: 50px;
             left: 0;
             height: $slice-height;
             width: 100%;
-            background: white;
+            background: $grey-light;
         }
 
         &:after {
@@ -156,7 +156,7 @@ $min-height: 50px;
             left: 0;
             height: $slice-height;
             width: 100%;
-            background: white;
+            background: $grey-light;
         }
     }
 
@@ -188,7 +188,12 @@ $min-height: 50px;
 .login-buttons {
     text-align: center;
     margin-left: auto;
+    display: flex;
     @include navbar-padding;
+
+    @media (min-width: 48em) {
+        display: block;
+    }
 
     .button {
         display: inline-block;

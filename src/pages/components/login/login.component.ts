@@ -1,5 +1,5 @@
 import { NotificationService } from './../../../app/providers/user/notification.service';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { appConfig } from '../../../app/app.config';
 import { AuthService } from '../../../app/providers/user/auth.service';
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
         this.login(AuthSignInFormType.SocialMediaLogin);
       } else {
         this.notificationService.notifierMessage('error',
-          'Cannot sign in with selected account, which has no associated email');
+          'Selected social media account is ineligible.');
         this.disablePasswordField = false;
       }
     });

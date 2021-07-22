@@ -6,10 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmregComponent } from '../pages/Authentication/confirmReg/confirmreg';
 import { ConfirmResetComponent } from '../pages/Authentication/confirmReset/confirmReset';
-import { SendCodeComponent } from '../pages/Authentication/sendCode/sendcode';
+import { SendCodeComponent } from '../pages/Authentication/send-code/send-code.component';
 import { ForgotpasswordComponent } from '../pages/Authentication/forgotPassword/forgotpassword';
 import { IncludeComponentModule } from '../pages/components/include.component.module';
-import { AngularDateTimePickerModule } from 'angular2-datetimepicker'; // TODO
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { ValidatorHelper } from './providers/input.provider/validator.input.provider';
@@ -84,7 +84,7 @@ const appRoutes: Routes = [
                 component: ForgotpasswordComponent,
                 data: { title: 'Reset your password - Bosshall' }
             },
-            { path: 'SendCode', component: SendCodeComponent, data: { title: 'Send code - Bosshall' } },
+            { path: 'SendCode', component: SendCodeComponent },
             {
                 path: 'bl',
                 canActivate: [AuthenticatedGuard],

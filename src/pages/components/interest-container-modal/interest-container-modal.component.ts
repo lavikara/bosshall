@@ -106,14 +106,21 @@ export class InterestContainerModalComponent implements OnInit {
 
   public closeModal() {
     this.modal.nativeElement.classList.remove('is-active');
+    setTimeout(() => {
+      this.clearCache();
+    }, 1500);
   }
 
   public gotoProfile() {
     this.modal.nativeElement.classList.remove('is-active');
+    this.clearCache();
+    this.router.navigateByUrl('/bl/profile');
+  }
+
+  private clearCache() {
     this.cacheItemsForRemovalIfFormNotSaved.forEach(item => {
       this.pushInterest(item);
     })
-    this.router.navigateByUrl('/bl/profile');
   }
 
   addForUnselectIfFormNotSaved(item: KeyNameModel) {

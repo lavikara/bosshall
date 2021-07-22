@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit {
         this.register(AuthSignInFormType.SocialMediaLogin);
       } else {
         this.notificationService.notifierMessage('error',
-          'Cannot signup with selected account, which has no associated email');
+          'Selected social media account is ineligible.');
         this.disablePasswordField = false;
       }
     });
@@ -129,7 +129,16 @@ export class RegistrationComponent implements OnInit {
 
   registerWithFacebook(): void {
     this.registerForm.get('socialMediaCompany').setValue('Facebook');
-    this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then(() => {
+        if (this.registerForm.get('email').value.length < 6) {
+          this.registerForm.get('email').setValue('');
+          this.registerForm.get('password').setValue('');
+          this.notificationService.notifierMessage('error',
+            'Cannot signup with selected account, which has no associated email');
+          this.disablePasswordField = false;
+        }
+      })
   }
 
 }

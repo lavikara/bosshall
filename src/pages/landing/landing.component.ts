@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthProvider } from './../../app/providers/auth.provider';
 import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { Video } from 'src/model/Video';
 import { VideoService } from 'src/app/providers/video/video.service';
@@ -17,7 +19,10 @@ export class LandingComponent implements OnInit, AfterViewInit {
   videos: Video[];
   @ViewChildren('vid') videoElements: QueryList<ElementRef>;
 
-  constructor(private videoService: VideoService, private titleService: Title) {
+  constructor(private videoService: VideoService,
+    private titleService: Title,
+    private authProvider: AuthProvider,
+    private router: Router) {
     titleService.setTitle("Bosshalls - Virutal Hub for Media")
     this.videos = videoService.videos;
   }
@@ -43,7 +48,13 @@ export class LandingComponent implements OnInit, AfterViewInit {
 
   stopPlay(vid: any, icon: HTMLElement) { }
 
+  get loggedIn() {
+    return this.authProvider.user && this.authProvider.user.id;
+  }
+
   ngOnInit(): void {
+    if (this.loggedIn)
+      this.router.navigate(['bl/brand']);
   }
 
   ngAfterViewInit(): void {
