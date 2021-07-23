@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.socialMediaAuthService.authState.subscribe(user => {
-      if (user.email.length > 0) {
+      if (user.email && user.email.length > 0) {
         this.disablePasswordField = true;
         this.registerForm.get('email').setValue(user.email);
         this.registerForm.get('password').setValue('     '); // TODO
@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit {
         this.register(AuthSignInFormType.SocialMediaLogin);
       } else {
         this.notificationService.notifierMessage('error',
-          'Selected social media account is ineligible.');
+          'Selected social media account doesn\'t have an associated email.');
         this.disablePasswordField = false;
       }
     });
@@ -130,15 +130,6 @@ export class RegistrationComponent implements OnInit {
   registerWithFacebook(): void {
     this.registerForm.get('socialMediaCompany').setValue('Facebook');
     this.socialMediaAuthService.signIn(FacebookLoginProvider.PROVIDER_ID)
-      .then(() => {
-        if (this.registerForm.get('email').value.length < 6) {
-          this.registerForm.get('email').setValue('');
-          this.registerForm.get('password').setValue('');
-          this.notificationService.notifierMessage('error',
-            'Cannot signup with selected account, which has no associated email');
-          this.disablePasswordField = false;
-        }
-      })
   }
 
 }
