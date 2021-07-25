@@ -8,14 +8,25 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+
+    @media (min-width: 48em) {
+        flex-wrap: nowrap;
+    }
 
     .links {
         margin: auto;
         padding: 2em;
-        font-size: 0.5em;
+        font-size: 0.8em;
+        flex-basis: 75%;
+        flex-shrink: 2;
+        text-align: justify;
 
         @media (min-width: 48em) {
             font-size: 1em;
+            flex-basis: auto;
+            flex-shrink: 0;
+            text-align: left;
         }
 
         a:link,
@@ -30,6 +41,11 @@ footer {
         align-items: center;
         margin-bottom: 0;
 
+        @media (max-width: 48em) {
+            flex-basis: 100%;
+            justify-content: center;
+        }
+
         li a {
             display: inline-flex;
             align-items: center;
@@ -38,7 +54,7 @@ footer {
             background-color: lighten($link, 32%);
             border-radius: 50%;
             padding: 0.5em;
-            margin-left: $margin / 2;
+            margin-right: $margin / 2;
         }
     }
 }

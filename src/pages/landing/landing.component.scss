@@ -213,3 +213,9 @@ $picture-box-margin-fix: 1em;
     margin: 0 0.5em;
     text-align: center;
 }
+
+.smaller-on-mobile {
+    @media (max-width: 48em) {
+        font-size: 0.85em;
+    }
+}
