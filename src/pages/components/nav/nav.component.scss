@@ -10,7 +10,7 @@ $min-height: 50px;
     width: 100%;
     transition: background-color 1s ease-out;
     color: white;
-    z-index: 2;
+    z-index: 5;
     @include navbar-padding;
 
     * {

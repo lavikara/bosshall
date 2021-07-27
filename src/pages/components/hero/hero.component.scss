@@ -110,3 +110,13 @@ input[type=checkbox].checkbox {
         color: $link;
     }
 }
+
+.hide-if-not-on-landing-page {
+    // only for mobile
+    @media (max-width: 48em) {
+        height: 0vh;
+        min-height: 0;
+        margin-bottom: 3em;
+        visibility: hidden;
+    }
+}
