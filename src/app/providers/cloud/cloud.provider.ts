@@ -41,6 +41,7 @@ export class CloudService extends StreamService {
     public presentationSlide = false;
     public participantSlide = false;
     public isCloudPage = false;
+    public isBroadcastPage = false;
     public mobileMore = false;
     public musicInstance: MusicService;
 
@@ -75,6 +76,7 @@ export class CloudService extends StreamService {
 
         this.router.events.subscribe((data: any) => {
             this.isCloudPage = data && data.url && data.url.startsWith('/bl/cloud');
+            this.isBroadcastPage = data.url && data.url.match(/\/bl\/cloud\/[0-9]*\/broadcast/g);
             this.mobileMore = false;
             this.presentationSlide = false;
             this.participantSlide = false;

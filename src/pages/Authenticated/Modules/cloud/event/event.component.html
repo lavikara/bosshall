@@ -71,3 +71,8 @@
 <div class="little-recording" cdkDrag></div>
 <div class="little-music-player" cdkDrag></div>
 <canvas class="js-canvas hidden"></canvas>
+<div [class.hidden]="true" *ngIf="!isBroadCastPage">
+    <div *ngFor="let sub of subscribers|AudioVideo; let i = index" class="participant-list stream-container col-md-6 col-xs-6">
+        <user-video [streamManager]="sub"></user-video>
+    </div>
+</div>
