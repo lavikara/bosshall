@@ -2,7 +2,6 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {CloudService} from '../../../../../app/providers/cloud/cloud.provider';
 import {Location} from '@angular/common';
-import {Recorder} from '../../../../../app/providers/recorder/Recorder';
 import {SideStreamUi} from '../../../../../app/providers/cloud/stream/side-stream-ui';
 import {StreamManager} from 'openvidu-browser';
 
