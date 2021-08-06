@@ -41,8 +41,10 @@ export class CloudService extends StreamService {
     public presentationSlide = false;
     public participantSlide = false;
     public isCloudPage = false;
+    public isBroadcastPage = false;
     public mobileMore = false;
     public musicInstance: MusicService;
+    private recordingInit = false;
 
     /**
      * @param socketConnection
@@ -75,6 +77,7 @@ export class CloudService extends StreamService {
 
         this.router.events.subscribe((data: any) => {
             this.isCloudPage = data && data.url && data.url.startsWith('/bl/cloud');
+            this.isBroadcastPage = data.url && data.url.match(/\/bl\/cloud\/[0-9]*\/broadcast/g);
             this.mobileMore = false;
             this.presentationSlide = false;
             this.participantSlide = false;
@@ -141,12 +144,19 @@ export class CloudService extends StreamService {
             return;
         }
 
+        if (this.recordingInit || !vid) {
+            return;
+        }
+
+        this.recordingInit = true;
         const littleRecording: HTMLMediaElement = document.querySelector('.little-recording');
         const videoContainer: HTMLVideoElement = document.querySelector('.js-completed-video');
 
         vid.addEventListener('loadeddata', (event) => {
            // videoContainer.muted = true;
-            const streamTracks = (vid as any).captureStream();
+
+            vid.play().catch(e => console.error(e));
+            const streamTracks = (vid as any).cloneNode(true).captureStream();
 
             if (videoContainer) {
                 videoContainer.srcObject = streamTracks;
@@ -157,10 +167,9 @@ export class CloudService extends StreamService {
                         videoContainer,
                         (videoContainer as any).captureStream().getAudioTracks()
                     );
-                });
-                videoContainer.play().catch(r => console.error(r));
+                        videoContainer.play().catch(r => console.error(r));
+                    });
             }
-            vid.play().catch(e => console.error(e));
             this.recordInstance.draw(littleRecording as HTMLElement, {append: false});
         });
 

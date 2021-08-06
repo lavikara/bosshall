@@ -94,10 +94,10 @@ export abstract class StreamProvider {
         console.log('StreamProvider::createPublisher  published for user with publisher');
         console.log(publisher);
         // publisher.subscribeToRemote(true);
+        this._publisher = publisher;
         this.session.publish(publisher);
         this._subscribers.push(publisher);
         this.updateMainStream(publisher);
-        this._publisher = publisher;
         this._streamBroadcasting = true;
         this.onPublisherPublished();
     }

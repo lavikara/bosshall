@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input} from '@angular/core';
 import {StreamManager} from 'openvidu-browser';
 import {CloudService} from '../../../app/providers/cloud/cloud.provider';
 
@@ -27,6 +27,7 @@ export class MultipleParticipantsIncludeComponent {
     public updateMainStreamManager(subscriber: StreamManager) {
         this.cloudService.updateMainStream(subscriber);
     }
+
     get blueButton() {
         return this._blueButton;
     }

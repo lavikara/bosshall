@@ -2,8 +2,8 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {CloudService} from '../../../../../app/providers/cloud/cloud.provider';
 import {Location} from '@angular/common';
-import {Recorder} from '../../../../../app/providers/recorder/Recorder';
 import {SideStreamUi} from '../../../../../app/providers/cloud/stream/side-stream-ui';
+import {StreamManager} from 'openvidu-browser';
 
 
 @Component({
@@ -44,8 +44,17 @@ export class CloudEventComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
+
+    get subscribers(): StreamManager[] {
+        return this.cloudService.subscribers;
+    }
+
     ngOnInit(): void {
 
+    }
+
+    get isBroadCastPage(): boolean {
+        return this.cloudService.isBroadcastPage;
     }
 
     mediaPlaying(): boolean {
